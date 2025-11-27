@@ -1,0 +1,172 @@
+raw `ChampionsGauntlet_DomePreBattleRoom_MapScripts::
+	    .byte 0
+    `
+
+script ChampionsGauntlet_DomePreBattleRoom_Sign_Determination
+{
+    lock
+    msgbox(ChampionsGauntlet_DomePreBattleRoom_Text_Sign_Determination, MSGBOX_DEFAULT)
+	closemessage
+    release
+    end
+}
+
+script ChampionsGauntlet_DomePreBattleRoom_Attendant
+{
+ 	lock
+	faceplayer
+	call(ChampionsGauntlet_DomePreBattleRoom_AreYouReady)
+    waitmessage
+    msgbox(ChampionsGauntlet_DomePreBattleRoom_Text_OkayToSaveBeforeChallenge, MSGBOX_YESNO)
+	switch(var(VAR_RESULT)){
+	    case NO: goto(ChampionsGauntlet_DomePreBattleRoom_TakeYourTime)
+	    case YES: goto(ChampionsGauntlet_DomePreBattleRoom_SaveBeforeChallenge)
+	    case MULTI_B_PRESSED: goto(ChampionsGauntlet_DomePreBattleRoom_TakeYourTime)
+    }
+	end
+}
+
+script ChampionsGauntlet_DomePreBattleRoom_AreYouReady
+{
+    if(flag(FLAG_QUALIFIERS)){
+        message(ChampionsGauntlet_DomePreBattleRoom_Text_TakeQualifiers) 
+    }
+    if(flag(FLAG_QUARTER_FINALS)){
+        message(ChampionsGauntlet_DomePreBattleRoom_Text_TakeQuarterFinals) 
+    } 
+    if(flag(FLAG_SEMI_FINALS)){
+        message(ChampionsGauntlet_DomePreBattleRoom_Text_TakeSemiFinals) 
+    } 
+    if(flag(FLAG_GRAND_FINALS)){
+        message(ChampionsGauntlet_DomePreBattleRoom_Text_TakeGrandFinals) 
+    } 
+    return
+}
+
+script ChampionsGauntlet_DomePreBattleRoom_SaveBeforeChallenge
+{
+	closemessage
+	delay(2)
+	call(Common_EventScript_SaveGame)
+	goto_if_eq(VAR_RESULT, 0, ChampionsGauntlet_DomePreBattleRoom_TakeYourTime)
+    goto(ChampionsGauntlet_DomePreBattleRoom_EnterChallenge)
+}
+	
+	
+script ChampionsGauntlet_DomePreBattleRoom_EnterChallenge
+{
+	call(ChampionsGauntlet_DomePreBattleRoom_AttendantLetYouPass)
+	special(HealPlayerParty)
+	special(SavePlayerStateBeforeWarp)
+	warp(MAP_CHAMPIONS_GAUNTLET_BATTLE_ROOM, 7, 6)
+    special(SetNextArceusOpponent)
+	waitstate
+}
+
+script ChampionsGauntlet_DomePreBattleRoom_AttendantLetYouPass
+{
+    applymovement(LOCALID_ARCEUS_PRE_BATTLE_ATTENDANT, ChampionsGauntlet_DomePreBattleRoom_Movement_AttendantLetYouPass)
+    applymovement(LOCALID_PLAYER, ChampionsGauntlet_DomePreBattleRoom_Movement_WalkToDoor)
+    waitmovement(0)
+    call(ChampionsGauntlet_DomePreBattleRoom_OpenDoor)
+	waitdooranim
+	msgbox(ChampionsGauntlet_DomePreBattleRoom_Text_Goodluck, MSGBOX_DEFAULT)
+	closemessage
+    applymovement(LOCALID_PLAYER, ChampionsGauntlet_DomePreBattleRoom_Movement_PlayerEnterDoor)
+	waitmovement(0)
+	call(ChampionsGauntlet_DomePreBattleRoom_CloseSinglesDoor)
+	waitdooranim
+	return
+}
+
+script ChampionsGauntlet_DomePreBattleRoom_Movement_AttendantLetYouPass
+{
+	walk_right
+	face_left
+	step_end
+}
+
+script ChampionsGauntlet_DomePreBattleRoom_Movement_WalkToDoor
+{
+	walk_up
+	step_end
+}
+
+script ChampionsGauntlet_DomePreBattleRoom_OpenDoor
+{
+	opendoor(5, 1)
+	return
+}
+
+script ChampionsGauntlet_DomePreBattleRoom_Movement_PlayerEnterDoor
+{
+	walk_up
+	set_invisible
+	step_end
+}
+
+script ChampionsGauntlet_DomePreBattleRoom_CloseSinglesDoor
+{
+	closedoor(5, 1)
+	return
+}
+
+script ChampionsGauntlet_DomePreBattleRoom_TakeYourTime
+{
+    msgbox(ChampionsGauntlet_DomePreBattleRoom_Text_TakeYourTime, MSGBOX_DEFAULT)
+	release
+	end
+}
+
+text ChampionsGauntlet_DomePreBattleRoom_Text_Sign_Determination
+{
+    "Looking at the mirror you realize\n"
+    "even at after all of this, youa are\l"
+    "still you. You are suddenly inspired.\l"
+    "You are filled with DETERMINATION.$"
+}
+
+text ChampionsGauntlet_DomePreBattleRoom_Text_TakeYourTime
+{
+    "No Worries, take your time\n"
+    "preparing Champion {PLAYER}.$"
+}
+
+text ChampionsGauntlet_DomePreBattleRoom_Text_OkayToSaveBeforeChallenge
+{
+    "As always, before you participate,\n"
+	"I must save the data. Is that okay?$"
+}
+
+text ChampionsGauntlet_DomePreBattleRoom_Text_TakeGrandFinals
+{
+    "Let Arceus be with you, Champion.\n"
+    "You will now be entering the\l"
+    "GRANDFINALS of the ARCEUS CUP.\l"
+	"Are you now ready?$"
+}
+
+text ChampionsGauntlet_DomePreBattleRoom_Text_TakeSemiFinals
+{
+    "Amazing! Just two more to go!\n"
+    "Are you now ready to take on the\l"
+	"SEMIFINALS of the ARCEUS CUP?$"
+}
+
+text ChampionsGauntlet_DomePreBattleRoom_Text_TakeQuarterFinals
+{
+    "Congratulations on your last win!\n"
+    "Are you now ready to take on the\l"
+	"QUARTERFINALS in the ARCEUS CUP?$"
+}
+
+text ChampionsGauntlet_DomePreBattleRoom_Text_TakeQualifiers
+{
+    "Are you now ready to take on the\n"
+	"QUALIFIERS of the ARCEUS CUP?$"
+}
+
+text ChampionsGauntlet_DomePreBattleRoom_Text_Goodluck
+{
+	"Goodluck on your match, Champion.$"
+}
