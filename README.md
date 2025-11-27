@@ -32,4 +32,3 @@ If you're new to git and GitHub, [Team Aqua's Asset Repo](https://github.com/Paw
 
 ## [Installing **`pokeemerald-arceus-cup`**](INSTALL.md)
 ## [Building **`pokeemerald-arceus-cup`**](INSTALL.md#Building-pokeemerald-expansion)
-## [Updating **`pokeemerald-arceus-cup`**](INSTALL.md#Updating-pokeemerald-expansion)
