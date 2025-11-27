@@ -1,0 +1,13 @@
+raw `ChampionsGauntlet_ReneHouse_MapScripts::
+        .byte 0
+    `
+
+script ChampionsGauntlet_ReneHouse_ReneBattle 
+{
+    lock
+    faceplayer
+    trainerbattle_single(MASTER_RENE, "oh? Defend ka Boss?", "G ah sugtan ah, pass lang delivarables.")
+    msgbox("Next Exam sa 27.", MSGBOX_AUTOCLOSE)
+    release
+    end
+}

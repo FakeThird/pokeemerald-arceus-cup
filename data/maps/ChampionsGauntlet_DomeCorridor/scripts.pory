@@ -1,0 +1,77 @@
+raw `
+ChampionsGauntlet_DomeCorridor_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, ChampionsGauntlet_DomeCorridor_OnFrame
+	.byte 0
+	
+ChampionsGauntlet_DomeCorridor_OnFrame:
+	map_script_2 VAR_TEMP_0, 0, ChampionsGauntlet_DomeCorridor_EventScript_WalkToBattleRoomLvOpen
+	.2byte 0
+
+ChampionsGauntlet_DomeCorridor_EventScript_WalkToBattleRoomLvOpen::
+    delay 16
+	
+	applymovement LOCALID_ARCEUS_CORRIDOR_ATTENDANT, ChampionsGauntlet_DomeCorridor_Movement_AttendantWalkToDoorLvOpen
+	applymovement LOCALID_PLAYER, ChampionsGauntlet_DomeCorridor_Movement_PlayerWalkToDoorLvOpen
+	waitmovement 0
+	opendoor 37, 3
+	waitdooranim
+	applymovement LOCALID_ARCEUS_CORRIDOR_ATTENDANT, ChampionsGauntlet_DomeCorridor_Movement_AttendantEnterDoorLvOpen
+	applymovement LOCALID_PLAYER, ChampionsGauntlet_DomeCorridor_Movement_PlayerEnterDoorLvOpen
+	waitmovement 0
+	closedoor 37, 3
+	waitdooranim
+ChampionsGauntlet_DomeCorridor_EventScript_WarpToPreBattleRoom::
+	waitmovement 0
+	warp MAP_CHAMPIONS_GAUNTLET_DOME_PRE_BATTLE_ROOM, 5, 5
+	waitstate
+	end
+
+ChampionsGauntlet_DomeCorridor_Movement_PlayerWalkToDoorLvOpen:
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_faster_up
+	step_end
+
+ChampionsGauntlet_DomeCorridor_Movement_PlayerEnterDoorLvOpen:
+	walk_up
+	walk_up
+	set_invisible
+	step_end
+
+ChampionsGauntlet_DomeCorridor_Movement_AttendantWalkToDoorLvOpen:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	step_end
+
+ChampionsGauntlet_DomeCorridor_Movement_AttendantEnterDoorLvOpen:
+	walk_up
+	set_invisible
+	step_end
+
+`

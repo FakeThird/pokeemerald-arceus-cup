@@ -1,0 +1,380 @@
+raw `
+    ChampionsGauntlet_BattleRoom_MapScripts::
+		map_script MAP_SCRIPT_ON_FRAME_TABLE, ChampionsGauntlet_BattleRoom_OnFrame
+	    .byte 0
+
+    ChampionsGauntlet_BattleRoom_OnFrame::
+        map_script_2 VAR_TEMP_0, 0, ChampionsGauntlet_BattleRoom_EventScript_TournamentIntroOpen
+        .2byte 0
+    `
+    
+script ChampionsGauntlet_BattleRoom_EventScript_TournamentIntroOpen
+{
+    lock
+    if(flag(FLAG_QUALIFIERS)){
+        msgbox(ChampionsGauntlet_BattleRoom_Text_QualifierIntro, MSGBOX_DEFAULT)
+	    closemessage    
+    } 
+    if(flag(FLAG_QUARTER_FINALS)){
+        msgbox(ChampionsGauntlet_BattleRoom_Text_QuarterFinalsIntro, MSGBOX_DEFAULT)
+	    closemessage    
+    } 
+    if(flag(FLAG_SEMI_FINALS)){
+        msgbox(ChampionsGauntlet_BattleRoom_Text_SemiFinalsIntro, MSGBOX_DEFAULT)
+	    closemessage    
+    } 
+    if(flag(FLAG_GRAND_FINALS)){
+        msgbox(ChampionsGauntlet_BattleRoom_Text_GrandFinalsIntro, MSGBOX_DEFAULT)
+	    closemessage    
+    }
+    goto(ChampionsGauntlet_BattleRoom_EventScript_ChampionsEnter)
+}
+	
+script ChampionsGauntlet_BattleRoom_EventScript_ChampionsEnter
+{
+    msgbox(ChampionsGauntlet_BattleRoom_Text_PlayerIntro, MSGBOX_DEFAULT)
+    closemessage  
+    applymovement(LOCALID_PLAYER, ChampionsGauntlet_DomePreBattleRoom_Movement_PlayerWalkToPodium)
+    waitmovement(0)
+    msgbox(ChampionsGauntlet_BattleRoom_Text_PreRivalIntro, MSGBOX_DEFAULT)
+    closemessage  
+    call(ChampionsGauntlet_BattleRoom_RivalIntroAndEntrance)
+    goto(ChampionsGauntlet_BattleRoom_EventScript_FightEnd)
+}
+
+script ChampionsGauntlet_BattleRoom_EventScript_FightEnd
+{
+    // Congrats for both and chuchu
+    // msgbox(ChampionsGauntlet_BattleRoom_Text_PlayerIntro, MSGBOX_DEFAULT)
+    // closemessage  
+
+    if(flag(FLAG_GRAND_FINALS)){
+        clearflag(FLAG_GRAND_FINALS)
+        special(SetCB2WhiteOut)
+    } 
+    if(flag(FLAG_SEMI_FINALS)){
+        clearflag(FLAG_SEMI_FINALS)
+        setflag(FLAG_GRAND_FINALS) 
+        warp(MAP_CHAMPIONS_GAUNTLET_DOME_PRE_BATTLE_ROOM, 5, 5)
+    } 
+    if(flag(FLAG_QUARTER_FINALS)){
+        clearflag(FLAG_QUARTER_FINALS)
+        setflag(FLAG_SEMI_FINALS)  
+        warp(MAP_CHAMPIONS_GAUNTLET_DOME_PRE_BATTLE_ROOM, 5, 5)
+    } 
+    if(flag(FLAG_QUALIFIERS)){
+        clearflag(FLAG_QUALIFIERS)
+        setflag(FLAG_QUARTER_FINALS) 
+        warp(MAP_CHAMPIONS_GAUNTLET_DOME_PRE_BATTLE_ROOM, 5, 5)
+    }
+    release
+    end
+}
+
+script ChampionsGauntlet_BattleRoom_RivalIntroAndEntrance
+{
+    if (!flag(FLAG_RIVAL_GARY)) {
+        msgbox("Champion Gary!!!", MSGBOX_DEFAULT)
+	    closemessage  
+        applymovement(LOCALID_RIVAL_GARY, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        call(ChampionsGauntlet_DomeLobby_GaryBattle)
+    }
+    if (!flag(FLAG_RIVAL_LANCE)) {
+        msgbox("Champion Lance", MSGBOX_DEFAULT)
+	    closemessage  
+        applymovement(LOCALID_RIVAL_LANCE, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        call(ChampionsGauntlet_DomeLobby_LanceBattle)
+    }
+    if (!flag(FLAG_RIVAL_RED)) {
+        msgbox("Champion Red", MSGBOX_DEFAULT)
+	    closemessage  
+        applymovement(LOCALID_RIVAL_RED, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        call(ChampionsGauntlet_DomeLobby_RedBattle)
+    }
+    if (!flag(FLAG_RIVAL_STEVEN)) {
+        msgbox("Champion Steven", MSGBOX_DEFAULT)
+	    closemessage  
+        applymovement(LOCALID_RIVAL_STEVEN, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        call(ChampionsGauntlet_DomeLobby_StevenBattle)
+    }
+    if (!flag(FLAG_RIVAL_WALLACE)) {
+        msgbox("Champion Wallace", MSGBOX_DEFAULT)
+	    closemessage  
+        applymovement(LOCALID_RIVAL_WALLACE, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        call(ChampionsGauntlet_DomeLobby_WallaceBattle)
+    }
+    if (!flag(FLAG_RIVAL_CYNTHIA)) {
+        msgbox("Champion Cynthia", MSGBOX_DEFAULT)
+	    closemessage  
+        applymovement(LOCALID_RIVAL_CYNTHIA, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        call(ChampionsGauntlet_DomeLobby_CynthiaBattle)
+    }
+    if (!flag(FLAG_RIVAL_ALDER)) {
+        msgbox("Champion Alder", MSGBOX_DEFAULT)
+	    closemessage  
+        applymovement(LOCALID_RIVAL_ALDER, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        call(ChampionsGauntlet_DomeLobby_AlderBattle)
+    }
+    if (!flag(FLAG_RIVAL_IRIS)) {
+        msgbox("Champion Iris", MSGBOX_DEFAULT)
+	    closemessage  
+        applymovement(LOCALID_RIVAL_IRIS, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        call(ChampionsGauntlet_DomeLobby_IrisBattle)
+    }
+    if (!flag(FLAG_RIVAL_DIANTHA)) {
+        msgbox("Champion Diantha", MSGBOX_DEFAULT)
+	    closemessage  
+        applymovement(LOCALID_RIVAL_DIANTHA, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        call(ChampionsGauntlet_DomeLobby_DianthaBattle)
+    }
+    if (!flag(FLAG_RIVAL_ASH)) {
+        msgbox("Champion Ash", MSGBOX_DEFAULT)
+	    closemessage  
+        applymovement(LOCALID_RIVAL_ASH, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        call(ChampionsGauntlet_DomeLobby_AshBattle)
+    }
+    if (!flag(FLAG_RIVAL_LEON)) {
+        msgbox("Champion Leon", MSGBOX_DEFAULT)
+	    closemessage  
+        applymovement(LOCALID_RIVAL_LEON, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        call(ChampionsGauntlet_DomeLobby_LeonBattle)
+    }
+    if (!flag(FLAG_RIVAL_GEETA)) {
+        msgbox("Champion Geeta", MSGBOX_DEFAULT)
+	    closemessage  
+        applymovement(LOCALID_RIVAL_GEETA, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        call(ChampionsGauntlet_DomeLobby_GeetaBattle)
+    }
+    return
+}
+
+script ChampionsGauntlet_DomePreBattleRoom_Movement_PlayerWalkToPodium
+{
+	// walk_up
+	// walk_up
+    // walk_up
+    // walk_up
+    // walk_right
+    // walk_right
+    // walk_right
+    face_right
+	step_end
+}
+
+script ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium
+{
+	walk_up
+	walk_up
+    walk_up
+    walk_up
+    walk_left
+    walk_left
+    walk_left
+	step_end
+}
+
+script ChampionsGauntlet_DomeLobby_GaryBattle 
+{
+    
+    trainerbattle_single
+    (
+        CHAMPION_GARY,   
+        "Smell ya later!",  
+        "Tch. Beginner's luck."
+    )
+    return
+}
+
+script ChampionsGauntlet_DomeLobby_LanceBattle 
+{
+    
+    trainerbattle_single
+    (
+        CHAMPION_LANCE, 
+        "You can't outpace the Dragon Master.", 
+        "My dragons will remember this."
+    )
+    return
+}
+
+script ChampionsGauntlet_DomeLobby_RedBattle 
+{
+    
+    trainerbattle_single
+    (
+        CHAMPION_RED, 
+        "...", 
+        "...")
+    return
+}
+
+script ChampionsGauntlet_DomeLobby_StevenBattle 
+{
+    
+    trainerbattle_single
+    (
+        TRAINER_STEVEN, 
+        "Whose style sparkles brightest?", 
+        "An interesting strategy. Well played."
+    )
+    return
+}
+
+script ChampionsGauntlet_DomeLobby_WallaceBattle 
+{
+    
+    trainerbattle_single
+    (
+        TRAINER_WALLACE, 
+        "Prepare to be overwhelmed by elegance.", 
+        "A flawless defeat. Splendid."
+    )
+    return
+}
+
+script ChampionsGauntlet_DomeLobby_CynthiaBattle 
+{
+    
+    trainerbattle_single
+    (
+        CHAMPION_CYNTHIA, 
+        "The flow has already been decided.", 
+        "The tides have shifted. Impressive."
+    )
+    return
+}
+
+script ChampionsGauntlet_DomeLobby_AlderBattle 
+{
+    
+    trainerbattle_single
+    (
+        CHAMPION_ALDER, 
+        "Let's find joy in battle.",
+        "I felt the joy of battle. Thank you."
+    )
+    return
+}
+
+script ChampionsGauntlet_DomeLobby_IrisBattle 
+{
+    
+    trainerbattle_single
+    (
+        CHAMPION_IRIS, 
+        "You're just a kid in the big leagues.",
+        "Wow! You're stronger than you look!"
+    )
+    return
+}
+
+script ChampionsGauntlet_DomeLobby_DianthaBattle 
+{
+    
+    trainerbattle_single
+    (
+        CHAMPION_DIANTHA, 
+        "Ready for my curtain call.",
+        "The audience loved that battle."
+    )
+    return
+}
+
+script ChampionsGauntlet_DomeLobby_AshBattle 
+{
+    
+    trainerbattle_single
+    (
+        CHAMPION_ASH, 
+        "Let's get a win!",
+        "We trained hard, but we'll be back!"
+    )
+    return
+}
+
+script ChampionsGauntlet_DomeLobby_LeonBattle 
+{
+    
+    trainerbattle_single
+    (
+        CHAMPION_LEON, 
+        "The Unbeatable Champion is here.",
+        "My streak's over! You're unbeatable today!"
+    )
+    return
+}
+
+script ChampionsGauntlet_DomeLobby_GeetaBattle 
+{
+    
+    trainerbattle_single
+    (
+        CHAMPION_GEETA, 
+        "Let the performance review commence.",
+        "Your skills pass the test. Excellent."
+    )
+    return
+}
+
+text ChampionsGauntlet_BattleRoom_Text_QualifierIntro
+{
+    "Ello, all you electrifying trainers!\n"
+    "Iono here! The Arceus Cup is here--\l"
+    "featuring a mega gauntlet of every\l"
+    "current and former World Champion!\l"
+    "Who has the star power to win it all\l"
+    "You won't want to miss a single\l" 
+    "shockwave of this tournament! Let's\l"
+    "tune in and see who wins! Wah-ha-ha!\l"
+
+    "Indeed, a spectacle, Iono. Welcome\l"
+    "everyone to the Arceus Cup, a truly\l"
+    "historic gauntlet of champions. I am\l"
+    "Professor Oak, from the Kanto Region.\l"
+    "While Iono is keen on the 'star power,'\l" 
+    "I'm focused on the battle mastery and\l" 
+    "synergy these legends will display.\l"
+    "This is a clash of legacies, providing\l"
+    "invaluable research data. The first\l"
+    "match begins now-let's observe!$"
+}
+
+text ChampionsGauntlet_BattleRoom_Text_QuarterFinalsIntro
+{
+    "Ello, Iono here again!! The Arceus\n"
+    "Cup is on full swing so let's\l"
+    "continue what will happen. Let's\l"
+    "tune in and see who wins! Wah-ha-ha!\l"
+
+    "Hi again everyone, the quarterfinals\l"
+    "begins now-let's observe!$"
+}
+text ChampionsGauntlet_BattleRoom_Text_SemiFinalsIntro
+{
+    "Ello, Iono here again!! The Arceus\n"
+    "Cup is on the go so let's to see\l"
+    "continue what will happen. Let's\l"
+    "tune in and see who wins! Wah-ha-ha!\l"
+
+    "Hi again everyone, the semifinals\l"
+    "begins now-let's observe!$"
+}
+text ChampionsGauntlet_BattleRoom_Text_GrandFinalsIntro
+{
+    "Ello, Iono here again!! The Arceus\n"
+    "Cup is on the go so let's to see\l"
+    "continue what will happen. Let's\l"
+    "tune in and see who wins! Wah-ha-ha!\l"
+
+    "Hi again everyone, the last match and\l"
+    "grand finale begins now-let's observe!$"
+}
+text ChampionsGauntlet_BattleRoom_Text_PlayerIntro
+{
+    "In the left cornerrr!!! We have--\n"
+    "Champion {PLAYER}!!!$"
+}
+text ChampionsGauntlet_BattleRoom_Text_PreRivalIntro
+{
+    "And in the right cornerrr!!! is--$"
+}

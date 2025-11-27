@@ -1,0 +1,261 @@
+raw `ChampionsGauntlet_DomeLobby_MapScripts::
+	    .byte 0
+`
+script ChampionsGauntlet_DomeLobby_Attendant
+{
+	lock
+	faceplayer
+	goto(ChampionsGauntlet_DomeLobby_AttendantWelcome)
+	end
+}
+script ChampionsGauntlet_DomeLobby_AttendantWelcome
+{
+	call(ChampionsGauntlet_DomeLobby_Welcome)
+    goto(ChampionsGauntlet_DomeLobby_AskTakeChallenge)
+}
+
+
+script ChampionsGauntlet_DomeLobby_Welcome
+{
+    special(SavePlayerParty)
+	msgbox(ChampionsGauntlet_DomeLobby_Text_WelcomeSingleBattle, MSGBOX_DEFAULT)
+	return
+}
+
+
+script ChampionsGauntlet_DomeLobby_AskTakeChallenge
+{
+    call(ChampionsGauntlet_DomeLobby_TakeChallenge)
+    waitmessage
+    multichoice(17, 6, MULTI_CHALLENGEINFO, FALSE)
+	switch(var(VAR_RESULT)){
+        case 0: goto(ChampionsGauntlet_DomeLobby_TryEnterChallenge)
+        case 1: goto(ChampionsGauntlet_DomeLobby_ExplainChallenge)
+        case 2: goto(ChampionsGauntlet_DomeLobby_CancelChallenge)
+        case MULTI_B_PRESSED: goto(ChampionsGauntlet_DomeLobby_CancelChallenge)
+    }
+}
+	
+script ChampionsGauntlet_DomeLobby_TakeChallenge
+{
+	message(ChampionsGauntlet_DomeLobby_Text_TakeChallenge)
+	return
+}
+
+script ChampionsGauntlet_DomeLobby_TryEnterChallenge
+{
+	message(ChampionsGauntlet_DomeLobby_Text_Preparation)
+	waitmessage
+	msgbox(ChampionsGauntlet_DomeLobby_Text_OkayToSaveBeforeChallenge, MSGBOX_YESNO)
+	switch(var(VAR_RESULT)){
+	    case NO: goto(ChampionsGauntlet_DomeLobby_CancelChallenge)
+	    case YES: goto(ChampionsGauntlet_DomeLobby_SaveBeforeChallenge)
+	    case MULTI_B_PRESSED: goto(ChampionsGauntlet_DomeLobby_CancelChallenge)
+    }
+
+}
+
+script ChampionsGauntlet_DomeLobby_ExplainChallenge
+{
+    msgbox(ChampionsGauntlet_DomeLobby_Text_ExplainChallenge, MSGBOX_DEFAULT)
+	goto(ChampionsGauntlet_DomeLobby_AskTakeChallenge)
+}
+
+script ChampionsGauntlet_DomeLobby_CancelChallenge
+{
+	msgbox(ChampionsGauntlet_DomeLobby_Text_TakeYourTime, MSGBOX_DEFAULT)
+	release
+	end
+}
+
+script ChampionsGauntlet_DomeLobby_SaveBeforeChallenge
+{
+	special(LoadPlayerParty)
+	closemessage
+	delay(2)
+	call(Common_EventScript_SaveGame)
+	goto_if_eq(VAR_RESULT, 0, ChampionsGauntlet_DomeLobby_CancelChallenge)
+    goto(ChampionsGauntlet_DomeLobby_EnterChallenge)
+}
+	
+	
+script ChampionsGauntlet_DomeLobby_EnterChallenge
+{
+    // dome_inittrainers
+	special(SavePlayerParty)
+	msgbox(ChampionsGauntlet_DomeLobby_Text_ShowYouToArceusCup, MSGBOX_DEFAULT)
+	closemessage
+	facefollowernpc
+	checkplayergender
+	call_if_eq(VAR_RESULT, MALE, ChampionsGauntlet_DomeLobby_MisterFine)
+	call_if_eq(VAR_RESULT, FEMALE, ChampionsGauntlet_DomeLobby_LadyFine)
+	closemessage
+	call(ChampionsGauntlet_DomeLobby_AttendantWalkToDoor)
+	special(HealPlayerParty)
+	special(SavePlayerStateBeforeWarp)
+	warp(MAP_CHAMPIONS_GAUNTLET_DOME_CORRIDOR, 23, 6)
+	destroyfollowernpc
+
+	setflag(FLAG_QUALIFIERS)
+	special(SetArceusCupBracket)
+	waitstate
+	end
+}
+
+script ChampionsGauntlet_DomeLobby_MisterFine{
+	msgbox(ChampionsGauntlet_DomeLobby_Text_MisterFine, MSGBOX_DEFAULT)
+	return
+}
+
+script ChampionsGauntlet_DomeLobby_LadyFine{
+	msgbox(ChampionsGauntlet_DomeLobby_Text_LadyFine, MSGBOX_DEFAULT)
+	return
+}
+
+script ChampionsGauntlet_DomeLobby_AttendantWalkToDoor
+{
+	applymovement(LOCALID_ARCEUS_ATTENDANT, ChampionsGauntlet_DomeLobby_Movement_WalkToDoor)
+    applymovement(LOCALID_PLAYER, ChampionsGauntlet_DomeLobby_Movement_WalkToDoor)
+    waitmovement(0)
+    call(ChampionsGauntlet_DomeLobby_OpenDoor)
+	waitdooranim
+	applymovement(LOCALID_ARCEUS_ATTENDANT, ChampionsGauntlet_DomeLobby_Movement_AttendantEnterDoor)
+	msgbox(ChampionsGauntlet_DomeLobby_Text_Goodluck, MSGBOX_DEFAULT)
+	closemessage
+    applymovement(LOCALID_PLAYER, ChampionsGauntlet_DomeLobby_Movement_PlayerEnterDoor)
+	waitmovement(0)
+	call(ChampionsGauntlet_DomeLobby_CloseSinglesDoor)
+	waitdooranim
+	return
+}
+
+script ChampionsGauntlet_DomeLobby_OpenDoor
+{
+	opendoor(5, 4)
+	return
+}
+
+script ChampionsGauntlet_DomeLobby_CloseSinglesDoor
+{
+	closedoor(5, 4)
+	return
+}
+
+script ChampionsGauntlet_DomeLobby_Movement_AttendantEnterDoor
+{
+	walk_up
+	set_invisible
+	step_end
+}
+
+
+script ChampionsGauntlet_DomeLobby_Movement_PlayerEnterDoor
+{
+	walk_up
+	walk_up
+	set_invisible
+	step_end
+}
+
+
+script ChampionsGauntlet_DomeLobby_Movement_WalkToDoor
+{
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+}
+
+text ChampionsGauntlet_DomeLobby_Text_WelcomeSingleBattle
+{
+	"Where the strategies of CHAMPIONS\n"
+	"are put to the test!\p"
+	"Welcome to the ARCEUS CUP!\p"
+	"I am your guide across the\n"
+	"Tournament.$"
+}
+
+text ChampionsGauntlet_DomeLobby_Text_TakeChallenge
+{
+	"Would you like to prepare and\n"
+	"participate in the ARCEUS CUP?$"
+}
+
+text ChampionsGauntlet_DomeLobby_Text_Preparation
+{
+	"The tournament will start in a while\n"
+	"so hopefully you are prepared for it.$"
+}
+
+text ChampionsGauntlet_DomeLobby_Text_OkayToSaveBeforeChallenge
+{
+	"Before I show you to the ARCEUS CUP,\n"
+	"I must save the data. Is that okay?$"
+}
+
+text ChampionsGauntlet_DomeLobby_Text_ExplainChallenge
+{
+	"The ARCEUS CUP is a prestigious\n"
+	"event held once every decade.\l"
+	"A tournament and a gathering of\p"
+	"the most strongest and famous\n"
+	"trainers from each region--\p"
+	"The CHAMPIONS, any trainer who\n"
+	"once held or currently holding\p"
+	"the position POKéMON Champion\n"
+	"of their region will be able to\p"
+	"participate.\n"
+	"A bracket style tournament will\p"
+	"then be held randomizing the\n"
+	"opponents for each Champion\p"
+	"resulting in FOUR MATCHES per\n"
+	"Champion.\p"
+    "A Champion must win their\n"
+	"matches consecutively to be\p"
+    "able to become the--\n"
+	"ARCEUS CUP Grand Champion!\p"
+    "If a Champion is defeated even\n"
+	"once, they are eliminated.\p"
+	"If you want to interrupt the\n"
+	"tournament, please save the game.\p"
+	"If you don't save before interrupting,\n"
+    "do note that certain events might\p"
+	"happen that will destroy the time and\n"
+	"space continuum so do take note.$"
+}
+
+text ChampionsGauntlet_DomeLobby_Text_TakeYourTime
+{
+    "See you later and take\n"
+    "your time.$"
+}
+
+text ChampionsGauntlet_DomeLobby_Text_ShowYouToArceusCup
+{
+    "I will now lead you to\n"
+	"the ARCEUS CUP.$"
+}
+
+text ChampionsGauntlet_DomeLobby_Text_MisterFine
+{
+	"Thanks for letting me follow you\n"
+    "around Mister {PLAYER}, I'll leave\l"
+	"you here, I will be cheering you on\l" 
+	"from the audience.$"
+}
+
+text ChampionsGauntlet_DomeLobby_Text_LadyFine
+{
+	"Thanks for letting me follow you\n"
+    "around Lady {PLAYER}, I'll leave\l"
+	"you here, I will be cheering you on\l" 
+	"from the audience.$"
+}
+
+text ChampionsGauntlet_DomeLobby_Text_Goodluck
+{
+	"Goodluck and WIN! Champion {PLAYER}!$"
+
+}
