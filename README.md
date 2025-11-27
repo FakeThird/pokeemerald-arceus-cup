@@ -6,7 +6,7 @@
 
 **`pokeemerald-arceus-cup`** is a playable GBA ROM Hack personal project for CMSC 131. **`pokeemerald-arceus-cup`** is built on top of [rh-hideout `pokeemerald-expansion`](https://github.com/rh-hideout/pokeemerald-expansion.git) expansion project and [pret's `pokeemerald`](https://github.com/pret/pokeemerald) decompilation project. **All Credits goes to their respective owners.** 
 
-# [Features](FEATURES.md)
+# Features
 
 **`pokeemerald-arceus-cup`** offers new and specific features dedicated to this project such as:
 - Selectable Champion Trainers as Playable Characters
@@ -15,11 +15,11 @@
 - Explore a Custom Map built on Pokemon Emerald's Battle Frontier
 - and Many More!
 
-But for any updates in the future do note as this built on top of [rh-hideout `pokeemerald-expansion`](https://github.com/rh-hideout/pokeemerald-expansion.git) expansion project, here are features from various [core series Pokémon games](https://bulbapedia.bulbagarden.net/wiki/Core_series), along with popular quality-of-life enhancements designed to streamline development and improve the player experience that they have already implemented on the game. A full list of those features can be found in [`FEATURES.md`](FEATURES.md).
+But for any updates in the future, do note as this is built on top of [rh-hideout `pokeemerald-expansion`](https://github.com/rh-hideout/pokeemerald-expansion.git) expansion project, here are features from various [core series Pokémon games](https://bulbapedia.bulbagarden.net/wiki/Core_series), along with popular quality-of-life enhancements designed to streamline development and improve the player experience that they have already implemented on the game. A full list of those features can be found in [`FEATURES.md`](FEATURES.md).
 
-# [Credits](CREDITS.md)
+# Credits
 
-Credits to the team and people behind [rh-hideout `pokeemerald-expansion`](https://github.com/rh-hideout/pokeemerald-expansion.git) expansion project, here is a list of their contributors:
+Credits to the team and people behind [rh-hideout `pokeemerald-expansion`](https://github.com/rh-hideout/pokeemerald-expansion.git) expansion project, here is a list of their contributors:\n
 [These people](CREDITS.md) indirectly helped me maked this project successful!
  [![](https://img.shields.io/github/all-contributors/rh-hideout/pokeemerald-expansion/upcoming)](CREDITS.md)
 ```
