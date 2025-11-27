@@ -1,6 +1,6 @@
-![1](https://github.com/user-attachments/assets/9416245b-1a3c-400f-b16a-f470f15aff2e)# About `pokeemerald-arceus-cup`
+# About `pokeemerald-arceus-cup`
 
-![Gif that shows the selectable champion team](![2](https://github.com/user-attachments/assets/58585b70-5bed-44dc-873b-99423badd1ad) ![Gid that shows the intro](![1](https://github.com/user-attachments/assets/5aab4ac8-e41c-4e1f-b94f-d5be5cd510a2))) ![Gif that shows selecting a champion](![3](https://github.com/user-attachments/assets/848f3bc4-aea6-448c-a843-1998d1e2d3ff))
+![Gif that shows the selectable champion team](https://github.com/user-attachments/assets/58585b70-5bed-44dc-873b-99423badd1ad) ![Gid that shows the intro](https://github.com/user-attachments/assets/5aab4ac8-e41c-4e1f-b94f-d5be5cd510a2) ![Gif that shows selecting a champion](https://github.com/user-attachments/assets/848f3bc4-aea6-448c-a843-1998d1e2d3ff)
 
 <!-- If you want to re-record or change these gifs, here are some notes that I used: https://files.catbox.moe/05001g.md -->
 
