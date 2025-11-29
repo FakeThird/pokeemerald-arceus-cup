@@ -27,8 +27,19 @@ Based off RHH's pokeemerald-expansion 1.13.3 https://github.com/rh-hideout/pokee
 ```
 
 
-# [Getting Started](INSTALL.md)
+# [Getting Started: Developers](INSTALL.md)
 If you're new to git and GitHub, [Team Aqua's Asset Repo](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/) has a [guide to forking and cloning the repository](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/wiki/The-Basics-of-GitHub). Then you can follow one of the following guides:
 
 ## [Installing **`pokeemerald-arceus-cup`**](INSTALL.md)
 ## [Building **`pokeemerald-arceus-cup`**](INSTALL.md#Building-pokeemerald-expansion)
+
+# [Getting Started: Players]
+To properly try and experience **`pokeemerald-arceus-cup`**, you may follow the given steps:
+- Locate and download a "1961 - Pokemon - Emerald Version (USA, Europe)" ROM. 
+- Go to Marcrobledo - Online patcher, then:
+- Rom File -> Browse -> 1961 - Pokemon - Emerald Version (USA, Europe).gba,
+- Patch File -> Browse -> pokemonarceuscup.ups,
+- After all of this, click on "Apply Patch";
+
+Now open the downloaded file using a working and compatible Emulator.
+(Guide by the Creator of Pokemon Odyssey, Try it out [here](https://www.pokecommunity.com/threads/pokemon-odyssey-complete-v4-1-1.488536/))
