@@ -4,7 +4,7 @@
 
 <!-- If you want to re-record or change these gifs, here are some notes that I used: https://files.catbox.moe/05001g.md -->
 # Creator
-- Keith Ashly M. Domingo
+- Keith Ashly M. Domingo\
 Date: November 27, 2025
 
 # Description
@@ -13,11 +13,20 @@ Date: November 27, 2025
 # Features
 
 **`pokeemerald-arceus-cup`** offers new and specific features dedicated to this project such as:
-- Selectable Champion Trainers as Playable Characters
-- Fight against other Champions on a bracket style Tournament
-- Custom Sprites and For those that have been Referenced the Copyright belongs to the Respective Owners
-- Explore a Custom Map built on Pokemon Emerald's Battle Frontier
-- and Many More!
+
+- Playable Game on any compatible GBA Emulator
+- Challenge yourself with Tournament Style Battles
+- Use the Pokemons across generations.
+- Enjoy a classic Pokemon Emerald Vibe with new mechanics.
+
+# Game Mechanic
+
+- **Selectable Champion:** Go up to any champion outside the map and they can be your selected playable character.
+- **Tournament Battle:** After selecting a champion to follow, enter the tournament and fight 4 other champion you didn't select.
+- **Custom Sprites:** Custom Sprites created for the game and for those that have been Referenced the Copyright belongs to the Respective Owners.
+- **Explore:** A Custom Map built on Pokemon Emerald's Battle Frontier, and maybe encounter a secret Boss Fight.
+- **Interract:** See what the world has to offer, the pokemons in the overworld, and the npc in the game.
+- **and Many More!**
 
 But for any updates in the future, do note as this is built on top of [rh-hideout `pokeemerald-expansion`](https://github.com/rh-hideout/pokeemerald-expansion.git) expansion project, here are features from various [core series Pokémon games](https://bulbapedia.bulbagarden.net/wiki/Core_series), along with popular quality-of-life enhancements designed to streamline development and improve the player experience that they have already implemented on the game. A full list of those features can be found in [`FEATURES.md`](FEATURES.md).
 
