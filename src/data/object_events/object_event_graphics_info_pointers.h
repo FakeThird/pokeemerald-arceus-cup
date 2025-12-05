@@ -236,6 +236,22 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RubySapphir
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RubySapphireMay;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lugia;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoOh;
+// Custom Sprites
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Gary;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lance;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cynthia;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Alder;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Iris;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Ash;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Diantha;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Leon;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Geeta;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rene;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Iono;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Oak;
+
+
+
 // Begin pokemon event objects
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PokeBall;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Follower;
@@ -492,6 +508,19 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_POKE_BALL] =                &gObjectEventGraphicsInfo_PokeBall,
     [OBJ_EVENT_GFX_OW_MON] =                   &gObjectEventGraphicsInfo_Follower,
     [OBJ_EVENT_GFX_LIGHT_SPRITE] =             &gObjectEventGraphicsInfo_BallLight,
+    // Custom Sprites
+    [OBJ_EVENT_GFX_GARY] =                     &gObjectEventGraphicsInfo_Gary,
+    [OBJ_EVENT_GFX_LANCE] =                    &gObjectEventGraphicsInfo_Lance,
+    [OBJ_EVENT_GFX_CYNTHIA] =                  &gObjectEventGraphicsInfo_Cynthia,
+    [OBJ_EVENT_GFX_ALDER] =                    &gObjectEventGraphicsInfo_Alder,
+    [OBJ_EVENT_GFX_IRIS] =                     &gObjectEventGraphicsInfo_Iris,
+    [OBJ_EVENT_GFX_ASH] =                      &gObjectEventGraphicsInfo_Ash,
+    [OBJ_EVENT_GFX_DIANTHA] =                  &gObjectEventGraphicsInfo_Diantha,
+    [OBJ_EVENT_GFX_LEON] =                     &gObjectEventGraphicsInfo_Leon,
+    [OBJ_EVENT_GFX_GEETA] =                    &gObjectEventGraphicsInfo_Geeta,
+    [OBJ_EVENT_GFX_RENE] =                     &gObjectEventGraphicsInfo_Rene,
+    [OBJ_EVENT_GFX_IONO] =                     &gObjectEventGraphicsInfo_Iono,
+    [OBJ_EVENT_GFX_OAK] =                      &gObjectEventGraphicsInfo_Oak,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

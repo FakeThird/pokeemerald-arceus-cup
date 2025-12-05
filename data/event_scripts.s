@@ -1159,7 +1159,10 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/birch_speech.inc"
 	.include "data/scripts/dexnav.inc"
 
-
-	.include "data/maps/ChampionsGauntlet_RespawnRoom/scripts.inc"
-
 	.include "data/maps/ChampionsGauntlet_Outside/scripts.inc"
+	.include "data/maps/ChampionsGauntlet_ReneHouse/scripts.inc"
+	.include "data/maps/ChampionsGauntlet_DomeLobby/scripts.inc"
+	.include "data/maps/ChampionsGauntlet_DebugRoom/scripts.inc"
+	.include "data/maps/ChampionsGauntlet_BattleRoom/scripts.inc"
+	.include "data/maps/ChampionsGauntlet_DomeCorridor/scripts.inc"
+	.include "data/maps/ChampionsGauntlet_DomePreBattleRoom/scripts.inc"

@@ -1861,7 +1861,28 @@ u32 LinkPlayerGetTrainerPicId(u32 multiplayerId)
 
     return trainerPicId;
 }
-
+static u32 GetCurrentBackTrainerPicID(void){
+    if (gSaveBlock2Ptr->playerGFXFlag == PLAYER_AVATAR_FLAG_GARY)
+        return TRAINER_BACK_PIC_GARY;
+    else if (gSaveBlock2Ptr->playerGFXFlag == PLAYER_AVATAR_FLAG_LANCE)
+        return TRAINER_BACK_PIC_LANCE;
+    else if (gSaveBlock2Ptr->playerGFXFlag == PLAYER_AVATAR_FLAG_RED)
+        return TRAINER_BACK_PIC_RED;
+    else if (gSaveBlock2Ptr->playerGFXFlag == PLAYER_AVATAR_FLAG_STEVEN)
+        return TRAINER_BACK_PIC_STEVEN;
+    else if (gSaveBlock2Ptr->playerGFXFlag == PLAYER_AVATAR_FLAG_CYNTHIA)
+        return TRAINER_BACK_PIC_CYNTHIA;
+    else if (gSaveBlock2Ptr->playerGFXFlag == PLAYER_AVATAR_FLAG_ASH)
+        return TRAINER_BACK_PIC_ASH;
+    else if (gSaveBlock2Ptr->playerGFXFlag == PLAYER_AVATAR_FLAG_GEETA)
+        return TRAINER_BACK_PIC_GEETA;
+    else if (gSaveBlock2Ptr->playerGFXFlag == PLAYER_AVATAR_FLAG_DIANTHA || gSaveBlock2Ptr->playerGFXFlag == PLAYER_AVATAR_FLAG_WALLACE)
+        return TRAINER_BACK_PIC_PALE;
+    else if (gSaveBlock2Ptr->playerGFXFlag == PLAYER_AVATAR_FLAG_LEON || gSaveBlock2Ptr->playerGFXFlag == PLAYER_AVATAR_FLAG_IRIS)
+        return TRAINER_BACK_PIC_DARK;
+    else return TRAINER_BACK_PIC_TANNED;
+}
+// Where the Back Sprite is Being Used and Edit
 static u32 PlayerGetTrainerBackPicId(void)
 {
     u32 trainerPicId;
@@ -1869,7 +1890,8 @@ static u32 PlayerGetTrainerBackPicId(void)
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
         trainerPicId = LinkPlayerGetTrainerPicId(GetMultiplayerId());
     else
-        trainerPicId = gSaveBlock2Ptr->playerGender + TRAINER_BACK_PIC_BRENDAN;
+        // trainerPicId = TRAINER_BACK_PIC_BRENDAN;
+        trainerPicId = GetCurrentBackTrainerPicID();
 
     return trainerPicId;
 }

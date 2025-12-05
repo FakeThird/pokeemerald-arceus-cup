@@ -684,27 +684,11 @@
 	map \map
 	.endm
 
-	@ Set the player object's invisibility to FALSE.
-	.macro showplayer
-	.byte SCR_OP_SHOWOBJECTAT
-	.2byte LOCALID_PLAYER
-	.byte 0 @ map group
-	.byte 0 @ map num
-	.endm
-
 	@ Sets the specified object's invisibility to TRUE.
 	.macro hideobjectat localId:req, map:req
 	.byte SCR_OP_HIDEOBJECTAT
 	.2byte \localId
 	map \map
-	.endm
-
-	@ Set the player object's invisibility to TRUE.
-	.macro hideplayer
-	.byte SCR_OP_HIDEOBJECTAT
-	.2byte LOCALID_PLAYER
-	.byte 0 @ map group
-	.byte 0 @ map num
 	.endm
 
 	@ Turns the currently selected object (if there is one) to face the player.
@@ -966,6 +950,14 @@
 	.macro showmonpic species:req, x:req, y:req
 	.byte SCR_OP_SHOWMONPIC
 	.2byte \species
+	.byte \x
+	.byte \y
+	.endm
+
+	@ Displays a box containing the front sprite for the specified trainer.
+	.macro showtrainersprite trainer:req, x:req, y:req
+	.byte SCR_OP_SHOWTRAINERSPRITE
+	.2byte \trainer
 	.byte \x
 	.byte \y
 	.endm
@@ -2669,10 +2661,4 @@
 	.macro changefollowerbattler battlePartner:req
 	callnative ScriptChangeFollowerNPCBattlePartner
 	.2byte \battlePartner
-	.endm
-
-@ VS Seeker
-	.macro vsseeker_rematchid rematchId:req
-	callnative NativeVsSeekerRematchId, requests_effects=1
-	.2byte \rematchId
 	.endm

@@ -39,7 +39,4 @@ static void Task_WaitForPaletteFade(u8 taskId)
         DestroyTask(taskId);
 }
 
-void AccessPokemonChampionRoster(void)
-{
-    SetMainCallback2(CB2_DoShowChampionPokemons);
-}
+

@@ -102,6 +102,21 @@ static void CheckAcroBikeCollision(s16, s16, u8, u8 *);
 
 static void DoPlayerAvatarTransition(void);
 static void PlayerAvatarTransition_Dummy(struct ObjectEvent *);
+
+// Editing
+static void PlayerAvatarTransition_Gary(struct ObjectEvent *);
+static void PlayerAvatarTransition_Lance(struct ObjectEvent *);
+static void PlayerAvatarTransition_Red(struct ObjectEvent *);
+static void PlayerAvatarTransition_Steven(struct ObjectEvent *);
+static void PlayerAvatarTransition_Wallace(struct ObjectEvent *);
+static void PlayerAvatarTransition_Cynthia(struct ObjectEvent *);
+static void PlayerAvatarTransition_Alder(struct ObjectEvent *);
+static void PlayerAvatarTransition_Iris(struct ObjectEvent *);
+static void PlayerAvatarTransition_Ash(struct ObjectEvent *);
+static void PlayerAvatarTransition_Diantha(struct ObjectEvent *);
+static void PlayerAvatarTransition_Leon(struct ObjectEvent *);
+static void PlayerAvatarTransition_Geeta(struct ObjectEvent *);
+
 static void PlayerAvatarTransition_Normal(struct ObjectEvent *);
 static void PlayerAvatarTransition_MachBike(struct ObjectEvent *);
 static void PlayerAvatarTransition_AcroBike(struct ObjectEvent *);
@@ -252,9 +267,24 @@ static const u8 sAcroBikeTrickCollisionTypes[NUM_ACRO_BIKE_COLLISIONS] = {
     COLLISION_HORIZONTAL_RAIL,
 };
 
+// Editing
 static void (*const sPlayerAvatarTransitionFuncs[])(struct ObjectEvent *) =
 {
     [PLAYER_AVATAR_STATE_NORMAL]     = PlayerAvatarTransition_Normal,
+
+    [PLAYER_AVATAR_STATE_GARY]       = PlayerAvatarTransition_Gary,
+    [PLAYER_AVATAR_STATE_LANCE]      = PlayerAvatarTransition_Lance,
+    [PLAYER_AVATAR_STATE_RED]        = PlayerAvatarTransition_Red,
+    [PLAYER_AVATAR_STATE_STEVEN]     = PlayerAvatarTransition_Steven,
+    [PLAYER_AVATAR_STATE_WALLACE]    = PlayerAvatarTransition_Wallace,
+    [PLAYER_AVATAR_STATE_CYNTHIA]    = PlayerAvatarTransition_Cynthia,
+    [PLAYER_AVATAR_STATE_ALDER]      = PlayerAvatarTransition_Alder,
+    [PLAYER_AVATAR_STATE_IRIS]       = PlayerAvatarTransition_Iris,
+    [PLAYER_AVATAR_STATE_ASH]        = PlayerAvatarTransition_Ash,
+    [PLAYER_AVATAR_STATE_DIANTHA]    = PlayerAvatarTransition_Diantha,
+    [PLAYER_AVATAR_STATE_LEON]       = PlayerAvatarTransition_Leon,
+    [PLAYER_AVATAR_STATE_GEETA]      = PlayerAvatarTransition_Geeta,
+
     [PLAYER_AVATAR_STATE_MACH_BIKE]  = PlayerAvatarTransition_MachBike,
     [PLAYER_AVATAR_STATE_ACRO_BIKE]  = PlayerAvatarTransition_AcroBike,
     [PLAYER_AVATAR_STATE_SURFING]    = PlayerAvatarTransition_Surfing,
@@ -288,6 +318,20 @@ static const u8 sRivalAvatarGfxIds[][GENDER_COUNT] =
 static const u8 sPlayerAvatarGfxIds[][GENDER_COUNT] =
 {
     [PLAYER_AVATAR_STATE_NORMAL]     = {OBJ_EVENT_GFX_BRENDAN_NORMAL,     OBJ_EVENT_GFX_MAY_NORMAL},
+
+    [PLAYER_AVATAR_STATE_GARY]       = {OBJ_EVENT_GFX_GARY,               OBJ_EVENT_GFX_GARY},
+    [PLAYER_AVATAR_STATE_LANCE]      = {OBJ_EVENT_GFX_LANCE,              OBJ_EVENT_GFX_LANCE},
+    [PLAYER_AVATAR_STATE_RED]        = {OBJ_EVENT_GFX_RED,                OBJ_EVENT_GFX_RED},
+    [PLAYER_AVATAR_STATE_STEVEN]     = {OBJ_EVENT_GFX_STEVEN,             OBJ_EVENT_GFX_STEVEN},
+    [PLAYER_AVATAR_STATE_WALLACE]    = {OBJ_EVENT_GFX_WALLACE,            OBJ_EVENT_GFX_WALLACE},
+    [PLAYER_AVATAR_STATE_CYNTHIA]    = {OBJ_EVENT_GFX_CYNTHIA,            OBJ_EVENT_GFX_CYNTHIA},
+    [PLAYER_AVATAR_STATE_ALDER]      = {OBJ_EVENT_GFX_ALDER,              OBJ_EVENT_GFX_ALDER},
+    [PLAYER_AVATAR_STATE_IRIS]       = {OBJ_EVENT_GFX_IRIS,               OBJ_EVENT_GFX_IRIS},
+    [PLAYER_AVATAR_STATE_ASH]        = {OBJ_EVENT_GFX_ASH,                OBJ_EVENT_GFX_ASH},
+    [PLAYER_AVATAR_STATE_DIANTHA]    = {OBJ_EVENT_GFX_DIANTHA,            OBJ_EVENT_GFX_DIANTHA},
+    [PLAYER_AVATAR_STATE_LEON]       = {OBJ_EVENT_GFX_LEON,               OBJ_EVENT_GFX_LEON},
+    [PLAYER_AVATAR_STATE_GEETA]      = {OBJ_EVENT_GFX_GEETA,              OBJ_EVENT_GFX_GEETA},
+    
     [PLAYER_AVATAR_STATE_MACH_BIKE]  = {OBJ_EVENT_GFX_BRENDAN_MACH_BIKE,  OBJ_EVENT_GFX_MAY_MACH_BIKE},
     [PLAYER_AVATAR_STATE_ACRO_BIKE]  = {OBJ_EVENT_GFX_BRENDAN_ACRO_BIKE,  OBJ_EVENT_GFX_MAY_ACRO_BIKE},
     [PLAYER_AVATAR_STATE_SURFING]    = {OBJ_EVENT_GFX_BRENDAN_SURFING,    OBJ_EVENT_GFX_MAY_SURFING},
@@ -310,11 +354,26 @@ static const u8 sRSAvatarGfxIds[GENDER_COUNT] =
     [FEMALE] = OBJ_EVENT_GFX_LINK_RS_MAY
 };
 
-static const u8 sPlayerAvatarGfxToStateFlag[GENDER_COUNT][5][2] =
+
+static const u16 sPlayerAvatarGfxToStateFlag[GENDER_COUNT][17][2] =
 {
     [MALE] =
     {
         {OBJ_EVENT_GFX_BRENDAN_NORMAL,     PLAYER_AVATAR_FLAG_ON_FOOT},
+        
+        {OBJ_EVENT_GFX_GARY,               PLAYER_AVATAR_FLAG_GARY},
+        {OBJ_EVENT_GFX_LANCE,              PLAYER_AVATAR_FLAG_LANCE},
+        {OBJ_EVENT_GFX_RED,                PLAYER_AVATAR_FLAG_RED},
+        {OBJ_EVENT_GFX_STEVEN,             PLAYER_AVATAR_FLAG_STEVEN},
+        {OBJ_EVENT_GFX_WALLACE,            PLAYER_AVATAR_FLAG_WALLACE},
+        {OBJ_EVENT_GFX_CYNTHIA,            PLAYER_AVATAR_FLAG_CYNTHIA},
+        {OBJ_EVENT_GFX_ALDER,              PLAYER_AVATAR_FLAG_ALDER},
+        {OBJ_EVENT_GFX_IRIS,               PLAYER_AVATAR_FLAG_IRIS},
+        {OBJ_EVENT_GFX_ASH,                PLAYER_AVATAR_FLAG_ASH},
+        {OBJ_EVENT_GFX_DIANTHA,            PLAYER_AVATAR_FLAG_DIANTHA},
+        {OBJ_EVENT_GFX_LEON,               PLAYER_AVATAR_FLAG_LEON},
+        {OBJ_EVENT_GFX_GEETA,              PLAYER_AVATAR_FLAG_GEETA},
+
         {OBJ_EVENT_GFX_BRENDAN_MACH_BIKE,  PLAYER_AVATAR_FLAG_MACH_BIKE},
         {OBJ_EVENT_GFX_BRENDAN_ACRO_BIKE,  PLAYER_AVATAR_FLAG_ACRO_BIKE},
         {OBJ_EVENT_GFX_BRENDAN_SURFING,    PLAYER_AVATAR_FLAG_SURFING},
@@ -323,6 +382,12 @@ static const u8 sPlayerAvatarGfxToStateFlag[GENDER_COUNT][5][2] =
     [FEMALE] =
     {
         {OBJ_EVENT_GFX_MAY_NORMAL,         PLAYER_AVATAR_FLAG_ON_FOOT},
+
+        {OBJ_EVENT_GFX_STEVEN,             PLAYER_AVATAR_FLAG_STEVEN},
+        {OBJ_EVENT_GFX_CYNTHIA,            PLAYER_AVATAR_FLAG_CYNTHIA},
+        {OBJ_EVENT_GFX_WALLACE,            PLAYER_AVATAR_FLAG_WALLACE},
+
+
         {OBJ_EVENT_GFX_MAY_MACH_BIKE,      PLAYER_AVATAR_FLAG_MACH_BIKE},
         {OBJ_EVENT_GFX_MAY_ACRO_BIKE,      PLAYER_AVATAR_FLAG_ACRO_BIKE},
         {OBJ_EVENT_GFX_MAY_SURFING,        PLAYER_AVATAR_FLAG_SURFING},
@@ -1050,7 +1115,7 @@ void SetPlayerAvatarTransitionFlags(u16 transitionFlags)
 static void DoPlayerAvatarTransition(void)
 {
     u8 i;
-    u8 flags = gPlayerAvatar.transitionFlags;
+    u16 flags = gPlayerAvatar.transitionFlags;
 
     if (flags != 0)
     {
@@ -1067,6 +1132,215 @@ static void PlayerAvatarTransition_Dummy(struct ObjectEvent *objEvent)
 {
 
 }
+
+// Editing
+
+static void SetPlayerStateSaveBlockPtr(u16 currentState){
+    gSaveBlock2Ptr->playerGFXFlag = currentState;
+}
+
+void SavePlayerStateBeforeWarp(void){
+    VarSet(VAR_PLAYER_FLAG, gPlayerAvatar.flags);
+}
+
+void RestorePlayerStateAfterWarp(void){
+
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+
+    if (VarGet(VAR_PLAYER_FLAG) ==PLAYER_AVATAR_FLAG_GARY)
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_GARY));
+    else if (VarGet(VAR_PLAYER_FLAG) ==PLAYER_AVATAR_FLAG_LANCE)
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_LANCE));
+    else if (VarGet(VAR_PLAYER_FLAG) ==PLAYER_AVATAR_FLAG_RED)
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_RED));
+    else if (VarGet(VAR_PLAYER_FLAG) ==PLAYER_AVATAR_FLAG_STEVEN)
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_STEVEN));
+    else if (VarGet(VAR_PLAYER_FLAG) ==PLAYER_AVATAR_FLAG_WALLACE)
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_WALLACE));
+    else if (VarGet(VAR_PLAYER_FLAG) ==PLAYER_AVATAR_FLAG_CYNTHIA)
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_CYNTHIA));
+    else if (VarGet(VAR_PLAYER_FLAG) ==PLAYER_AVATAR_FLAG_ALDER)
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_ALDER));
+    else if (VarGet(VAR_PLAYER_FLAG) ==PLAYER_AVATAR_FLAG_IRIS)
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_IRIS));
+    else if (VarGet(VAR_PLAYER_FLAG) ==PLAYER_AVATAR_FLAG_ASH)
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_ASH));
+    else if (VarGet(VAR_PLAYER_FLAG) ==PLAYER_AVATAR_FLAG_DIANTHA)
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_DIANTHA));
+    else if (VarGet(VAR_PLAYER_FLAG) ==PLAYER_AVATAR_FLAG_LEON)
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_LEON));
+    else if (VarGet(VAR_PLAYER_FLAG) ==PLAYER_AVATAR_FLAG_GEETA)
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_GEETA));
+    else
+        ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_NORMAL));
+
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(VarGet(VAR_PLAYER_FLAG));
+    SetPlayerStateSaveBlockPtr(VarGet(VAR_PLAYER_FLAG));
+}
+
+
+
+void ChangeSpriteToGary(void)
+{
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    PlayerAvatarTransition_Gary(objEvent);
+}
+void ChangeSpriteToLance(void)
+{
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    PlayerAvatarTransition_Lance(objEvent);
+}
+void ChangeSpriteToRed(void)
+{
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    PlayerAvatarTransition_Red(objEvent);
+}
+void ChangeSpriteToSteven(void)
+{
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    PlayerAvatarTransition_Steven(objEvent);
+}
+void ChangeSpriteToWallace(void)
+{
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    PlayerAvatarTransition_Wallace(objEvent);
+}
+void ChangeSpriteToCynthia(void)
+{
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    PlayerAvatarTransition_Cynthia(objEvent);
+}
+void ChangeSpriteToAlder(void)
+{
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    PlayerAvatarTransition_Alder(objEvent);
+}
+void ChangeSpriteToIris(void)
+{
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    PlayerAvatarTransition_Iris(objEvent);
+}
+void ChangeSpriteToAsh(void)
+{
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    PlayerAvatarTransition_Ash(objEvent);
+}
+void ChangeSpriteToDiantha(void)
+{
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    PlayerAvatarTransition_Diantha(objEvent);
+}
+void ChangeSpriteToLeon(void)
+{
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    PlayerAvatarTransition_Leon(objEvent);
+}
+void ChangeSpriteToGeeta(void)
+{
+    struct ObjectEvent *objEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    PlayerAvatarTransition_Geeta(objEvent);
+}
+
+
+static void PlayerAvatarTransition_Gary(struct ObjectEvent *objEvent)
+{
+    ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_GARY));
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_GARY);
+    SetPlayerStateSaveBlockPtr(PLAYER_AVATAR_FLAG_GARY);
+
+}
+static void PlayerAvatarTransition_Lance(struct ObjectEvent *objEvent)
+{
+    ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_LANCE));
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_LANCE);
+    SetPlayerStateSaveBlockPtr(PLAYER_AVATAR_FLAG_LANCE);
+
+}
+static void PlayerAvatarTransition_Red(struct ObjectEvent *objEvent)
+{
+    ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_RED));
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_RED);
+    SetPlayerStateSaveBlockPtr(PLAYER_AVATAR_FLAG_RED);
+
+}
+static void PlayerAvatarTransition_Steven(struct ObjectEvent *objEvent)
+{
+    ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_STEVEN));
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_STEVEN);
+    SetPlayerStateSaveBlockPtr(PLAYER_AVATAR_FLAG_STEVEN);
+
+}
+static void PlayerAvatarTransition_Wallace(struct ObjectEvent *objEvent)
+{
+    ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_WALLACE));
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_WALLACE);
+    SetPlayerStateSaveBlockPtr(PLAYER_AVATAR_FLAG_WALLACE);
+
+}
+static void PlayerAvatarTransition_Cynthia(struct ObjectEvent *objEvent)
+{
+    ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_CYNTHIA));
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_CYNTHIA);
+    SetPlayerStateSaveBlockPtr(PLAYER_AVATAR_FLAG_CYNTHIA);
+
+}
+static void PlayerAvatarTransition_Alder(struct ObjectEvent *objEvent)
+{
+    ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_ALDER));
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_ALDER);
+    SetPlayerStateSaveBlockPtr(PLAYER_AVATAR_FLAG_ALDER);
+
+}
+static void PlayerAvatarTransition_Iris(struct ObjectEvent *objEvent)
+{
+    ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_IRIS));
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_IRIS);
+    SetPlayerStateSaveBlockPtr(PLAYER_AVATAR_FLAG_IRIS);
+
+}
+static void PlayerAvatarTransition_Ash(struct ObjectEvent *objEvent)
+{
+    ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_ASH));
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_ASH);
+    SetPlayerStateSaveBlockPtr(PLAYER_AVATAR_FLAG_ASH);
+
+}
+static void PlayerAvatarTransition_Diantha(struct ObjectEvent *objEvent)
+{
+    ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_DIANTHA));
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_DIANTHA);
+    SetPlayerStateSaveBlockPtr(PLAYER_AVATAR_FLAG_DIANTHA);
+
+}
+static void PlayerAvatarTransition_Leon(struct ObjectEvent *objEvent)
+{
+    ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_LEON));
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_LEON);
+    SetPlayerStateSaveBlockPtr(PLAYER_AVATAR_FLAG_LEON);
+
+}
+static void PlayerAvatarTransition_Geeta(struct ObjectEvent *objEvent)
+{
+    ObjectEventSetGraphicsId(objEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_GEETA));
+    ObjectEventTurn(objEvent, objEvent->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_GEETA);
+    SetPlayerStateSaveBlockPtr(PLAYER_AVATAR_FLAG_GEETA);
+
+}
+
+
 
 static void PlayerAvatarTransition_Normal(struct ObjectEvent *objEvent)
 {
@@ -1458,12 +1732,12 @@ void MovePlayerToMapCoords(s16 x, s16 y)
     MoveObjectEventToMapCoords(&gObjectEvents[gPlayerAvatar.objectEventId], x, y);
 }
 
-u8 TestPlayerAvatarFlags(u8 flag)
+u16 TestPlayerAvatarFlags(u16 flag)
 {
     return gPlayerAvatar.flags & flag;
 }
 
-u8 GetPlayerAvatarFlags(void)
+u16 GetPlayerAvatarFlags(void)
 {
     return gPlayerAvatar.flags;
 }
@@ -1579,13 +1853,13 @@ void ClearPlayerAvatarInfo(void)
     memset(&gPlayerAvatar, 0, sizeof(struct PlayerAvatar));
 }
 
-void SetPlayerAvatarStateMask(u8 flags)
+void SetPlayerAvatarStateMask(u16 flags)
 {
     gPlayerAvatar.flags &= (PLAYER_AVATAR_FLAG_DASH | PLAYER_AVATAR_FLAG_FORCED_MOVE | PLAYER_AVATAR_FLAG_CONTROLLABLE);
     gPlayerAvatar.flags |= flags;
 }
 
-static u8 GetPlayerAvatarStateTransitionByGraphicsId(u16 graphicsId, u8 gender)
+static u16 GetPlayerAvatarStateTransitionByGraphicsId(u16 graphicsId, u8 gender)
 {
     u8 i;
 
@@ -1600,7 +1874,7 @@ static u8 GetPlayerAvatarStateTransitionByGraphicsId(u16 graphicsId, u8 gender)
 u16 GetPlayerAvatarGraphicsIdByCurrentState(void)
 {
     u8 i;
-    u8 flags = gPlayerAvatar.flags;
+    u16 flags = gPlayerAvatar.flags;
 
     for (i = 0; i < ARRAY_COUNT(sPlayerAvatarGfxToStateFlag[0]); i++)
     {
@@ -1610,14 +1884,15 @@ u16 GetPlayerAvatarGraphicsIdByCurrentState(void)
     return 0;
 }
 
-void SetPlayerAvatarExtraStateTransition(u16 graphicsId, u8 transitionFlag)
+void SetPlayerAvatarExtraStateTransition(u16 graphicsId, u16 transitionFlag)
 {
-    u8 stateFlag = GetPlayerAvatarStateTransitionByGraphicsId(graphicsId, gPlayerAvatar.gender);
+    u16 stateFlag = GetPlayerAvatarStateTransitionByGraphicsId(graphicsId, gPlayerAvatar.gender);
 
     gPlayerAvatar.transitionFlags |= stateFlag | transitionFlag;
     DoPlayerAvatarTransition();
 }
 
+// Edit
 void InitPlayerAvatar(s16 x, s16 y, u8 direction, u8 gender)
 {
     struct ObjectEventTemplate playerObjEventTemplate;

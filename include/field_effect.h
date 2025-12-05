@@ -51,4 +51,10 @@ u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority);
 void StartEscapeRopeFieldEffect(void);
 void FieldEffectFreeGraphicsResources(struct Sprite *sprite);
 bool8 IsRockClimbActive(void);
+
+// Edit
+u8 CreateTrainerSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority);
+u8 AddNewGameOakObject(s16 x, s16 y, u8 subpriority);
+u8 AddNewGameIonoObject(s16 x, s16 y, u8 subpriority);
+
 #endif // GUARD_FIELD_EFFECTS_H

@@ -564,5 +564,31 @@ gSpecials::
 	def_special EnterCode
 	def_special GetCodeFeedback
 	def_special SetHiddenNature
+
+	def_special ChooseNewChampion
+	def_special SavePokemonTeam
+	def_special RetrievePokemonTeam
 	def_special AccessPokemonChampionRoster
 
+	def_special ChangeSpriteToGary
+	def_special ChangeSpriteToLance
+	def_special ChangeSpriteToRed
+	def_special ChangeSpriteToSteven
+	def_special ChangeSpriteToWallace
+	def_special ChangeSpriteToCynthia
+	def_special ChangeSpriteToAlder
+	def_special ChangeSpriteToIris
+	def_special ChangeSpriteToAsh
+	def_special ChangeSpriteToDiantha
+	def_special ChangeSpriteToLeon
+	def_special ChangeSpriteToGeeta
+
+	def_special SetPlayerGenderMale
+	def_special SetPlayerGenderFemale
+	def_special SetPlayerCurrentPlayerName
+
+	def_special SavePlayerStateBeforeWarp
+	def_special RestorePlayerStateAfterWarp
+
+	def_special SetArceusCupBracket
+	def_special SetNextArceusOpponent

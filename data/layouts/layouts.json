@@ -4415,21 +4415,71 @@
       "id": "LAYOUT_CHAMPIONS_GAUNTLET_OUTSIDE",
       "name": "ChampionsGauntlet_Outside_Layout",
       "width": 46,
-      "height": 67,
+      "height": 52,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_BattleFrontierOutsideWest",
       "border_filepath": "data/layouts/ChampionsGauntlet_Outside/border.bin",
       "blockdata_filepath": "data/layouts/ChampionsGauntlet_Outside/map.bin"
     },
     {
-      "id": "LAYOUT_CHAMPIONS_GAUNTLET_RESPAWN_ROOM",
-      "name": "ChampionsGauntlet_RespawnRoom_Layout",
-      "width": 19,
-      "height": 12,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PokemonCenter",
-      "border_filepath": "data/layouts/ChampionsGauntlet_RespawnRoom/border.bin",
-      "blockdata_filepath": "data/layouts/ChampionsGauntlet_RespawnRoom/map.bin"
+      "id": "LAYOUT_CHAMPIONS_GAUNTLET_RENE_HOUSE",
+      "name": "ChampionsGauntlet_ReneHouse_Layout",
+      "width": 5,
+      "height": 7,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/ChampionsGauntlet_ReneHouse/border.bin",
+      "blockdata_filepath": "data/layouts/ChampionsGauntlet_ReneHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHAMPIONS_GAUNTLET_DOME_LOBBY",
+      "name": "ChampionsGauntlet_DomeLobby_Layout",
+      "width": 17,
+      "height": 17,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleDome",
+      "border_filepath": "data/layouts/ChampionsGauntlet_DomeLobby/border.bin",
+      "blockdata_filepath": "data/layouts/ChampionsGauntlet_DomeLobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHAMPIONS_GAUNTLET_BATTLE_ROOM",
+      "name": "ChampionsGauntlet_BattleRoom_Layout",
+      "width": 20,
+      "height": 11,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleDome",
+      "border_filepath": "data/layouts/ChampionsGauntlet_BattleRoom/border.bin",
+      "blockdata_filepath": "data/layouts/ChampionsGauntlet_BattleRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHAMPIONS_GAUNTLET_DEBUG_ROOM",
+      "name": "ChampionsGauntlet_DebugRoom_Layout",
+      "width": 5,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattlePike",
+      "border_filepath": "data/layouts/ChampionsGauntlet_DebugRoom/border.bin",
+      "blockdata_filepath": "data/layouts/ChampionsGauntlet_DebugRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHAMPIONS_GAUNTLET_DOME_CORRIDOR",
+      "name": "ChampionsGauntlet_DomeCorridor_Layout",
+      "width": 48,
+      "height": 7,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleDome",
+      "border_filepath": "data/layouts/ChampionsGauntlet_DomeCorridor/border.bin",
+      "blockdata_filepath": "data/layouts/ChampionsGauntlet_DomeCorridor/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHAMPIONS_GAUNTLET_DOME_PRE_BATTLE_ROOM",
+      "name": "ChampionsGauntlet_DomePreBattleRoom_Layout",
+      "width": 9,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleDome",
+      "border_filepath": "data/layouts/ChampionsGauntlet_DomePreBattleRoom/border.bin",
+      "blockdata_filepath": "data/layouts/ChampionsGauntlet_DomePreBattleRoom/map.bin"
     }
   ]
 }

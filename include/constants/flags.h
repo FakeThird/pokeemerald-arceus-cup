@@ -43,36 +43,40 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
-#define FLAG_UNUSED_0x020    0x20 // Unused Flag
-#define FLAG_UNUSED_0x021    0x21 // Unused Flag
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
-#define FLAG_UNUSED_0x02B    0x2B // Unused Flag
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
-#define FLAG_UNUSED_0x02D    0x2D // Unused Flag
-#define FLAG_UNUSED_0x02E    0x2E // Unused Flag
-#define FLAG_UNUSED_0x02F    0x2F // Unused Flag
-#define FLAG_UNUSED_0x030    0x30 // Unused Flag
-#define FLAG_UNUSED_0x031    0x31 // Unused Flag
-#define FLAG_UNUSED_0x032    0x32 // Unused Flag
-#define FLAG_UNUSED_0x033    0x33 // Unused Flag
-#define FLAG_UNUSED_0x034    0x34 // Unused Flag
-#define FLAG_UNUSED_0x035    0x35 // Unused Flag
-#define FLAG_UNUSED_0x036    0x36 // Unused Flag
-#define FLAG_UNUSED_0x037    0x37 // Unused Flag
-#define FLAG_UNUSED_0x038    0x38 // Unused Flag
-#define FLAG_UNUSED_0x039    0x39 // Unused Flag
-#define FLAG_UNUSED_0x03A    0x3A // Unused Flag
-#define FLAG_UNUSED_0x03B    0x3B // Unused Flag
-#define FLAG_UNUSED_0x03C    0x3C // Unused Flag
-#define FLAG_UNUSED_0x03D    0x3D // Unused Flag
+// Edit
+#define FLAG_CHOSEN_GARY     0x20 // Unused Flag
+#define FLAG_CHOSEN_LANCE    0x21 // Unused Flag
+#define FLAG_CHOSEN_RED      0x22 // Unused Flag
+#define FLAG_CHOSEN_STEVEN   0x23 // Unused Flag
+#define FLAG_CHOSEN_WALLACE  0x24 // Unused Flag
+#define FLAG_CHOSEN_CYNTHIA  0x25 // Unused Flag
+#define FLAG_CHOSEN_ALDER    0x26 // Unused Flag
+#define FLAG_CHOSEN_IRIS     0x27 // Unused Flag
+#define FLAG_CHOSEN_DIANTHA  0x28 // Unused Flag
+#define FLAG_CHOSEN_ASH      0x29 // Unused Flag
+#define FLAG_CHOSEN_LEON     0x2A // Unused Flag
+#define FLAG_CHOSEN_GEETA    0x2B // Unused Flag
+#define FLAG_CHOSEN_ROTOM    0x2C // Unused Flag
+
+#define FLAG_RIVAL_GARY      0x2D // Unused Flag
+#define FLAG_RIVAL_LANCE     0x2E // Unused Flag
+#define FLAG_RIVAL_RED       0x2F // Unused Flag
+#define FLAG_RIVAL_STEVEN    0x30 // Unused Flag
+#define FLAG_RIVAL_WALLACE   0x31 // Unused Flag
+#define FLAG_RIVAL_CYNTHIA   0x32 // Unused Flag
+#define FLAG_RIVAL_ALDER     0x33 // Unused Flag
+#define FLAG_RIVAL_IRIS      0x34 // Unused Flag
+#define FLAG_RIVAL_DIANTHA   0x35 // Unused Flag
+#define FLAG_RIVAL_ASH       0x36 // Unused Flag
+#define FLAG_RIVAL_LEON      0x37 // Unused Flag
+#define FLAG_RIVAL_GEETA     0x38 // Unused Flag
+
+#define FLAG_QUALIFIERS      0x39 // Unused Flag
+#define FLAG_QUARTER_FINALS  0x3A // Unused Flag
+#define FLAG_SEMI_FINALS     0x3B // Unused Flag
+#define FLAG_GRAND_FINALS    0x3C // Unused Flag
+#define BATTLE_FLAG          0x3D // Unused Flag
+
 #define FLAG_UNUSED_0x03E    0x3E // Unused Flag
 #define FLAG_UNUSED_0x03F    0x3F // Unused Flag
 #define FLAG_UNUSED_0x040    0x40 // Unused Flag

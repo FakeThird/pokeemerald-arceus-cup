@@ -34,6 +34,7 @@
 #include "link_rfu.h"
 #include "load_save.h"
 #include "main.h"
+#include "main_menu.h"
 #include "malloc.h"
 #include "m4a.h"
 #include "map_name_popup.h"
@@ -76,6 +77,8 @@
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
+// Edit
+#include "field_player_avatar.h"
 
 STATIC_ASSERT((B_FLAG_FOLLOWERS_DISABLED == 0 || OW_FOLLOWERS_ENABLED), FollowersFlagAssignedWithoutEnablingThem);
 
@@ -179,8 +182,8 @@ static void SetKeyInterceptCallback(u16 (*func)(u32));
 static void SetFieldVBlankCallback(void);
 static void FieldClearVBlankHBlankCallbacks(void);
 static void TransitionMapMusic(void);
-static u8 GetAdjustedInitialTransitionFlags(struct InitialPlayerAvatarState *playerStruct, u16 metatileBehavior, enum MapType mapType);
-static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *playerStruct, u8 transitionFlags, u16 metatileBehavior, enum MapType mapType);
+static u16 GetAdjustedInitialTransitionFlags(struct InitialPlayerAvatarState *playerStruct, u16 metatileBehavior, enum MapType mapType);
+static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *playerStruct, u16 transitionFlags, u16 metatileBehavior, enum MapType mapType);
 static u16 GetCenterScreenMetatileBehavior(void);
 
 static void *sUnusedOverworldCallback;
@@ -374,12 +377,16 @@ static void (*const sMovementStatusHandler[])(struct LinkPlayerObjectEvent *, st
 };
 
 // code
+
 void DoWhiteOut(void)
 {
     RunScriptImmediately(EventScript_WhiteOut);
     HealPlayerParty();
     Overworld_ResetStateAfterWhiteOut();
-    SetWarpDestinationToLastHealLocation();
+    // Edited
+    // SetWarpDestinationToLastHealLocation();
+    SetWarpDestination(MAP_GROUP(MAP_CHAMPIONS_GAUNTLET_OUTSIDE), MAP_NUM(MAP_CHAMPIONS_GAUNTLET_OUTSIDE), 2, -1, -1);
+    
     WarpIntoMap();
 }
 
@@ -957,18 +964,43 @@ void ResetInitialPlayerAvatarState(void)
     sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_ON_FOOT;
 }
 
+// Edit
 void StoreInitialPlayerAvatarState(void)
 {
     sInitialPlayerAvatarState.direction = GetPlayerFacingDirection();
 
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE))
-        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_MACH_BIKE;
-    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE))
-        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_ACRO_BIKE;
-    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
-        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_SURFING;
-    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_UNDERWATER))
-        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_UNDERWATER;
+    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_GARY))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_GARY;
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_LANCE))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_LANCE;
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_RED))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_RED;
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_STEVEN))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_STEVEN;
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_WALLACE))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_WALLACE;
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_CYNTHIA))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_CYNTHIA;
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ALDER))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_ALDER;
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_IRIS))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_IRIS;
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ASH))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_ASH;
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DIANTHA))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_DIANTHA;
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_LEON))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_LEON;
+    else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_GEETA))
+        sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_GEETA;
+    // else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE))
+    //     sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_MACH_BIKE;
+    // else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE))
+    //     sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_ACRO_BIKE;
+    // else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
+    //     sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_SURFING;
+    // else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_UNDERWATER))
+    //     sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_UNDERWATER;
     else
         sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_ON_FOOT;
 }
@@ -978,32 +1010,63 @@ static struct InitialPlayerAvatarState *GetInitialPlayerAvatarState(void)
     struct InitialPlayerAvatarState playerStruct;
     enum MapType mapType = GetCurrentMapType();
     u16 metatileBehavior = GetCenterScreenMetatileBehavior();
-    u8 transitionFlags = GetAdjustedInitialTransitionFlags(&sInitialPlayerAvatarState, metatileBehavior, mapType);
+    u16 transitionFlags = GetAdjustedInitialTransitionFlags(&sInitialPlayerAvatarState, metatileBehavior, mapType);
     playerStruct.transitionFlags = transitionFlags;
     playerStruct.direction = GetAdjustedInitialDirection(&sInitialPlayerAvatarState, transitionFlags, metatileBehavior, mapType);
     sInitialPlayerAvatarState = playerStruct;
     return &sInitialPlayerAvatarState;
 }
 
-static u8 GetAdjustedInitialTransitionFlags(struct InitialPlayerAvatarState *playerStruct, u16 metatileBehavior, enum MapType mapType)
+static u16 GetAdjustedInitialTransitionFlags(struct InitialPlayerAvatarState *playerStruct, u16 metatileBehavior, enum MapType mapType)
 {
-    if (mapType != MAP_TYPE_INDOOR && FlagGet(FLAG_SYS_CRUISE_MODE))
-        return PLAYER_AVATAR_FLAG_ON_FOOT;
-    else if (mapType == MAP_TYPE_UNDERWATER)
-        return PLAYER_AVATAR_FLAG_UNDERWATER;
-    else if (MetatileBehavior_IsSurfableWaterOrUnderwater(metatileBehavior) == TRUE)
-        return PLAYER_AVATAR_FLAG_SURFING;
-    else if (Overworld_IsBikingAllowed() != TRUE)
-        return PLAYER_AVATAR_FLAG_ON_FOOT;
-    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_MACH_BIKE)
-        return PLAYER_AVATAR_FLAG_MACH_BIKE;
-    else if (playerStruct->transitionFlags != PLAYER_AVATAR_FLAG_ACRO_BIKE)
-        return PLAYER_AVATAR_FLAG_ON_FOOT;
+    if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_GARY)
+        return PLAYER_AVATAR_FLAG_GARY;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_LANCE)
+        return PLAYER_AVATAR_FLAG_LANCE;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_RED)
+        return PLAYER_AVATAR_FLAG_RED;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_STEVEN)
+        return PLAYER_AVATAR_FLAG_STEVEN;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_WALLACE)
+        return PLAYER_AVATAR_FLAG_WALLACE;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_CYNTHIA)
+        return PLAYER_AVATAR_FLAG_CYNTHIA;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_ALDER)
+        return PLAYER_AVATAR_FLAG_ALDER;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_IRIS)
+        return PLAYER_AVATAR_FLAG_IRIS;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_ASH)
+        return PLAYER_AVATAR_FLAG_ASH;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_DIANTHA)
+        return PLAYER_AVATAR_FLAG_DIANTHA;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_LEON)
+        return PLAYER_AVATAR_FLAG_LEON;
+    else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_GEETA)
+        return PLAYER_AVATAR_FLAG_GEETA;
+
     else
-        return PLAYER_AVATAR_FLAG_ACRO_BIKE;
+        return PLAYER_AVATAR_FLAG_ON_FOOT;
+    // else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_MACH_BIKE)
+    //     return PLAYER_AVATAR_FLAG_MACH_BIKE;
+    // else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_ACRO_BIKE)
+    //     return PLAYER_AVATAR_FLAG_ACRO_BIKE;
+    // if (mapType != MAP_TYPE_INDOOR && FlagGet(FLAG_SYS_CRUISE_MODE))
+    //     return PLAYER_AVATAR_FLAG_ON_FOOT;
+    // else if (mapType == MAP_TYPE_UNDERWATER)
+    //     return PLAYER_AVATAR_FLAG_UNDERWATER;
+    // else if (MetatileBehavior_IsSurfableWaterOrUnderwater(metatileBehavior) == TRUE)
+    //     return PLAYER_AVATAR_FLAG_SURFING;
+    // else if (Overworld_IsBikingAllowed() != TRUE)
+    //     return PLAYER_AVATAR_FLAG_ON_FOOT;
+    // else if (playerStruct->transitionFlags == PLAYER_AVATAR_FLAG_MACH_BIKE)
+    //     return PLAYER_AVATAR_FLAG_MACH_BIKE;
+    // else if (playerStruct->transitionFlags != PLAYER_AVATAR_FLAG_ACRO_BIKE)
+    //     return PLAYER_AVATAR_FLAG_ON_FOOT;
+    // else
+    //     return PLAYER_AVATAR_FLAG_ACRO_BIKE;
 }
 
-static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *playerStruct, u8 transitionFlags, u16 metatileBehavior, enum MapType mapType)
+static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *playerStruct, u16 transitionFlags, u16 metatileBehavior, enum MapType mapType)
 {
     if (FlagGet(FLAG_SYS_CRUISE_MODE) && mapType == MAP_TYPE_OCEAN_ROUTE)
         return DIR_EAST;
@@ -1788,7 +1851,11 @@ void CB2_NewGame(void)
     PlayTimeCounter_Start();
     ScriptContext_Init();
     UnlockPlayerFieldControls();
+
+    // Edited
     // gFieldCallback = ExecuteTruckSequence;
+    NewGameBirchSpeech_SetDefaultPlayerName(0);
+
     gFieldCallback2 = NULL;
     DoMapLoadLoop(&gMain.state);
     SetFieldVBlankCallback();
@@ -1821,8 +1888,10 @@ void CB2_WhiteOut(void)
         SetFollowerNPCData(FNPC_DATA_SURF_BLOB, FNPC_SURF_BLOB_NONE);
         DoMapLoadLoop(&state);
         SetFieldVBlankCallback();
-        SetMainCallback1(CB1_Overworld);
-        SetMainCallback2(CB2_Overworld);
+        // Editing
+        // SetMainCallback1(CB1_Overworld);
+        // SetMainCallback2(CB2_Overworld);
+        SetMainCallback2(CB2_NewGame);
     }
 }
 
@@ -1838,8 +1907,14 @@ void CB2_LoadMap(void)
 
 static void CB2_LoadMap2(void)
 {
+    // Edit
+    SavePlayerStateBeforeWarp();
+    
     DoMapLoadLoop(&gMain.state);
     SetFieldVBlankCallback();
+    
+    RestorePlayerStateAfterWarp();
+    
     SetMainCallback1(CB1_Overworld);
     SetMainCallback2(CB2_Overworld);
 }
@@ -2327,7 +2402,7 @@ static bool32 ReturnToFieldLink(u8 *state)
     return FALSE;
 }
 
-static void DoMapLoadLoop(u8 *state)
+void DoMapLoadLoop(u8 *state)
 {
     while (!LoadMapInStepsLocal(state, FALSE));
 }

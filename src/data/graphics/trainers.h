@@ -292,6 +292,70 @@ const u8 gTrainerBackPic_Steven[] = INCBIN_U8("graphics/trainers/back_pics/steve
 const u16 gTrainerBackPicPalette_Red[] = INCBIN_U16("graphics/trainers/back_pics/red.gbapal");
 const u16 gTrainerBackPicPalette_Leaf[] = INCBIN_U16("graphics/trainers/back_pics/leaf.gbapal");
 
+// Add Custom Sprites Here
+const u8 gTrainerBackPic_Gary[] = INCBIN_U8("graphics/trainers/back_pics/gary.4bpp");
+const u16 gTrainerBackPicPalette_Gary[] = INCBIN_U16("graphics/trainers/back_pics/gary.gbapal");
+
+const u8 gTrainerBackPic_Lance[] = INCBIN_U8("graphics/trainers/back_pics/lance.4bpp");
+const u16 gTrainerBackPicPalette_Lance[] = INCBIN_U16("graphics/trainers/back_pics/lance.gbapal");
+
+const u8 gTrainerBackPic_Cynthia[] = INCBIN_U8("graphics/trainers/back_pics/cynthia.4bpp");
+const u16 gTrainerBackPicPalette_Cynthia[] = INCBIN_U16("graphics/trainers/back_pics/cynthia.gbapal");
+
+const u8 gTrainerBackPic_Ash[] = INCBIN_U8("graphics/trainers/back_pics/ash.4bpp");
+const u16 gTrainerBackPicPalette_Ash[] = INCBIN_U16("graphics/trainers/back_pics/ash.gbapal");
+
+const u8 gTrainerBackPic_Geeta[] = INCBIN_U8("graphics/trainers/back_pics/geeta.4bpp");
+const u16 gTrainerBackPicPalette_Geeta[] = INCBIN_U16("graphics/trainers/back_pics/geeta.gbapal");
+
+const u8 gTrainerBackPic_Pale[] = INCBIN_U8("graphics/trainers/back_pics/pale_default.4bpp");
+const u16 gTrainerBackPicPalette_Pale[] = INCBIN_U16("graphics/trainers/back_pics/pale_default.gbapal");
+
+const u8 gTrainerBackPic_Tanned[] = INCBIN_U8("graphics/trainers/back_pics/tanned_default.4bpp");
+const u16 gTrainerBackPicPalette_Tanned[] = INCBIN_U16("graphics/trainers/back_pics/tanned_default.gbapal");
+
+const u8 gTrainerBackPic_Dark[] = INCBIN_U8("graphics/trainers/back_pics/dark_default.4bpp");
+const u16 gTrainerBackPicPalette_Dark[] = INCBIN_U16("graphics/trainers/back_pics/dark_default.gbapal");
+
+
+const u32 gTrainerFrontPic_Gary[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/gary.4bpp.smol");
+const u16 gTrainerPalette_Gary[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/gary.gbapal");
+
+const u32 gTrainerFrontPic_Lance[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/lance.4bpp.smol");
+const u16 gTrainerPalette_Lance[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/lance.gbapal");
+
+const u32 gTrainerFrontPic_Cynthia[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/cynthia.4bpp.smol");
+const u16 gTrainerPalette_Cynthia[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/cynthia.gbapal");
+
+const u32 gTrainerFrontPic_Alder[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/alder.4bpp.smol");
+const u16 gTrainerPalette_Alder[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/alder.gbapal");
+
+const u32 gTrainerFrontPic_Iris[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/iris.4bpp.smol");
+const u16 gTrainerPalette_Iris[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/iris.gbapal");
+
+const u32 gTrainerFrontPic_Ash[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/ash.4bpp.smol");
+const u16 gTrainerPalette_Ash[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/ash.gbapal");
+
+const u32 gTrainerFrontPic_Diantha[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/diantha.4bpp.smol");
+const u16 gTrainerPalette_Diantha[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/diantha.gbapal");
+
+const u32 gTrainerFrontPic_Leon[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/leon.4bpp.smol");
+const u16 gTrainerPalette_Leon[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/leon.gbapal");
+
+const u32 gTrainerFrontPic_Geeta[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/geeta.4bpp.smol");
+const u16 gTrainerPalette_Geeta[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/geeta.gbapal");
+
+const u32 gTrainerFrontPic_Rotom[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/rotom.4bpp.smol");
+const u16 gTrainerPalette_Rotom[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/rotom.gbapal");
+
+const u32 gTrainerFrontPic_Rene[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/rene.4bpp.smol");
+const u16 gTrainerPalette_Rene[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/rene.gbapal");
+
+const u32 gTrainerFrontPic_Oak[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/oak.4bpp.smol");
+const u16 gTrainerPalette_Oak[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/oak.gbapal");
+
+const u32 gTrainerFrontPic_Iono[] = INCBIN_U32("graphics/trainers/front_pics/arceus_cup/iono.4bpp.smol");
+const u16 gTrainerPalette_Iono[] = INCBIN_U16("graphics/trainers/front_pics/arceus_cup/iono.gbapal");
 // The first two parameters invoke a front pic and palette by
 // calling a "TRAINER_PIC" constant (e.g. TRAINER_PIC_HIKER), and
 // gTrainerFrontPic/gTrainerPalette pointers, (e.g "gTrainerFrontPic_Hiker" and "gTrainerPalette_Hiker").
@@ -401,6 +465,20 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_LEAF, gTrainerFrontPic_Leaf, gTrainerPalette_Leaf),
     TRAINER_SPRITE(TRAINER_PIC_RS_BRENDAN, gTrainerFrontPic_RubySapphireBrendan, gTrainerPalette_RubySapphireBrendan),
     TRAINER_SPRITE(TRAINER_PIC_RS_MAY, gTrainerFrontPic_RubySapphireMay, gTrainerPalette_RubySapphireMay),
+    // Add Custom Front Sprites Here
+    TRAINER_SPRITE(TRAINER_PIC_GARY, gTrainerFrontPic_Gary, gTrainerPalette_Gary),
+    TRAINER_SPRITE(TRAINER_PIC_LANCE, gTrainerFrontPic_Lance, gTrainerPalette_Lance),
+    TRAINER_SPRITE(TRAINER_PIC_CYNTHIA, gTrainerFrontPic_Cynthia, gTrainerPalette_Cynthia),
+    TRAINER_SPRITE(TRAINER_PIC_ALDER, gTrainerFrontPic_Alder, gTrainerPalette_Alder),
+    TRAINER_SPRITE(TRAINER_PIC_IRIS, gTrainerFrontPic_Iris, gTrainerPalette_Iris),
+    TRAINER_SPRITE(TRAINER_PIC_ASH, gTrainerFrontPic_Ash, gTrainerPalette_Ash),
+    TRAINER_SPRITE(TRAINER_PIC_DIANTHA, gTrainerFrontPic_Diantha, gTrainerPalette_Diantha),
+    TRAINER_SPRITE(TRAINER_PIC_LEON, gTrainerFrontPic_Leon, gTrainerPalette_Leon),
+    TRAINER_SPRITE(TRAINER_PIC_GEETA, gTrainerFrontPic_Geeta, gTrainerPalette_Geeta),
+    TRAINER_SPRITE(TRAINER_PIC_ROTOM, gTrainerFrontPic_Rotom, gTrainerPalette_Rotom),
+    TRAINER_SPRITE(TRAINER_PIC_RENE, gTrainerFrontPic_Rene, gTrainerPalette_Rene),
+    TRAINER_SPRITE(TRAINER_PIC_OAK, gTrainerFrontPic_Oak, gTrainerPalette_Oak),
+    TRAINER_SPRITE(TRAINER_PIC_IONO, gTrainerFrontPic_Iono, gTrainerPalette_Iono),
 };
 
 static const union AnimCmd sAnimCmd_Hoenn[] =
@@ -476,4 +554,16 @@ const struct TrainerBacksprite gTrainerBacksprites[] =
     TRAINER_BACK_SPRITE(TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY, 4, gTrainerBackPic_RubySapphireMay, gTrainerPalette_RubySapphireMay, sBackAnims_Hoenn),
     TRAINER_BACK_SPRITE(TRAINER_BACK_PIC_WALLY, 4, gTrainerBackPic_Wally, gTrainerPalette_Wally, sBackAnims_Hoenn),
     TRAINER_BACK_SPRITE(TRAINER_BACK_PIC_STEVEN, 4, gTrainerBackPic_Steven, gTrainerPalette_Steven, sBackAnims_Hoenn),
+    // Add Custom Back Sprites Here
+    TRAINER_BACK_SPRITE(TRAINER_BACK_PIC_GARY, 5, gTrainerBackPic_Gary, gTrainerBackPicPalette_Gary, sBackAnims_Kanto),
+    TRAINER_BACK_SPRITE(TRAINER_BACK_PIC_LANCE, 4, gTrainerBackPic_Lance, gTrainerBackPicPalette_Lance, sBackAnims_Hoenn),
+    TRAINER_BACK_SPRITE(TRAINER_BACK_PIC_CYNTHIA, 4, gTrainerBackPic_Cynthia, gTrainerBackPicPalette_Cynthia, sBackAnims_Hoenn),
+    TRAINER_BACK_SPRITE(TRAINER_BACK_PIC_ASH, 4, gTrainerBackPic_Ash, gTrainerBackPicPalette_Ash, sBackAnims_Hoenn),
+    TRAINER_BACK_SPRITE(TRAINER_BACK_PIC_GEETA, 4, gTrainerBackPic_Geeta, gTrainerBackPicPalette_Geeta, sBackAnims_Hoenn),
+
+    TRAINER_BACK_SPRITE(TRAINER_BACK_PIC_PALE, 5, gTrainerBackPic_Pale, gTrainerBackPicPalette_Pale, sBackAnims_Kanto),
+    TRAINER_BACK_SPRITE(TRAINER_BACK_PIC_TANNED, 5, gTrainerBackPic_Tanned, gTrainerBackPicPalette_Tanned, sBackAnims_Kanto),
+    TRAINER_BACK_SPRITE(TRAINER_BACK_PIC_DARK, 5, gTrainerBackPic_Dark, gTrainerBackPicPalette_Dark, sBackAnims_Kanto),
+
+
 };

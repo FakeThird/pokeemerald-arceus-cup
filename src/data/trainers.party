@@ -1,7 +1,7 @@
 /*
 Trainers and their parties defined with Competetive Syntax.
 Compatible with Pokemon Showdown exports.
-https://github.com/smogon/pokemon-showdown/blob/master/sim/TEAMS.md
+https://github.com/smogon/pokemon- showdown/blob/master/sim/TEAMS.md
 
 A trainer specification starts with "=== TRAINER_XXXX ==="
 and includes everything until the next line that starts with "==="
@@ -137,6 +137,7 @@ Zubat
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
+/* Editted
 === TRAINER_GRUNT_AQUA_HIDEOUT_4 ===
 Name: GRUNT
 Class: Team Aqua
@@ -149,6 +150,7 @@ AI: Check Bad Move
 Carvanha
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+*/
 
 === TRAINER_GRUNT_SEAFLOOR_CAVERN_1 ===
 Name: GRUNT
@@ -6240,6 +6242,7 @@ Electrike
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
+/*
 === TRAINER_WALLACE ===
 Name: WALLACE
 Class: Champion
@@ -6250,6 +6253,7 @@ Items: Full Restore / Full Restore / Full Restore / Full Restore
 Double Battle: No
 AI: Basic Trainer
 Mugshot: Yellow
+*/
 
 Wailord
 Level: 57
@@ -15853,6 +15857,7 @@ Tropius
 Level: 30
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
+/*
 === TRAINER_STEVEN ===
 Name: STEVEN
 Class: Rival
@@ -15862,6 +15867,7 @@ Music: Male
 Items: Full Restore / Full Restore / Full Restore / Full Restore
 Double Battle: No
 AI: Basic Trainer
+*/
 
 Skarmory
 Level: 77
@@ -16826,6 +16832,7 @@ Wobbuffet
 Level: 41
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
+/* Editted
 === TRAINER_RED ===
 Name: RED
 Class: Rival
@@ -16837,6 +16844,7 @@ Double Battle: No
 Charmander
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+*/
 
 === TRAINER_LEAF ===
 Name: LEAF
@@ -16874,75 +16882,941 @@ Kyogre
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_RENE ===
+/* ---------------------------- Add New Custom Trainers Here ---------------------------- */
+
+=== MASTER_RENE ===
 Name: RENE
 Class: Rival
-Pic: RS Brendan
+Pic: Rene
 Gender: Male
 Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Mew @ Mental Herb  
-Ability: Synchronize  
-Tera Type: Psychic  
-EVs: 252 HP / 4 Atk / 252 SpD  
-Jolly Nature  
-- Stealth Rock  
-- Taunt  
-- Thunder Wave  
-- Explosion  
+Mew @ Focus Sash
+Ability: Synchronize
+Tera Type: Normal
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Stealth Rock
+- Spikes
+- Roar
+- Explosion
 
-Latios @ Life Orb  
-Ability: Levitate  
-Tera Type: Dragon  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 29 HP  
-- Draco Meteor  
-- Psyshock  
-- Surf  
-- Hidden Power   
+Latios @ Soul Dew
+Ability: Levitate
+Tera Type: Steel
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Draco Meteor
+- Luster Purge
+- Aura Sphere
+- Roost
 
-Heatran @ Leftovers  
-Ability: Flash Fire  
-Tera Type: Fire  
-EVs: 248 HP / 8 SpD / 252 Spe  
-Serious Nature  
+Gengar- Mega @ Gengarite
+Ability: Shadow Tag
+Tera Type: Ghost
+EVs: 252 HP / 4 SpD / 252 Spe
+Timid Nature
+- Focus Blast
+- Sludge Wave
+- Shadow Ball
+- Destiny Bond
+
+Heatran @ Leftovers
+Ability: Flash Fire
+Tera Type: Grass
+EVs: 252 HP / 4 Def / 252 SpD
+Calm Nature
+- Magma Storm
+- Earth Power
+- Taunt
+- Protect
+
+Excadrill @ Choice Scarf
+Ability: Mold Breaker
+Tera Type: Ground
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- X-Scissor
+- Earthquake
+- Iron Head
+- Rock Slide
+
+Keldeo @ Choice Scarf
+Ability: Justified
+Tera Type: Water
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+IVs: 30 HP / 30 SpA  
+- Hydro Pump
+- Secret Sword
+- Icy Wind
+- Hidden Power
+
+/* ---------------------------- Champion Battles ---------------------------- */
+
+=== CHAMPION_GARY ===
+Name: GARY
+Class: Champion
+Pic: Gary
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Aerodactyl @ Focus Sash
+Ability: Unnerve
+Tera Type: Ghost
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Stealth Rock
+- Taunt
+- Stone Edge
+- Earthquake
+
+Arcanine-Hisui @ Choice Band
+Ability: Rock Head
+Tera Type: Rock
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Head Smash
+- Flare Blitz
+- Extreme Speed
+- Wild Charge
+
+Machamp @ Flame Orb
+Ability: Guts
+Tera Type: Normal
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Close Combat
+- Knock Off
+- Facade
+- Bullet Punch
+
+Exeggutor-Alola @ Draco Plate
+Ability: Frisk
+Tera Type: Dragon
+EVs: 252 HP / 252 SpA / 4 SpD
+Quiet Nature
+IVs: 0 Spe
+- Trick Room
+- Draco Meteor
+- Giga Drain
+- Flamethrower
+
+Alakazam @ Alakazite
+Ability: Magic Guard
+Tera Type: Psychic
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Nasty Plot
+- Psychic
+- Focus Blast
+- Shadow Ball
+
+Gyarados @ Flyinium Z
+Ability: Moxie
+Tera Type: Flying
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Dragon Dance
+- Waterfall
+- Bounce
+- Earthquake
+
+
+=== CHAMPION_LANCE ===
+Name: LANCE
+Class: Champion
+Pic: Lance
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Exeggutor-Alola @ Lum Berry  
+Ability: Harvest  
+Tera Type: Steel  
+EVs: 252 HP / 252 SpA / 4 SpD  
+Modest Nature  
 IVs: 0 Atk  
-- Magma Storm  
-- Hidden Power  
-- Taunt  
-- Earth Power  
+- Giga Drain  
+- Flamethrower  
+- Ancient Power  
+- Rest  
 
-Keldeo @ Choice Specs  
-Ability: Justified  
+Salamence @ Leftovers  
+Ability: Intimidate  
+Tera Type: Flying  
+EVs: 252 HP / 252 SpA / 4 Spe  
+Modest Nature  
+IVs: 0 Atk  
+- Hurricane  
+- Fire Blast  
+- Hydro Pump  
+- Roost  
+
+Flygon @ Focus Sash  
+Ability: Simple  
+Tera Type: Ground  
+EVs: 4 HP / 252 Atk / 252 Spe  
+Adamant Nature  
+- Earthquake  
+- Dragon Claw  
+- Steel Wing  
+- Dragon Dance  
+
+Kingdra @ Scope Lens  
+Ability: Sniper  
 Tera Type: Water  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Scald  
-- Secret Sword  
-- Hydro Pump  
-- Hidden Power
+- Surf  
+- Draco Meteor  
+- Ice Beam  
+- Focus Energy  
 
-Gengar @ Gengarite  
-Ability: Levitate  
-Tera Type: Ghost  
-EVs: 4 Def / 252 SpA / 252 Spe  
+Dragonite @ Loaded Dice  
+Ability: Multiscale  
+Tera Type: Normal  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
+- Scale Shot  
+- Dual Wingbeat  
+- Extreme Speed  
+- Dragon Dance  
+
+Altaria @ Altarianite  
+Ability: Natural Cure  
+Tera Type: Fairy  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Return  
+- Earthquake  
+- Iron Tail  
+- Roost  
+
+
+=== CHAMPION_RED ===
+Name: RED
+Class: Champion
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pikachu @ Focus Sash  
+Ability: Static  
+Tera Type: Flying  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Nuzzle  
+- Knock Off  
+- Extreme Speed  
+- Endeavor  
+
+Venusaur @ Venusaurite  
+Ability: Chlorophyll  
+Tera Type: Fire  
+EVs: 252 HP / 4 Def / 252 SpA  
+Modest Nature  
 IVs: 0 Atk  
-- Focus Blast  
-- Sludge Wave  
-- Shadow Ball  
-- Destiny Bond  
+- Giga Drain  
+- Earth Power  
+- Weather Ball  
+- Leech Seed  
 
-Excadrill @ Choice Scarf  
+Charizard @ Charizardite Y  
+Ability: Blaze  
+Tera Type: Fire  
+EVs: 4 Def / 252 SpA / 252 Spe  
+Modest Nature  
+IVs: 0 Atk  
+- Weather Ball  
+- Solar Beam  
+- Scorching Sands  
+- Roost  
+
+Blastoise @ Life Orb  
+Ability: Torrent  
+Tera Type: Electric  
+EVs: 232 HP / 252 SpA / 24 Spe  
+Modest Nature  
+- Surf  
+- Ice Beam  
+- Tera Blast  
+- Shell Smash  
+
+Snorlax @ Leftovers  
+Ability: Thick Fat  
+Happiness: 0  
+Tera Type: Ghost  
+EVs: 252 HP / 252 Atk / 4 Def  
+Adamant Nature  
+- Frustration  
+- Earthquake  
+- Sleep Talk  
+- Rest  
+
+Machamp @ Iapapa Berry  
+Ability: No Guard  
+Tera Type: Steel  
+EVs: 252 HP / 252 Def / 4 SpD  
+Impish Nature  
+- Dynamic Punch  
+- Stone Edge  
+- Fissure  
+- Substitute  
+
+
+=== TRAINER_STEVEN ===
+Name: STEVEN
+Class: Champion
+Pic: Steven
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Skarmory @ Rocky Helmet  
+Ability: Sturdy  
+Tera Type: Dragon  
+EVs: 252 HP / 252 Def / 4 SpD  
+Impish Nature  
+IVs: 0 Atk  
+- Body Press  
+- Toxic  
+- Spikes  
+- Roost  
+
+Carbink @ Misty Seed  
+Ability: Misty Surge  
+Tera Type: Steel  
+EVs: 252 HP / 252 Def / 4 SpA  
+Bold Nature  
+IVs: 0 Atk  
+- Body Press  
+- Misty Explosion  
+- Stored Power  
+- Calm Mind  
+
+Cradily @ Big Root  
+Ability: Storm Drain  
+Tera Type: Ground  
+EVs: 252 HP / 4 Def / 252 SpA  
+Modest Nature  
+IVs: 0 Atk  
+- Ancient Power  
+- Giga Drain  
+- Earth Power  
+- Leech Seed  
+
+Armaldo @ Assault Vest  
+Ability: Sharpness  
+Tera Type: Water  
+EVs: 252 HP / 252 Atk / 4 Def  
+Adamant Nature  
+- Stone Axe  
+- X-Scissor  
+- Razor Shell  
+- Aerial Ace  
+
+Excadrill @ Leftovers  
 Ability: Mold Breaker  
 Tera Type: Ground  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-- Rock Slide  
-- Rapid Spin  
+EVs: 4 HP / 252 Atk / 252 Spe  
+Jolly Nature  
 - Earthquake  
 - Iron Head  
+- Rapid Spin  
+- Swords Dance  
+
+Metagross @ Metagrossite  
+Ability: Clear Body  
+Tera Type: Steel  
+EVs: 252 Atk / 4 Def / 252 Spe  
+Jolly Nature  
+- Meteor Mash  
+- Psychic Fangs  
+- Stomping Tantrum  
+- Ice Punch  
+
+
+=== TRAINER_WALLACE ===
+Name: WALLACE
+Class: Champion
+Pic: Champion Wallace
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Tentacruel @ Black Sludge  
+Ability: Liquid Ooze  
+Tera Type: Poison  
+EVs: 252 HP / 252 Def / 4 SpD  
+Impish Nature  
+- Flip Turn  
+- Knock Off  
+- Rapid Spin  
+- Toxic Spikes  
+
+Milotic @ Flame Orb  
+Ability: Marvel Scale  
+Tera Type: Fairy  
+EVs: 252 HP / 4 Def / 252 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Scald  
+- Draining Kiss  
+- Trick  
+- Recover  
+
+Walrein @ Leftovers  
+Ability: Thick Fat  
+Tera Type: Steel  
+EVs: 252 HP / 128 Def / 128 SpD  
+Bold Nature  
+IVs: 0 Atk  
+- Ice Beam  
+- Surf  
+- Sleep Talk  
+- Rest  
+
+Wailord @ Rocky Helmet  
+Ability: Stamina  
+Tera Type: Steel  
+EVs: 252 HP / 4 Def / 252 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Scald  
+- Freeze-Dry  
+- Sleep Talk  
+- Rest  
+
+Starmie @ Assault Vest  
+Ability: Psychic Surge  
+Tera Type: Psychic  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Scald  
+- Expanding Force  
+- Dazzling Gleam  
+- Power Gem  
+
+Sharpedo @ Sharpedonite  
+Ability: Speed Boost  
+Tera Type: Water  
+EVs: 4 HP / 252 Atk / 252 Spe  
+Jolly Nature  
+- Fishious Rend  
+- Crunch  
+- Ice Fang  
+- Thunder Fang  
+
+
+=== CHAMPION_CYNTHIA ===
+Name: CYNTHIA
+Class: Champion
+Pic: Cynthia
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Spiritomb @ Heavy-Duty Boots  
+Ability: Aftermath  
+Tera Type: Ghost  
+EVs: 4 HP / 252 Def / 252 SpD  
+Careful Nature  
+- Poltergeist  
+- Foul Play  
+- Destiny Bond  
+- Pain Split  
+
+Gastrodon @ Leftovers  
+Ability: Storm Drain  
+Tera Type: Fire  
+EVs: 252 HP / 252 Def / 4 SpD  
+Bold Nature  
+IVs: 0 Atk  
+- Scald  
+- Earth Power  
+- Yawn  
+- Recover  
+
+Roserade @ Black Sludge  
+Ability: Poison Point  
+Tera Type: Poison  
+EVs: 252 HP / 252 SpA / 4 Spe  
+Modest Nature  
+IVs: 0 Atk  
+- Giga Drain  
+- Shadow Ball  
+- Leech Seed  
+- Spikes  
+
+Togekiss @ Choice Scarf  
+Ability: Serene Grace  
+Tera Type: Fairy  
+EVs: 4 HP / 252 SpA / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Draining Kiss  
+- Air Slash  
+- Flamethrower  
+- Tri Attack  
+
+Garchomp @ Rocky Helmet  
+Ability: Rough Skin  
+Tera Type: Steel  
+EVs: 252 HP / 252 Def / 4 SpD  
+Impish Nature  
+- Dragon Tail  
+- Earthquake  
+- Iron Head  
+- Stealth Rock  
+
+Lucario @ Lucarionite  
+Ability: Inner Focus  
+Tera Type: Fighting  
+EVs: 4 HP / 252 Atk / 252 Spe  
+Jolly Nature  
+- Close Combat  
+- Meteor Mash  
+- Drain Punch  
+- Swords Dance  
+
+
+=== CHAMPION_ALDER ===
+Name: ALDER
+Class: Champion
+Pic: Alder
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Krookodile @ Focus Sash
+Ability: Intimidate
+Tera Type: Ghost
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Stealth Rock
+- Taunt
+- Knock Off
+- Earthquake
+
+Braviary @ Heavy-Duty Boots
+Ability: Defiant
+Tera Type: Fighting
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Defog
+- Roost
+- Brave Bird
+- Close Combat
+
+Conkeldurr @ Flame Orb
+Ability: Guts
+Tera Type: Steel
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Drain Punch
+- Mach Punch
+- Knock Off
+- Facade
+
+Chandelure @ Choice Specs
+Ability: Flash Fire
+Tera Type: Grass
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Shadow Ball
+- Overheat
+- Energy Ball
+- Trick
+
+Reuniclus @ Leftovers
+Ability: Magic Guard
+Tera Type: Fairy
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Calm Mind
+- Acid Armor
+- Stored Power
+- Recover
+
+Volcarona @ Heavy-Duty Boots
+Ability: Flame Body
+Tera Type: Ground
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Quiver Dance
+- Fiery Dance
+- Bug Buzz
+- Tera Blast
+
+
+=== CHAMPION_IRIS ===
+Name: IRIS
+Class: Champion
+Pic: Iris
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Archeops @ Focus Sash
+Ability: Defeatist
+Tera Type: Ghost
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Stealth Rock
+- Taunt
+- Head Smash
+- Endeavor
+
+Hydreigon @ Choice Scarf
+Ability: Levitate
+Tera Type: Steel
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Draco Meteor
+- Dark Pulse
+- Flash Cannon
+- U-turn
+
+Aggron @ Aggronite
+Ability: Filter
+Tera Type: Steel
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Stealth Rock
+- Heavy Slam
+- Earthquake
+- Toxic
+
+Lapras @ Choice Specs
+Ability: Water Absorb
+Tera Type: Ground
+EVs: 248 HP / 252 SpA / 8 SpD
+Modest Nature
+- Freeze-Dry
+- Hydro Pump
+- Ice Beam
+- Thunderbolt
+
+Salamence @ Flyinium Z
+Ability: Moxie
+Tera Type: Flying
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Dragon Dance
+- Fly
+- Earthquake
+- Dual Wingbeat
+
+Haxorus @ Loaded Dice
+Ability: Mold Breaker
+Tera Type: Poison
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Swords Dance
+- Scale Shot
+- Close Combat
+- Poison Jab
+
+
+=== CHAMPION_ASH ===
+Name: ASH 
+Class: Champion
+Pic: Ash
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Sirfetch'd @ Leek
+Ability: Scrappy
+Tera Type: Fighting
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- First Impression
+- Close Combat
+- Knock Off
+- Brave Bird
+
+Dracovish @ Choice Scarf
+Ability: Strong Jaw
+Tera Type: Water
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Fishious Rend
+- Crunch
+- Psychic Fangs
+- Outrage
+
+Gengar @ Focus Sash
+Ability: Cursed Body
+Tera Type: Ghost
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Nasty Plot
+- Shadow Ball
+- Sludge Wave
+- Focus Blast
+
+Dragonite @ Heavy-Duty Boots
+Ability: Multiscale
+Tera Type: Normal
+EVs: 252 Atk / 4 Def / 252 Spe
+Adamant Nature
+- Dragon Dance
+- Extreme Speed
+- Earthquake
+- Dragon Claw
+
+Lucario @ Lucarionite
+Ability: Adaptability
+Tera Type: Fighting
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Swords Dance
+- Close Combat
+- Meteor Mash
+- Bullet Punch
+
+Pikachu-Alola @ Light Ball
+Ability: Static
+Tera Type: Normal
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Fake Out
+- Extreme Speed
+- Volt Tackle
+- Knock Off
+
+
+=== CHAMPION_DIANTHA ===
+Name: DIANTHA
+Class: Champion
+Pic: Diantha
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Aurorus @ Focus Sash
+Ability: Snow Warning
+Tera Type: Ground
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Stealth Rock
+- Blizzard
+- Earth Power
+- Freeze-Dry
+
+Tyrantrum @ Choice Band
+Ability: Rock Head
+Tera Type: Rock
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Head Smash
+- Outrage
+- Close Combat
+- Earthquake
+
+Gourgeist-Super @ Leftovers
+Ability: Frisk
+Tera Type: Fire
+EVs: 252 HP / 252 Def / 4 SpD
+Impish Nature
+- Will-O-Wisp
+- Poltergeist
+- Synthesis
+- Leech Seed
+
+Goodra @ Assault Vest
+Ability: Sap Sipper
+Tera Type: Steel
+EVs: 248 HP / 252 SpA / 8 SpD
+Modest Nature
+- Draco Meteor
+- Flamethrower
+- Thunderbolt
+- Sludge Bomb
+
+Hawlucha @ Power Herb
+Ability: Unburden
+Tera Type: Flying
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Swords Dance
+- Sky Attack
+- Close Combat
+- Acrobatics 
+
+Gardevoir @ Gardevoirite
+Ability: Pixilate
+Tera Type: Fairy
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Hyper Voice
+- Psyshock
+- Focus Blast
+- Calm Mind
+
+
+=== CHAMPION_LEON ===
+Name: LEON
+Class: Champion
+Pic: Leon
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Seismitoad @ Leftovers
+Ability: Water Absorb
+Tera Type: Steel
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Stealth Rock
+- Scald
+- Earth Power
+- Toxic
+
+Aegislash @ Leftovers
+Ability: Stance Change
+Tera Type: Ghost
+EVs: 252 HP / 252 SpA / 4 SpD
+Quiet Nature
+- King's Shield
+- Shadow Ball
+- Close Combat
+- Shadow Sneak 
+
+Dragapult @ Choice Specs
+Ability: Infiltrator
+Tera Type: Ghost
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Draco Meteor
+- Shadow Ball
+- U-turn
+- Flamethrower
+
+Haxorus @ Dragonium Z
+Ability: Mold Breaker
+Tera Type: Poison
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Swords Dance
+- Outrage
+- Earthquake
+- Poison Jab
+
+Eternatus @ Heavy-Duty Boots
+Ability: Pressure
+Tera Type: Fairy
+EVs: 252 HP / 252 Def / 4 SpD
+Timid Nature
+- Cosmic Power
+- Recover
+- Dynamax Cannon
+- Flamethrower
+
+Charizard @ Charizardite Y
+Ability: Drought
+Tera Type: Fire
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Fire Blast
+- Solar Beam
+- Focus Blast
+- Roost
+
+
+=== CHAMPION_GEETA ===
+Name: GEETA
+Class: Champion
+Pic: Geeta
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer 
+
+Glimmora @ Focus Sash
+Ability: Toxic Debris
+Tera Type: Ghost
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Stealth Rock
+- Mortal Spin
+- Earth Power
+- Power Gem
+
+Dragapult @ Choice Specs
+Ability: Infiltrator
+Tera Type: Ghost
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Draco Meteor
+- Shadow Ball
+- Flamethrower
+- U-turn
+
+Chesnaught @ Leftovers
+Ability: Bulletproof
+Tera Type: Steel
+EVs: 252 HP / 252 Def / 4 SpD
+Impish Nature
+- Spikes
+- Synthesis
+- Wood Hammer
+- Drain Punch
+
+Avalugg @ Heavy-Duty Boots
+Ability: Sturdy
+Tera Type: Fighting
+EVs: 252 HP / 252 Def / 4 SpD
+Impish Nature
+- Rapid Spin
+- Recover
+- Body Press
+- Avalanche
+
+Espathra @ Leftovers
+Ability: Speed Boost
+Tera Type: Fairy
+EVs: 252 HP / 4 Def / 252 Spe
+Timid Nature
+- Calm Mind
+- Protect
+- Stored Power
+- Dazzling Gleam
+
+Kingambit @ Black Glasses
+Ability: Supreme Overlord
+Tera Type: Flying
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Swords Dance
+- Kowtow Cleave
+- Sucker Punch
+- Iron Head
+
+
+
+
+
+
+
 
 

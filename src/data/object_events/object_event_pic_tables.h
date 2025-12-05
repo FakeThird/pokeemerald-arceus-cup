@@ -636,6 +636,72 @@ static const struct SpriteFrameImage sPicTable_Steven[] = {
     overworld_ascending_frames(gObjectEventPic_Steven, 2, 4),
 };
 
+// Custom Sprites
+static const struct SpriteFrameImage sPicTable_Gary[] = {
+    overworld_ascending_frames(gObjectEventPic_Gary, 2, 4),
+};
+static const struct SpriteFrameImage sPicTable_Lance[] = {
+    overworld_ascending_frames(gObjectEventPic_Lance, 2, 4),
+};
+static const struct SpriteFrameImage sPicTable_Cynthia[] = {
+    overworld_ascending_frames(gObjectEventPic_Cynthia, 2, 4),
+};
+static const struct SpriteFrameImage sPicTable_Alder[] = {
+    overworld_ascending_frames(gObjectEventPic_Alder, 2, 4),
+};
+static const struct SpriteFrameImage sPicTable_Iris[] = {
+    overworld_ascending_frames(gObjectEventPic_Iris, 2, 4),
+};
+static const struct SpriteFrameImage sPicTable_AshK[] = {
+    overworld_ascending_frames(gObjectEventPic_Ash, 2, 4),
+};
+static const struct SpriteFrameImage sPicTable_Diantha[] = {
+    overworld_ascending_frames(gObjectEventPic_Diantha, 2, 4),
+};
+static const struct SpriteFrameImage sPicTable_Leon[] = {
+    overworld_ascending_frames(gObjectEventPic_Leon, 2, 4),
+};
+static const struct SpriteFrameImage sPicTable_Geeta[] = {
+    overworld_ascending_frames(gObjectEventPic_Geeta, 2, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_Rene[] = {
+    overworld_frame(gObjectEventPic_Rene, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Rene, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Rene, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Rene, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Rene, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Rene, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Rene, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Rene, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Rene, 2, 4, 2),
+};
+
+static const struct SpriteFrameImage sPicTable_Iono[] = {
+    overworld_frame(gObjectEventPic_Iono, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Iono, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Iono, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Iono, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Iono, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Iono, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Iono, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Iono, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Iono, 2, 4, 2),
+};
+
+static const struct SpriteFrameImage sPicTable_Oak[] = {
+    overworld_frame(gObjectEventPic_Oak, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Oak, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Oak, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Oak, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Oak, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Oak, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Oak, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Oak, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Oak, 2, 4, 2),
+};
+
+
 static const struct SpriteFrameImage sPicTable_Wally[] = {
     overworld_ascending_frames(gObjectEventPic_Wally, 2, 4),
 };
