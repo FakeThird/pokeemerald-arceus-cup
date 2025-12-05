@@ -567,6 +567,10 @@ struct RankingHall2P
 struct SaveBlock2
 {
     /*0x00*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
+
+    // Edit
+             u16 playerGFXFlag;
+
     /*0x08*/ u8 playerGender; // MALE, FEMALE
     /*0x09*/ u8 specialSaveWarpFlags;
     /*0x0A*/ u8 playerTrainerId[TRAINER_ID_LENGTH];
@@ -1166,6 +1170,13 @@ struct SaveBlock1
 #endif //FREE_TRAINER_HILL
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
     // sizeof: 0x3???
+    
+    // Edit
+    // #define CHAMPION_COUNT          11
+    // #define SELECTION_SIZE          4
+
+    u16 allAvailableChampion[11];
+    u16 selectedChampions[4];
 };
 
 extern struct SaveBlock1 *gSaveBlock1Ptr;

@@ -242,6 +242,9 @@ extern const u8 gText_SavingBadges[];
 extern const u8 gText_SavingPokedex[];
 extern const u8 gText_SavingTime[];
 
+// Edit
+extern const u8 gText_PressAnythingtoLeave[];
+
 // Battle pyramid menu texts
 extern const u8 gText_BattlePyramidConfirmRest[];
 extern const u8 gText_BattlePyramidConfirmRetire[];
@@ -290,6 +293,9 @@ extern const u8 gText_Birch_AreYouReady[];
 
 extern const u8 gText_BirchInTrouble[];
 extern const u8 gText_ConfirmStarterChoice[];
+
+// editing custom for intro text
+extern const u8 gText_Iono_WelcomeToArceusCup[];
 
 // mystery event menu text
 extern const u8 gText_EventSafelyLoaded[];

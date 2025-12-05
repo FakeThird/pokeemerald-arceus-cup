@@ -498,10 +498,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Npc3Reflection,        OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION},
     {gObjectEventPal_Npc4Reflection,        OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION},
     {gObjectEventPal_Brendan,               OBJ_EVENT_PAL_TAG_BRENDAN},
-    {gObjectEventPal_BrendanReflection,     OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION},
-
-    {gObjectEventPal_Steven,                OBJ_EVENT_PAL_TAG_STEVEN},
-    
+    {gObjectEventPal_BrendanReflection,     OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION},    
     {gObjectEventPal_BridgeReflection,      OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION},
     {gObjectEventPal_PlayerUnderwater,      OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER},
     {gObjectEventPal_QuintyPlump,           OBJ_EVENT_PAL_TAG_QUINTY_PLUMP},
@@ -554,6 +551,23 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_SportBall,             OBJ_EVENT_PAL_TAG_BALL_SPORT},
     {gObjectEventPal_DreamBall,             OBJ_EVENT_PAL_TAG_BALL_DREAM},
     {gObjectEventPal_BeastBall,             OBJ_EVENT_PAL_TAG_BALL_BEAST},
+
+    {gObjectEventPal_Steven,                OBJ_EVENT_PAL_TAG_STEVEN},
+
+    // ==================================================================
+    // Custom Sprites
+    {gObjectEventPal_Gary,                  OBJ_EVENT_PAL_TAG_GARY},
+    {gObjectEventPal_Lance,                 OBJ_EVENT_PAL_TAG_LANCE},
+    {gObjectEventPal_Cynthia,               OBJ_EVENT_PAL_TAG_CYNTHIA},
+    {gObjectEventPal_Alder,                 OBJ_EVENT_PAL_TAG_ALDER},
+    {gObjectEventPal_Iris,                  OBJ_EVENT_PAL_TAG_IRIS},
+    {gObjectEventPal_Ash,                   OBJ_EVENT_PAL_TAG_ASH},
+    {gObjectEventPal_Diantha,               OBJ_EVENT_PAL_TAG_DIANTHA},
+    {gObjectEventPal_Leon,                  OBJ_EVENT_PAL_TAG_LEON},
+    {gObjectEventPal_Geeta,                 OBJ_EVENT_PAL_TAG_GEETA},
+    {gObjectEventPal_Rene,                  OBJ_EVENT_PAL_TAG_RENE},
+    {gObjectEventPal_Iono,                  OBJ_EVENT_PAL_TAG_IONO},
+    {gObjectEventPal_Oak,                   OBJ_EVENT_PAL_TAG_OAK},
     // Gen VIII
     #ifdef ITEM_STRANGE_BALL
     {gObjectEventPal_StrangeBall,           OBJ_EVENT_PAL_TAG_BALL_STRANGE},

@@ -246,11 +246,24 @@
 #define OBJ_EVENT_GFX_POKE_BALL                  239
 #define OBJ_EVENT_GFX_OW_MON                     240
 #define OBJ_EVENT_GFX_LIGHT_SPRITE               241
+// Custom Sprite
+#define OBJ_EVENT_GFX_GARY                       242
+#define OBJ_EVENT_GFX_LANCE                      243
+#define OBJ_EVENT_GFX_CYNTHIA                    244
+#define OBJ_EVENT_GFX_ALDER                      245
+#define OBJ_EVENT_GFX_IRIS                       246
+#define OBJ_EVENT_GFX_ASH                        247
+#define OBJ_EVENT_GFX_DIANTHA                    248
+#define OBJ_EVENT_GFX_LEON                       249
+#define OBJ_EVENT_GFX_GEETA                      250
+#define OBJ_EVENT_GFX_RENE                       251
+#define OBJ_EVENT_GFX_IONO                       252
+#define OBJ_EVENT_GFX_OAK                        253
 
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
-#define NUM_OBJ_EVENT_GFX                        242
+#define NUM_OBJ_EVENT_GFX                        254
 
 
 // These are dynamic object gfx ids.
@@ -381,6 +394,25 @@
 #define OBJ_EVENT_PAL_TAG_RS_MAY                  0x1123
 #define OBJ_EVENT_PAL_TAG_DYNAMIC                 0x1124
 #define OBJ_EVENT_PAL_TAG_STEVEN                  0x1125
+// Custom Sprite              
+#define OBJ_EVENT_PAL_TAG_GARY                    0x1126
+#define OBJ_EVENT_PAL_TAG_LANCE                   0x1127
+#define OBJ_EVENT_PAL_TAG_CYNTHIA                 0x1128
+#define OBJ_EVENT_PAL_TAG_ALDER                   0x1129
+#define OBJ_EVENT_PAL_TAG_IRIS                    0x112A
+#define OBJ_EVENT_PAL_TAG_ASH                     0x112B
+#define OBJ_EVENT_PAL_TAG_DIANTHA                 0x112C
+#define OBJ_EVENT_PAL_TAG_LEON                    0x112D
+#define OBJ_EVENT_PAL_TAG_GEETA                   0x112E
+#define OBJ_EVENT_PAL_TAG_RENE                    0x112F
+#define OBJ_EVENT_PAL_TAG_IONO                    0x1130
+#define OBJ_EVENT_PAL_TAG_OAK                     0x1131
+
+
+
+
+
+
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

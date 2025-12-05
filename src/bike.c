@@ -993,7 +993,7 @@ bool8 IsPlayerNotUsingAcroBikeOnBumpySlope(void)
         return TRUE;
 }
 
-void GetOnOffBike(u8 transitionFlags)
+void GetOnOffBike(u16 transitionFlags)
 {
     if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
     {

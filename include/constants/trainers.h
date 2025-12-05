@@ -108,7 +108,24 @@
 #define TRAINER_PIC_LEAF                  90
 #define TRAINER_PIC_RS_BRENDAN            91
 #define TRAINER_PIC_RS_MAY                92
-#define TRAINER_PIC_COUNT                 93
+// Custom Trainer Front
+#define TRAINER_PIC_GARY                  93
+#define TRAINER_PIC_LANCE                 94
+#define TRAINER_PIC_CYNTHIA               95
+#define TRAINER_PIC_ALDER                 96
+#define TRAINER_PIC_IRIS                  97
+#define TRAINER_PIC_ASH                   98
+#define TRAINER_PIC_DIANTHA               99
+#define TRAINER_PIC_LEON                  100
+#define TRAINER_PIC_GEETA                 101
+#define TRAINER_PIC_ROTOM                 102
+#define TRAINER_PIC_RENE                  103
+#define TRAINER_PIC_OAK                   104
+#define TRAINER_PIC_IONO                  105
+
+#define TRAINER_PIC_COUNT                 104
+
+
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN                0
@@ -119,6 +136,20 @@
 #define TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY      5
 #define TRAINER_BACK_PIC_WALLY                  6
 #define TRAINER_BACK_PIC_STEVEN                 7
+// Custom Trainer Backs
+#define TRAINER_BACK_PIC_GARY                   8
+#define TRAINER_BACK_PIC_LANCE                  9
+// #define TRAINER_BACK_PIC_WALLACE              
+#define TRAINER_BACK_PIC_CYNTHIA                10
+// #define TRAINER_BACK_PIC_ALDER              
+// #define TRAINER_BACK_PIC_IRIS                
+#define TRAINER_BACK_PIC_ASH                    11
+// #define TRAINER_BACK_PIC_DIANTHA               
+// #define TRAINER_BACK_PIC_LEON                 
+#define TRAINER_BACK_PIC_GEETA                  12
+#define TRAINER_BACK_PIC_PALE                   13
+#define TRAINER_BACK_PIC_TANNED                 14
+#define TRAINER_BACK_PIC_DARK                   15           
 
 #define FACILITY_CLASS_HIKER                 0x0
 #define FACILITY_CLASS_AQUA_GRUNT_M          0x1
@@ -202,8 +233,22 @@
 #define FACILITY_CLASS_LEAF                  0x4f
 #define FACILITY_CLASS_RS_BRENDAN            0x50
 #define FACILITY_CLASS_RS_MAY                0x51
+// Custom Trainer Front
+#define FACILITY_CLASS_GARY                  0x52
+#define FACILITY_CLASS_LANCE                 0x53
+#define FACILITY_CLASS_CYNTHIA               0x54
+#define FACILITY_CLASS_ALDER                 0x55
+#define FACILITY_CLASS_IRIS                  0x56
+#define FACILITY_CLASS_ASH                   0x57
+#define FACILITY_CLASS_DIANTHA               0x58
+#define FACILITY_CLASS_LEON                  0x59
+#define FACILITY_CLASS_GEETA                 0x5A
+#define FACILITY_CLASS_ROTOM                 0x5B
+#define FACILITY_CLASS_RENE                  0x5C
+#define FACILITY_CLASS_OAK                   0x5D
+#define FACILITY_CLASS_IONO                  0x5E
 
-#define FACILITY_CLASSES_COUNT               0x52
+#define FACILITY_CLASSES_COUNT               0x5F
 
 #define RS_FACILITY_CLASS_AQUA_LEADER_ARCHIE    0x0
 #define RS_FACILITY_CLASS_AQUA_GRUNT_M          0x1

@@ -624,6 +624,11 @@
   ],
   "gMapGroup_ChampionsGauntlet": [
     "ChampionsGauntlet_Outside",
-    "ChampionsGauntlet_RespawnRoom"
+    "ChampionsGauntlet_DebugRoom",
+    "ChampionsGauntlet_DomeLobby",
+    "ChampionsGauntlet_BattleRoom",
+    "ChampionsGauntlet_ReneHouse",
+    "ChampionsGauntlet_DomeCorridor",
+    "ChampionsGauntlet_DomePreBattleRoom"
   ]
 }

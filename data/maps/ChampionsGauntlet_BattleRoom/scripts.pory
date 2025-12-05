@@ -4,70 +4,225 @@ raw `
 	    .byte 0
 
     ChampionsGauntlet_BattleRoom_OnFrame::
+        map_script_2 VAR_TEMP_2, 1, ChampionsGauntlet_BattleRoom_EventScript_FightEnd
         map_script_2 VAR_TEMP_0, 0, ChampionsGauntlet_BattleRoom_EventScript_TournamentIntroOpen
         .2byte 0
     `
     
 script ChampionsGauntlet_BattleRoom_EventScript_TournamentIntroOpen
 {
-    lock
+    lockall
+    applymovement(LOCALID_PLAYER, ChampionsGauntlet_BattleRoom_Movement_SetInvisible)
+    waitmovement(0)
+    setvar(VAR_TEMP_2, 1)
     if(flag(FLAG_QUALIFIERS)){
-        msgbox(ChampionsGauntlet_BattleRoom_Text_QualifierIntro, MSGBOX_DEFAULT)
+        call(ChampionsGauntlet_BattleRoom_EventScript_AddAudience)
+        showtrainersprite(FACILITY_CLASS_IONO, 20, 9)  
+        msgbox(ChampionsGauntlet_BattleRoom_Text_QualifierIntroFirst, MSGBOX_DEFAULT)
 	    closemessage    
+        hidemonpic
+        showtrainersprite(FACILITY_CLASS_OAK, -1, 9)  
+        msgbox(ChampionsGauntlet_BattleRoom_Text_QualifierIntroSecond, MSGBOX_DEFAULT)
+	    closemessage   
+        hidemonpic
     } 
     if(flag(FLAG_QUARTER_FINALS)){
+        call(ChampionsGauntlet_BattleRoom_EventScript_AddAudience)
         msgbox(ChampionsGauntlet_BattleRoom_Text_QuarterFinalsIntro, MSGBOX_DEFAULT)
 	    closemessage    
     } 
     if(flag(FLAG_SEMI_FINALS)){
+        call(ChampionsGauntlet_BattleRoom_EventScript_AddSemiFinalAudience)
         msgbox(ChampionsGauntlet_BattleRoom_Text_SemiFinalsIntro, MSGBOX_DEFAULT)
 	    closemessage    
     } 
     if(flag(FLAG_GRAND_FINALS)){
+        call(ChampionsGauntlet_BattleRoom_EventScript_AddGrandFinalAudience)
         msgbox(ChampionsGauntlet_BattleRoom_Text_GrandFinalsIntro, MSGBOX_DEFAULT)
 	    closemessage    
     }
     goto(ChampionsGauntlet_BattleRoom_EventScript_ChampionsEnter)
 }
+
+
+script ChampionsGauntlet_BattleRoom_EventScript_AddAudience
+{
+    createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 1, 3, 0)
+    createvobject(OBJ_EVENT_GFX_EXPERT_F, 4, 6, 0)
+    createvobject(OBJ_EVENT_GFX_NINJA_BOY, 6, 8, 0)
+    createvobject(OBJ_EVENT_GFX_LITTLE_GIRL, 9, 11, 0)
+    createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 11, 13, 0)
+    createvobject(OBJ_EVENT_GFX_MAN_5, 13, 15, 0)
+    createvobject(OBJ_EVENT_GFX_BEAUTY, 19, 7, 1)
+    createvobject(OBJ_EVENT_GFX_WOMAN_5, 22, 11, 1)
+    createvobject(OBJ_EVENT_GFX_LITTLE_BOY, 25, 15, 1)
+    createvobject(OBJ_EVENT_GFX_YOUNGSTER, 26, 2, 2)
+    createvobject(OBJ_EVENT_GFX_SCHOOL_KID_M, 29, 5, 1)
+    return
+}
+
+script ChampionsGauntlet_BattleRoom_EventScript_AddSemiFinalAudience
+{
+    createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 1, 3, 0)
+    createvobject(OBJ_EVENT_GFX_EXPERT_F, 4, 6, 0)
+    createvobject(OBJ_EVENT_GFX_NINJA_BOY, 6, 8, 0)
+    createvobject(OBJ_EVENT_GFX_WOMAN_2, 7, 9, 0)
+    createvobject(OBJ_EVENT_GFX_LITTLE_GIRL, 9, 11, 0)
+    createvobject(OBJ_EVENT_GFX_LASS, 10, 12, 0)
+    createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 11, 13, 0)
+    createvobject(OBJ_EVENT_GFX_MAN_5, 13, 15, 0)
+    createvobject(OBJ_EVENT_GFX_GENTLEMAN, 15, 2, 1)
+    createvobject(OBJ_EVENT_GFX_NINJA_BOY, 16, 3, 1)
+    createvobject(OBJ_EVENT_GFX_WOMAN_2, 17, 4, 1)
+    createvobject(OBJ_EVENT_GFX_BEAUTY, 19, 7, 1)
+    createvobject(OBJ_EVENT_GFX_EXPERT_F, 20, 9, 1)
+    createvobject(OBJ_EVENT_GFX_WOMAN_5, 22, 11, 1)
+    createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 23, 13, 1)
+    createvobject(OBJ_EVENT_GFX_LITTLE_BOY, 25, 15, 1)
+    createvobject(OBJ_EVENT_GFX_YOUNGSTER, 26, 2, 2)
+    createvobject(OBJ_EVENT_GFX_HEX_MANIAC, 28, 5, 2)
+    createvobject(OBJ_EVENT_GFX_SCHOOL_KID_M, 29, 5, 1)
+    createvobject(OBJ_EVENT_GFX_MART_EMPLOYEE, 30, 6, 2)
+    createvobject(OBJ_EVENT_GFX_WOMAN_5, 31, 8, 2)   
+    return
+}
+
 	
+
+script ChampionsGauntlet_BattleRoom_EventScript_AddGrandFinalAudience
+{
+    createvobject(OBJ_EVENT_GFX_NINJA_BOY, 0, 2, 0)
+    createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 1, 3, 0)
+    createvobject(OBJ_EVENT_GFX_BEAUTY, 2, 15, 0)
+    createvobject(OBJ_EVENT_GFX_MAN_5, 3, 5, 0)
+    createvobject(OBJ_EVENT_GFX_EXPERT_F, 4, 6, 0)
+    createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 5, 7, 0)
+    createvobject(OBJ_EVENT_GFX_NINJA_BOY, 6, 8, 0)
+    createvobject(OBJ_EVENT_GFX_WOMAN_2, 7, 9, 0)
+    createvobject(OBJ_EVENT_GFX_WOMAN_3, 8, 10, 0)
+    createvobject(OBJ_EVENT_GFX_LITTLE_GIRL, 9, 11, 0)
+    createvobject(OBJ_EVENT_GFX_LASS, 10, 12, 0)
+    createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 11, 13, 0)
+    createvobject(OBJ_EVENT_GFX_BEAUTY, 12, 14, 0)
+    createvobject(OBJ_EVENT_GFX_MAN_5, 13, 15, 2)
+    createvobject(OBJ_EVENT_GFX_HIKER, 14, 12, 2)
+    createvobject(OBJ_EVENT_GFX_GENTLEMAN, 15, 2, 1)
+    createvobject(OBJ_EVENT_GFX_NINJA_BOY, 16, 3, 1)
+    createvobject(OBJ_EVENT_GFX_WOMAN_2, 17, 4, 1)
+    createvobject(OBJ_EVENT_GFX_WOMAN_3, 18, 6, 1)
+    createvobject(OBJ_EVENT_GFX_BEAUTY, 19, 7, 1)
+    createvobject(OBJ_EVENT_GFX_EXPERT_F, 20, 9, 1)
+    createvobject(OBJ_EVENT_GFX_MAN_2, 21, 10, 1)
+    createvobject(OBJ_EVENT_GFX_WOMAN_5, 22, 11, 1)
+    createvobject(OBJ_EVENT_GFX_SCIENTIST_1, 23, 13, 1)
+    createvobject(OBJ_EVENT_GFX_GENTLEMAN, 24, 14, 1)
+    createvobject(OBJ_EVENT_GFX_LITTLE_BOY, 25, 15, 1)
+    createvobject(OBJ_EVENT_GFX_YOUNGSTER, 26, 2, 2)
+    createvobject(OBJ_EVENT_GFX_FAT_MAN, 27, 3, 2)
+    createvobject(OBJ_EVENT_GFX_HEX_MANIAC, 28, 5, 2)
+    createvobject(OBJ_EVENT_GFX_SCHOOL_KID_M, 29, 5, 1)
+    createvobject(OBJ_EVENT_GFX_MART_EMPLOYEE, 30, 6, 2)
+    createvobject(OBJ_EVENT_GFX_WOMAN_5, 31, 8, 2)
+    return
+}
+
+
+script ChampionsGauntlet_BattleRoom_Movement_SetInvisible
+{
+	set_invisible
+	step_end	
+}    
+
 script ChampionsGauntlet_BattleRoom_EventScript_ChampionsEnter
 {
+    showtrainersprite(FACILITY_CLASS_IONO, 20, 9)  
     msgbox(ChampionsGauntlet_BattleRoom_Text_PlayerIntro, MSGBOX_DEFAULT)
     closemessage  
-    applymovement(LOCALID_PLAYER, ChampionsGauntlet_DomePreBattleRoom_Movement_PlayerWalkToPodium)
+    hidemonpic
+    applymovement(LOCALID_ARCEUS_PLAYER, ChampionsGauntlet_DomePreBattleRoom_Movement_PlayerWalkToPodium)
     waitmovement(0)
+    showtrainersprite(FACILITY_CLASS_IONO, 20, 9)  
     msgbox(ChampionsGauntlet_BattleRoom_Text_PreRivalIntro, MSGBOX_DEFAULT)
     closemessage  
     call(ChampionsGauntlet_BattleRoom_RivalIntroAndEntrance)
-    goto(ChampionsGauntlet_BattleRoom_EventScript_FightEnd)
+    end
 }
 
 script ChampionsGauntlet_BattleRoom_EventScript_FightEnd
 {
     // Congrats for both and chuchu
-    // msgbox(ChampionsGauntlet_BattleRoom_Text_PlayerIntro, MSGBOX_DEFAULT)
-    // closemessage  
-
+    special(RestorePlayerStateAfterWarp)
+    setvar(VAR_TEMP_2, 0)
     if(flag(FLAG_GRAND_FINALS)){
+        call(ChampionsGauntlet_BattleRoom_EventScript_AddGrandFinalAudience)
+        showtrainersprite(FACILITY_CLASS_IONO, 20, 9)  
+        msgbox(ChampionsGauntlet_BattleRoom_Text_GrandFinalsOutroFirst, MSGBOX_DEFAULT)
+	    closemessage    
+        hidemonpic
+        showtrainersprite(FACILITY_CLASS_OAK, -1, 9)  
+        msgbox(ChampionsGauntlet_BattleRoom_Text_GrandsFinalsOutroSecond, MSGBOX_DEFAULT)
+	    closemessage  
+        hidemonpic 
+        fadescreen(FADE_TO_BLACK)
+        showtrainersprite(FACILITY_CLASS_ROTOM, 20, 9)  
+        msgbox(ChampionsGauntlet_BattleRoom_Text_GrandsFinalThird, MSGBOX_DEFAULT)
+	    closemessage  
+        hidemonpic
         clearflag(FLAG_GRAND_FINALS)
         special(SetCB2WhiteOut)
     } 
     if(flag(FLAG_SEMI_FINALS)){
+        call(ChampionsGauntlet_BattleRoom_EventScript_AddSemiFinalAudience)
+        showtrainersprite(FACILITY_CLASS_IONO, 20, 9)  
+        msgbox(ChampionsGauntlet_BattleRoom_Text_SemiFinalsOutroFirst, MSGBOX_DEFAULT)
+	    closemessage    
+        hidemonpic
+        showtrainersprite(FACILITY_CLASS_OAK, -1, 9)  
+        msgbox(ChampionsGauntlet_BattleRoom_Text_SemiFinalsOutroSecond, MSGBOX_DEFAULT)
+	    closemessage  
+        hidemonpic 
+
         clearflag(FLAG_SEMI_FINALS)
         setflag(FLAG_GRAND_FINALS) 
-        warp(MAP_CHAMPIONS_GAUNTLET_DOME_PRE_BATTLE_ROOM, 5, 5)
+        delay(1)
+        releaseall
+
+        warp(MAP_CHAMPIONS_GAUNTLET_DOME_PRE_BATTLE_ROOM, 5, 4)
     } 
     if(flag(FLAG_QUARTER_FINALS)){
+        call(ChampionsGauntlet_BattleRoom_EventScript_AddAudience)
+        showtrainersprite(FACILITY_CLASS_IONO, 20, 9)  
+        msgbox(ChampionsGauntlet_BattleRoom_Text_QuarterFinalsOutroFirst, MSGBOX_DEFAULT)
+	    closemessage    
+        hidemonpic
+        showtrainersprite(FACILITY_CLASS_OAK, -1, 9)  
+        msgbox(ChampionsGauntlet_BattleRoom_Text_QuarterFinalsOutroSecond, MSGBOX_DEFAULT)
+	    closemessage  
+        hidemonpic 
         clearflag(FLAG_QUARTER_FINALS)
         setflag(FLAG_SEMI_FINALS)  
-        warp(MAP_CHAMPIONS_GAUNTLET_DOME_PRE_BATTLE_ROOM, 5, 5)
+        delay(1)
+        releaseall
+
+        warp(MAP_CHAMPIONS_GAUNTLET_DOME_PRE_BATTLE_ROOM, 5, 4)
     } 
     if(flag(FLAG_QUALIFIERS)){
+        call(ChampionsGauntlet_BattleRoom_EventScript_AddAudience)
+        showtrainersprite(FACILITY_CLASS_IONO, 20, 9)  
+        msgbox(ChampionsGauntlet_BattleRoom_Text_QualifierOutroFirst, MSGBOX_DEFAULT)
+	    closemessage    
+        hidemonpic
+        showtrainersprite(FACILITY_CLASS_OAK, -1, 9)  
+        msgbox(ChampionsGauntlet_BattleRoom_Text_QualifierOutroSecond, MSGBOX_DEFAULT)
+	    closemessage  
+        hidemonpic
         clearflag(FLAG_QUALIFIERS)
         setflag(FLAG_QUARTER_FINALS) 
-        warp(MAP_CHAMPIONS_GAUNTLET_DOME_PRE_BATTLE_ROOM, 5, 5)
+        delay(1)
+        releaseall
+
+        warp(MAP_CHAMPIONS_GAUNTLET_DOME_PRE_BATTLE_ROOM, 5, 4)
     }
-    release
     end
 }
 
@@ -75,74 +230,110 @@ script ChampionsGauntlet_BattleRoom_RivalIntroAndEntrance
 {
     if (!flag(FLAG_RIVAL_GARY)) {
         msgbox("Champion Gary!!!", MSGBOX_DEFAULT)
-	    closemessage  
+	    closemessage
+        hidemonpic         
         applymovement(LOCALID_RIVAL_GARY, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        waitmovement(0)
+        showtrainersprite(FACILITY_CLASS_GARY, 20, 9)  
         call(ChampionsGauntlet_DomeLobby_GaryBattle)
     }
     if (!flag(FLAG_RIVAL_LANCE)) {
-        msgbox("Champion Lance", MSGBOX_DEFAULT)
-	    closemessage  
+        msgbox("Champion Lance!!!", MSGBOX_DEFAULT)
+	    closemessage
+        hidemonpic
         applymovement(LOCALID_RIVAL_LANCE, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        waitmovement(0)
+        showtrainersprite(FACILITY_CLASS_LANCE, 20, 9) 
         call(ChampionsGauntlet_DomeLobby_LanceBattle)
     }
     if (!flag(FLAG_RIVAL_RED)) {
-        msgbox("Champion Red", MSGBOX_DEFAULT)
-	    closemessage  
+        msgbox("Champion Red!!!", MSGBOX_DEFAULT)
+	    closemessage
+        hidemonpic    
         applymovement(LOCALID_RIVAL_RED, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        waitmovement(0)
+        showtrainersprite(FACILITY_CLASS_RED, 20, 9)  
         call(ChampionsGauntlet_DomeLobby_RedBattle)
     }
     if (!flag(FLAG_RIVAL_STEVEN)) {
-        msgbox("Champion Steven", MSGBOX_DEFAULT)
-	    closemessage  
+        msgbox("Champion Steven!!!", MSGBOX_DEFAULT)
+	    closemessage
+        hidemonpic
         applymovement(LOCALID_RIVAL_STEVEN, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        waitmovement(0)
+        showtrainersprite(FACILITY_CLASS_STEVEN, 20, 9) 
         call(ChampionsGauntlet_DomeLobby_StevenBattle)
     }
     if (!flag(FLAG_RIVAL_WALLACE)) {
-        msgbox("Champion Wallace", MSGBOX_DEFAULT)
-	    closemessage  
+        msgbox("Champion Wallace!!!", MSGBOX_DEFAULT)
+	    closemessage
+        hidemonpic
         applymovement(LOCALID_RIVAL_WALLACE, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        waitmovement(0)
+        showtrainersprite(FACILITY_CLASS_CHAMPION_WALLACE, 20, 9) 
         call(ChampionsGauntlet_DomeLobby_WallaceBattle)
     }
     if (!flag(FLAG_RIVAL_CYNTHIA)) {
-        msgbox("Champion Cynthia", MSGBOX_DEFAULT)
-	    closemessage  
+        msgbox("Champion Cynthia!!!", MSGBOX_DEFAULT)
+	    closemessage
+        hidemonpic
         applymovement(LOCALID_RIVAL_CYNTHIA, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        waitmovement(0)
+        showtrainersprite(FACILITY_CLASS_CYNTHIA, 20, 9) 
         call(ChampionsGauntlet_DomeLobby_CynthiaBattle)
     }
     if (!flag(FLAG_RIVAL_ALDER)) {
-        msgbox("Champion Alder", MSGBOX_DEFAULT)
-	    closemessage  
+        msgbox("Champion Alder!!!", MSGBOX_DEFAULT)
+	    closemessage
+        hidemonpic
         applymovement(LOCALID_RIVAL_ALDER, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        waitmovement(0)
+        showtrainersprite(FACILITY_CLASS_ALDER, 20, 9)  
         call(ChampionsGauntlet_DomeLobby_AlderBattle)
     }
     if (!flag(FLAG_RIVAL_IRIS)) {
-        msgbox("Champion Iris", MSGBOX_DEFAULT)
-	    closemessage  
+        msgbox("Champion Iris!!!", MSGBOX_DEFAULT)
+	    closemessage
+        hidemonpic
         applymovement(LOCALID_RIVAL_IRIS, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        waitmovement(0)
+        showtrainersprite(FACILITY_CLASS_IRIS, 20, 9) 
         call(ChampionsGauntlet_DomeLobby_IrisBattle)
     }
     if (!flag(FLAG_RIVAL_DIANTHA)) {
-        msgbox("Champion Diantha", MSGBOX_DEFAULT)
-	    closemessage  
+        msgbox("Champion Diantha!!!", MSGBOX_DEFAULT)
+	    closemessage
+        hidemonpic
         applymovement(LOCALID_RIVAL_DIANTHA, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        waitmovement(0)
+        showtrainersprite(FACILITY_CLASS_DIANTHA, 20, 9)  
         call(ChampionsGauntlet_DomeLobby_DianthaBattle)
     }
     if (!flag(FLAG_RIVAL_ASH)) {
-        msgbox("Champion Ash", MSGBOX_DEFAULT)
-	    closemessage  
+        msgbox("Champion Ash!!!", MSGBOX_DEFAULT)
+	    closemessage
+        hidemonpic
         applymovement(LOCALID_RIVAL_ASH, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        waitmovement(0)
+        showtrainersprite(FACILITY_CLASS_ASH, 20, 9)  
         call(ChampionsGauntlet_DomeLobby_AshBattle)
     }
     if (!flag(FLAG_RIVAL_LEON)) {
-        msgbox("Champion Leon", MSGBOX_DEFAULT)
-	    closemessage  
+        msgbox("Champion Leon!!!", MSGBOX_DEFAULT)
+	    closemessage
+        hidemonpic
         applymovement(LOCALID_RIVAL_LEON, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        waitmovement(0)
+        showtrainersprite(FACILITY_CLASS_LEON, 20, 9) 
         call(ChampionsGauntlet_DomeLobby_LeonBattle)
     }
     if (!flag(FLAG_RIVAL_GEETA)) {
-        msgbox("Champion Geeta", MSGBOX_DEFAULT)
-	    closemessage  
+        msgbox("Champion Geeta!!!", MSGBOX_DEFAULT)
+	    closemessage
+        hidemonpic
         applymovement(LOCALID_RIVAL_GEETA, ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium)
+        waitmovement(0)
+        showtrainersprite(FACILITY_CLASS_GEETA, 20, 9)  
         call(ChampionsGauntlet_DomeLobby_GeetaBattle)
     }
     return
@@ -150,14 +341,13 @@ script ChampionsGauntlet_BattleRoom_RivalIntroAndEntrance
 
 script ChampionsGauntlet_DomePreBattleRoom_Movement_PlayerWalkToPodium
 {
-	// walk_up
-	// walk_up
-    // walk_up
-    // walk_up
-    // walk_right
-    // walk_right
-    // walk_right
-    face_right
+	walk_up
+	walk_up
+    walk_up
+    walk_up
+    walk_right
+    walk_right
+    walk_right
 	step_end
 }
 
@@ -175,148 +365,171 @@ script ChampionsGauntlet_DomePreBattleRoom_Movement_RivalWalkToPodium
 
 script ChampionsGauntlet_DomeLobby_GaryBattle 
 {
-    
+    createvobject(OBJ_EVENT_GFX_SPECIES(AERODACTYL), 32, 9, 6, 3, DIR_WEST)
     trainerbattle_single
     (
         CHAMPION_GARY,   
         "Smell ya later!",  
         "Tch. Beginner's luck."
     )
+    
     return
 }
 
 script ChampionsGauntlet_DomeLobby_LanceBattle 
 {
     
+    createvobject(OBJ_EVENT_GFX_SPECIES(FLYGON), 32, 9, 6, 3, DIR_WEST)
     trainerbattle_single
     (
         CHAMPION_LANCE, 
         "You can't outpace the Dragon Master.", 
         "My dragons will remember this."
     )
+    
     return
 }
 
 script ChampionsGauntlet_DomeLobby_RedBattle 
 {
     
+    createvobject(OBJ_EVENT_GFX_SPECIES(PIKACHU), 32, 9, 6, 3, DIR_WEST)
     trainerbattle_single
     (
         CHAMPION_RED, 
         "...", 
         "...")
+    
     return
 }
 
 script ChampionsGauntlet_DomeLobby_StevenBattle 
 {
     
+    createvobject(OBJ_EVENT_GFX_SPECIES(ARCHEOPS), 32, 9, 6, 3, DIR_WEST)
     trainerbattle_single
     (
         TRAINER_STEVEN, 
         "Whose style sparkles brightest?", 
         "An interesting strategy. Well played."
     )
+    
     return
 }
 
 script ChampionsGauntlet_DomeLobby_WallaceBattle 
 {
     
+    createvobject(OBJ_EVENT_GFX_SPECIES(SWAMPERT), 32, 9, 6, 3, DIR_WEST)
     trainerbattle_single
     (
         TRAINER_WALLACE, 
         "Prepare to be overwhelmed by elegance.", 
         "A flawless defeat. Splendid."
     )
+    
     return
 }
 
 script ChampionsGauntlet_DomeLobby_CynthiaBattle 
 {
     
+    createvobject(OBJ_EVENT_GFX_SPECIES(SPIRITOMB), 32, 9, 6, 3, DIR_WEST)
     trainerbattle_single
     (
         CHAMPION_CYNTHIA, 
         "The flow has already been decided.", 
         "The tides have shifted. Impressive."
     )
+    
     return
 }
 
 script ChampionsGauntlet_DomeLobby_AlderBattle 
 {
     
+    createvobject(OBJ_EVENT_GFX_SPECIES(KROOKODILE), 32, 9, 6, 3, DIR_WEST)
     trainerbattle_single
     (
         CHAMPION_ALDER, 
         "Let's find joy in battle.",
         "I felt the joy of battle. Thank you."
     )
+    
     return
 }
 
 script ChampionsGauntlet_DomeLobby_IrisBattle 
 {
     
+    createvobject(OBJ_EVENT_GFX_SPECIES(ARCHEOPS), 32, 9, 6, 3, DIR_WEST)
     trainerbattle_single
     (
         CHAMPION_IRIS, 
         "You're just a kid in the big leagues.",
         "Wow! You're stronger than you look!"
     )
+    
     return
 }
 
 script ChampionsGauntlet_DomeLobby_DianthaBattle 
 {
     
+    createvobject(OBJ_EVENT_GFX_SPECIES(AURORUS), 32, 9, 6, 3, DIR_WEST)
     trainerbattle_single
     (
         CHAMPION_DIANTHA, 
         "Ready for my curtain call.",
         "The audience loved that battle."
     )
+    
     return
 }
 
 script ChampionsGauntlet_DomeLobby_AshBattle 
 {
     
+    createvobject(OBJ_EVENT_GFX_SPECIES(SIRFETCHD), 32, 9, 6, 3, DIR_WEST)
     trainerbattle_single
     (
         CHAMPION_ASH, 
         "Let's get a win!",
         "We trained hard, but we'll be back!"
     )
+    
     return
 }
 
 script ChampionsGauntlet_DomeLobby_LeonBattle 
 {
     
+    createvobject(OBJ_EVENT_GFX_SPECIES(SEISMITOAD), 32, 9, 6, 3, DIR_WEST)
     trainerbattle_single
     (
         CHAMPION_LEON, 
         "The Unbeatable Champion is here.",
         "My streak's over! You're unbeatable today!"
     )
+    
     return
 }
 
 script ChampionsGauntlet_DomeLobby_GeetaBattle 
 {
     
+    createvobject(OBJ_EVENT_GFX_SPECIES(DRAGAPULT), 32, 9, 6, 3, DIR_WEST)
     trainerbattle_single
     (
         CHAMPION_GEETA, 
         "Let the performance review commence.",
         "Your skills pass the test. Excellent."
     )
+    
     return
 }
 
-text ChampionsGauntlet_BattleRoom_Text_QualifierIntro
+text ChampionsGauntlet_BattleRoom_Text_QualifierIntroFirst
 {
     "Ello, all you electrifying trainers!\n"
     "Iono here! The Arceus Cup is here--\l"
@@ -326,7 +539,10 @@ text ChampionsGauntlet_BattleRoom_Text_QualifierIntro
     "You won't want to miss a single\l" 
     "shockwave of this tournament! Let's\l"
     "tune in and see who wins! Wah-ha-ha!\l"
+}
 
+text ChampionsGauntlet_BattleRoom_Text_QualifierIntroSecond
+{
     "Indeed, a spectacle, Iono. Welcome\l"
     "everyone to the Arceus Cup, a truly\l"
     "historic gauntlet of champions. I am\l"
@@ -346,8 +562,10 @@ text ChampionsGauntlet_BattleRoom_Text_QuarterFinalsIntro
     "continue what will happen. Let's\l"
     "tune in and see who wins! Wah-ha-ha!\l"
 
-    "Hi again everyone, the quarterfinals\l"
-    "begins now-let's observe!$"
+    "Hi again everyone, the qualifiers were\l"
+    "truly a spectacle of battle of wit and\l"
+    "and skill! Let us continue as the\l"
+    "first match of the quarter finals begins!$"
 }
 text ChampionsGauntlet_BattleRoom_Text_SemiFinalsIntro
 {
@@ -369,6 +587,68 @@ text ChampionsGauntlet_BattleRoom_Text_GrandFinalsIntro
     "Hi again everyone, the last match and\l"
     "grand finale begins now-let's observe!$"
 }
+
+text ChampionsGauntlet_BattleRoom_Text_QualifierOutroFirst
+{
+    "Anddd we have our Winner! {PLAYER}!\n"
+    "That was truly exhilarating for the first\l"
+    "match of the tournament!$"
+}
+text ChampionsGauntlet_BattleRoom_Text_QualifierOutroSecond
+{
+    "I agree Lady Iono, I do believe that we\n"
+    "are all excited for the next match--\l"
+    "so Congratulations Champion {PLAYER},\l"
+    "get some rest and prepare for tomorrow.$"
+}
+
+text ChampionsGauntlet_BattleRoom_Text_QuarterFinalsOutroFirst
+{
+    "Champion {PLAYER}! Wins Again! Back to-\n"
+    "back! That was wonderful and hype, don't\l"
+    "you agree chat? I mean audience?!$"
+}
+text ChampionsGauntlet_BattleRoom_Text_QuarterFinalsOutroSecond
+{
+    "Truly Lady Iono, Champion {PLAYER}\n"
+    "never fails to impress, prepare yourself\l"
+    "as your next round will be the Semifinals.\l"
+    "Get some rest and prepare for tomorrow.$"
+}
+
+text ChampionsGauntlet_BattleRoom_Text_SemiFinalsOutroFirst
+{
+    "Three in a row!!! Champion {PLAYER} Wins!!\n"
+    "This is hype truly an absolute cinema!$"
+}
+text ChampionsGauntlet_BattleRoom_Text_SemiFinalsOutroSecond
+{
+    "Calm down Lady Iono haha, Champion {PLAYER},\n"
+    "we give you our congratulations, the next\l"
+    "one will be your last, the Grand Finals.\l"
+    "So still yourself and rest--\l"
+    "Let Arceus be with you, Champion {PLAYER}.$"
+}
+text ChampionsGauntlet_BattleRoom_Text_GrandFinalsOutroFirst
+{
+    "AND WE HAVE A WINNER FOLKSS!!!!\n"
+    "THE NEW ARCEUS CUP CHAMPION IS--\l"
+    "{PLAYER}!!!!$"
+}
+text ChampionsGauntlet_BattleRoom_Text_GrandsFinalsOutroSecond
+{
+    "Congratulations Champion {PLAYER}, you\n"
+    "truly are the Very Best. Although, don't\l"
+    "let this win stop your drive to continue\l"
+    "to improve on yourself.\l"
+}
+text ChampionsGauntlet_BattleRoom_Text_GrandsFinalThird
+{
+    "THE END.\n"
+    "This will have the greatest headlines-\p"
+    "Ever.$"
+}
+
 text ChampionsGauntlet_BattleRoom_Text_PlayerIntro
 {
     "In the left cornerrr!!! We have--\n"

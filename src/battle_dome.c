@@ -6030,3 +6030,113 @@ static void CopyDomeTrainerName(u8 *str, u16 trainerId)
         str[i] = EOS;
     }
 }
+
+// Edit
+
+
+void ShuffleBracket(u16 arr[], int n) {
+    if (n > 1) {
+        int i, j;
+        u16 t;
+        for (i = 0; i < n - 1; i++) {
+            j = i + Random() % (n - i);
+            t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
+        }
+    }
+}
+
+void selectRandomChampions(void) {
+    ShuffleBracket(gSaveBlock1Ptr->allAvailableChampion, 11);
+
+    for (int k = 0; k < 4; k++) {
+       gSaveBlock1Ptr->selectedChampions[k] = gSaveBlock1Ptr->allAvailableChampion[k];
+    }
+
+}
+
+u8 indexChamp;
+void SetRivalChampionFlags(void)
+{
+    FlagSet(FLAG_RIVAL_GARY);
+    FlagSet(FLAG_RIVAL_LANCE);
+    FlagSet(FLAG_RIVAL_RED);
+    FlagSet(FLAG_RIVAL_STEVEN);
+    FlagSet(FLAG_RIVAL_WALLACE);
+    FlagSet(FLAG_RIVAL_CYNTHIA);
+    FlagSet(FLAG_RIVAL_ALDER);
+    FlagSet(FLAG_RIVAL_IRIS);
+    FlagSet(FLAG_RIVAL_DIANTHA);
+    FlagSet(FLAG_RIVAL_ASH);
+    FlagSet(FLAG_RIVAL_LEON);
+    FlagSet(FLAG_RIVAL_GEETA);
+}
+
+void SetArceusCupBracket(void)
+{
+    indexChamp = 0;
+    SetRivalChampionFlags();
+
+    if (!FlagGet(FLAG_CHOSEN_GARY)){
+        gSaveBlock1Ptr->allAvailableChampion[indexChamp] = FLAG_RIVAL_GARY;
+        indexChamp++;
+    } if (!FlagGet(FLAG_CHOSEN_LANCE)){
+        gSaveBlock1Ptr->allAvailableChampion[indexChamp] = FLAG_RIVAL_LANCE;
+        indexChamp++;
+    } if (!FlagGet(FLAG_CHOSEN_RED)){
+        gSaveBlock1Ptr->allAvailableChampion[indexChamp] = FLAG_RIVAL_RED;
+        indexChamp++;
+    } if (!FlagGet(FLAG_CHOSEN_STEVEN)){
+        gSaveBlock1Ptr->allAvailableChampion[indexChamp] = FLAG_RIVAL_STEVEN;
+        indexChamp++;
+    } if (!FlagGet(FLAG_CHOSEN_WALLACE)){
+        gSaveBlock1Ptr->allAvailableChampion[indexChamp] = FLAG_RIVAL_WALLACE;
+        indexChamp++;
+    } if (!FlagGet(FLAG_CHOSEN_CYNTHIA)){
+        gSaveBlock1Ptr->allAvailableChampion[indexChamp] = FLAG_RIVAL_CYNTHIA;
+        indexChamp++;
+    } if (!FlagGet(FLAG_CHOSEN_ALDER)){
+        gSaveBlock1Ptr->allAvailableChampion[indexChamp] = FLAG_RIVAL_ALDER;
+        indexChamp++;
+    } if (!FlagGet(FLAG_CHOSEN_IRIS)){
+        gSaveBlock1Ptr->allAvailableChampion[indexChamp] = FLAG_RIVAL_IRIS;
+        indexChamp++;
+    } if (!FlagGet(FLAG_CHOSEN_DIANTHA)){
+        gSaveBlock1Ptr->allAvailableChampion[indexChamp] = FLAG_RIVAL_DIANTHA;
+        indexChamp++;
+    } if (!FlagGet(FLAG_CHOSEN_ASH)){
+        gSaveBlock1Ptr->allAvailableChampion[indexChamp] = FLAG_RIVAL_ASH;
+        indexChamp++;
+    } if (!FlagGet(FLAG_CHOSEN_LEON)){
+        gSaveBlock1Ptr->allAvailableChampion[indexChamp] = FLAG_RIVAL_LEON;
+        indexChamp++;
+    } if (!FlagGet(FLAG_CHOSEN_GEETA)){
+       gSaveBlock1Ptr->allAvailableChampion[indexChamp] = FLAG_RIVAL_GEETA;
+    }
+    selectRandomChampions();
+}
+
+void ResetArceusOpponentFlags(void)
+{
+    for (int k = 0; k < 4; k++) {
+        FlagSet(gSaveBlock1Ptr->selectedChampions[k]);
+    }
+}
+
+void SetNextArceusOpponent(void)
+{
+    ResetArceusOpponentFlags();
+    if(FlagGet(FLAG_QUARTER_FINALS)){
+        FlagClear(gSaveBlock1Ptr->selectedChampions[1]);
+    } 
+    else if(FlagGet(FLAG_SEMI_FINALS)){
+        FlagClear(gSaveBlock1Ptr->selectedChampions[2]);
+    } 
+    else if(FlagGet(FLAG_GRAND_FINALS)){
+        FlagClear(gSaveBlock1Ptr->selectedChampions[3]);
+    } 
+    else if(FlagGet(FLAG_QUALIFIERS)){
+        FlagClear(gSaveBlock1Ptr->selectedChampions[0]);
+    }
+}

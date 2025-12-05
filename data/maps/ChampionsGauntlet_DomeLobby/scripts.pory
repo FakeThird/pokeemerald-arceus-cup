@@ -85,14 +85,23 @@ script ChampionsGauntlet_DomeLobby_EnterChallenge
 	special(SavePlayerParty)
 	msgbox(ChampionsGauntlet_DomeLobby_Text_ShowYouToArceusCup, MSGBOX_DEFAULT)
 	closemessage
+
+	// REFRESHER
+	showtrainersprite(FACILITY_CLASS_ROTOM, 20, 7)
+	delay(1)  
+	hidemonpic 
+
 	facefollowernpc
 	checkplayergender
+	showtrainersprite(FACILITY_CLASS_ROTOM, 20, 7)        
 	call_if_eq(VAR_RESULT, MALE, ChampionsGauntlet_DomeLobby_MisterFine)
 	call_if_eq(VAR_RESULT, FEMALE, ChampionsGauntlet_DomeLobby_LadyFine)
 	closemessage
+	hidemonpic 
 	call(ChampionsGauntlet_DomeLobby_AttendantWalkToDoor)
 	special(HealPlayerParty)
 	special(SavePlayerStateBeforeWarp)
+	call(ChampionsGauntlet_DomeLobby_SetPlaceholderSprite)
 	warp(MAP_CHAMPIONS_GAUNTLET_DOME_CORRIDOR, 23, 6)
 	destroyfollowernpc
 
@@ -100,6 +109,47 @@ script ChampionsGauntlet_DomeLobby_EnterChallenge
 	special(SetArceusCupBracket)
 	waitstate
 	end
+}
+
+script ChampionsGauntlet_DomeLobby_SetPlaceholderSprite
+{
+    if (flag(FLAG_CHOSEN_GARY)) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_GARY)
+    }
+    if (flag(FLAG_CHOSEN_LANCE)) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LANCE)
+    }
+    if (flag(FLAG_CHOSEN_RED)) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_RED)
+    }
+    if (flag(FLAG_CHOSEN_STEVEN)) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_STEVEN)
+    }
+    if (flag(FLAG_CHOSEN_WALLACE)) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_WALLACE)
+    }
+    if (flag(FLAG_CHOSEN_CYNTHIA)) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_CYNTHIA)
+    }
+    if (flag(FLAG_CHOSEN_ALDER)) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_ALDER)
+    }
+    if (flag(FLAG_CHOSEN_IRIS)) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_IRIS)
+    }
+    if (flag(FLAG_CHOSEN_DIANTHA)) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_DIANTHA)
+    }
+    if (flag(FLAG_CHOSEN_ASH)) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_ASH)
+    }
+    if (flag(FLAG_CHOSEN_LEON)) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LEON)
+    }
+    if (flag(FLAG_CHOSEN_GEETA)) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_GEETA)
+    }
+    return
 }
 
 script ChampionsGauntlet_DomeLobby_MisterFine{
@@ -120,8 +170,10 @@ script ChampionsGauntlet_DomeLobby_AttendantWalkToDoor
     call(ChampionsGauntlet_DomeLobby_OpenDoor)
 	waitdooranim
 	applymovement(LOCALID_ARCEUS_ATTENDANT, ChampionsGauntlet_DomeLobby_Movement_AttendantEnterDoor)
+	showtrainersprite(FACILITY_CLASS_ROTOM, 20, 7)  
 	msgbox(ChampionsGauntlet_DomeLobby_Text_Goodluck, MSGBOX_DEFAULT)
 	closemessage
+	hidemonpic 
     applymovement(LOCALID_PLAYER, ChampionsGauntlet_DomeLobby_Movement_PlayerEnterDoor)
 	waitmovement(0)
 	call(ChampionsGauntlet_DomeLobby_CloseSinglesDoor)
@@ -166,6 +218,30 @@ script ChampionsGauntlet_DomeLobby_Movement_WalkToDoor
 	walk_up
 	walk_up
 	step_end
+}
+
+script ChampionsGauntlet_DomeLobby_WrongLane
+{
+    lockall
+    showtrainersprite(FACILITY_CLASS_ROTOM, 20, 7)
+    msgbox(ChampionsGauntlet_DomeLobby_Text_WrongLane, MSGBOX_DEFAULT)
+    closemessage
+    hidemonpic
+    applymovement(LOCALID_PLAYER, ChampionsGauntlet_Outside_Movement_WrongLane)
+    waitmovement(0)
+    releaseall 
+    end
+}
+script ChampionsGauntlet_Outside_Movement_WrongLane
+{
+	walk_left
+	step_end
+} 
+
+text ChampionsGauntlet_DomeLobby_Text_WrongLane
+{
+    "I think Champions are supposed to go\n"
+	"to the other side, Champion {PLAYER}.$"
 }
 
 text ChampionsGauntlet_DomeLobby_Text_WelcomeSingleBattle
@@ -256,6 +332,6 @@ text ChampionsGauntlet_DomeLobby_Text_LadyFine
 
 text ChampionsGauntlet_DomeLobby_Text_Goodluck
 {
-	"Goodluck and WIN! Champion {PLAYER}!$"
+	"Goodluck and Win! Champion {PLAYER}!$"
 
 }

@@ -265,9 +265,16 @@ static u8 sActiveList[32];
 extern u8 *gFieldEffectScriptPointers[];
 extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
 
-static const u32 sNewGameBirch_Gfx[] = INCBIN_U32("graphics/birch_speech/oak.4bpp");
+// Edit
+static const u32 sNewGameBirch_Gfx[] = INCBIN_U32("graphics/birch_speech/birch.4bpp");
 static const u32 sUnusedBirchBeauty[] = INCBIN_U32("graphics/birch_speech/unused_beauty.4bpp");
-static const u16 sNewGameBirch_Pal[16] = INCBIN_U16("graphics/birch_speech/oak.gbapal");
+static const u16 sNewGameBirch_Pal[16] = INCBIN_U16("graphics/birch_speech/birch.gbapal");
+
+static const u32 sNewGameOak_Gfx[] = INCBIN_U32("graphics/birch_speech/oak.4bpp");
+static const u16 sNewGameOak_Pal[16] = INCBIN_U16("graphics/birch_speech/oak.gbapal");
+
+static const u32 sNewGameIono_Gfx[] = INCBIN_U32("graphics/birch_speech/iono.4bpp");
+static const u16 sNewGameIono_Pal[16] = INCBIN_U16("graphics/birch_speech/iono.gbapal");
 
 static const u32 sPokeballGlow_Gfx[] = INCBIN_U32("graphics/field_effects/pics/pokeball_glow.4bpp");
 static const u16 sPokeballGlow_Pal[16] = INCBIN_U16("graphics/field_effects/palettes/pokeball_glow.gbapal");
@@ -359,6 +366,33 @@ static const struct SpritePalette sSpritePalette_NewGameBirch =
     .tag = 0x1006
 };
 
+// Editing
+static const struct SpriteFrameImage sPicTable_NewGameOak[] =
+{
+    obj_frame_tiles(sNewGameOak_Gfx)
+};
+
+static const struct SpritePalette sSpritePalette_NewGameOak =
+{
+    .data = sNewGameOak_Pal,
+    .tag = 0x1006
+};
+
+static const struct SpriteFrameImage sPicTable_NewGameIono[] =
+{
+    obj_frame_tiles(sNewGameIono_Gfx)
+};
+
+static const struct SpritePalette sSpritePalette_NewGameIono =
+{
+    .data = sNewGameIono_Pal,
+    .tag = 0x1007
+};
+
+
+
+
+
 static const union AnimCmd sAnim_NewGameBirch[] =
 {
     ANIMCMD_FRAME(.imageValue = 0, .duration = 1),
@@ -377,6 +411,27 @@ static const struct SpriteTemplate sSpriteTemplate_NewGameBirch =
     .oam = &sOam_64x64,
     .anims = sAnimTable_NewGameBirch,
     .images = sPicTable_NewGameBirch,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy
+};
+// Edit
+static const struct SpriteTemplate sSpriteTemplate_NewGameOak =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = 0x1006,
+    .oam = &sOam_64x64,
+    .anims = sAnimTable_NewGameBirch,
+    .images = sPicTable_NewGameOak,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy
+};
+static const struct SpriteTemplate sSpriteTemplate_NewGameIono =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = 0x1007,
+    .oam = &sOam_64x64,
+    .anims = sAnimTable_NewGameBirch,
+    .images = sPicTable_NewGameIono,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
@@ -950,10 +1005,32 @@ u8 AddNewGameBirchObject(s16 x, s16 y, u8 subpriority)
     LoadSpritePalette(&sSpritePalette_NewGameBirch);
     return CreateSprite(&sSpriteTemplate_NewGameBirch, x, y, subpriority);
 }
+// Edit
+u8 AddNewGameOakObject(s16 x, s16 y, u8 subpriority)
+{
+    LoadSpritePalette(&sSpritePalette_NewGameOak);
+    return CreateSprite(&sSpriteTemplate_NewGameOak, x, y, subpriority);
+}
+u8 AddNewGameIonoObject(s16 x, s16 y, u8 subpriority)
+{
+    LoadSpritePalette(&sSpritePalette_NewGameIono);
+    return CreateSprite(&sSpriteTemplate_NewGameIono, x, y, subpriority);
+}
 
 u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority)
 {
     s32 spriteId = CreateMonPicSprite(species, FALSE, 0x8000, TRUE, x, y, 0, species);
+    PreservePaletteInWeather(IndexOfSpritePaletteTag(species) + 0x10);
+    if (spriteId == 0xFFFF)
+        return MAX_SPRITES;
+    else
+        return spriteId;
+}
+
+// Edit
+u8 CreateTrainerSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority)
+{
+    s32 spriteId = CreateTrainerPicSprite(species, TRUE, x, y, 0, species);
     PreservePaletteInWeather(IndexOfSpritePaletteTag(species) + 0x10);
     if (spriteId == 0xFFFF)
         return MAX_SPRITES;

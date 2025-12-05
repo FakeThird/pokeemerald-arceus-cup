@@ -269,8 +269,34 @@ struct ObjectEventGraphicsInfo
     /*0x20*/ const union AffineAnimCmd *const *affineAnims;
 };
 
+// Editing
+// enum {
+//     PLAYER_AVATAR_STATE_NORMAL,
+//     PLAYER_AVATAR_STATE_MACH_BIKE,
+//     PLAYER_AVATAR_STATE_ACRO_BIKE,
+//     PLAYER_AVATAR_STATE_SURFING,
+//     PLAYER_AVATAR_STATE_UNDERWATER,
+//     PLAYER_AVATAR_STATE_FIELD_MOVE,
+//     PLAYER_AVATAR_STATE_FISHING,
+//     PLAYER_AVATAR_STATE_WATERING,
+//     PLAYER_AVATAR_STATE_VSSEEKER,
+// };
 enum {
     PLAYER_AVATAR_STATE_NORMAL,
+
+    PLAYER_AVATAR_STATE_GARY,
+    PLAYER_AVATAR_STATE_LANCE,
+    PLAYER_AVATAR_STATE_RED,
+    PLAYER_AVATAR_STATE_STEVEN,
+    PLAYER_AVATAR_STATE_WALLACE,
+    PLAYER_AVATAR_STATE_CYNTHIA,
+    PLAYER_AVATAR_STATE_ALDER,
+    PLAYER_AVATAR_STATE_IRIS,
+    PLAYER_AVATAR_STATE_ASH,
+    PLAYER_AVATAR_STATE_DIANTHA,
+    PLAYER_AVATAR_STATE_LEON,
+    PLAYER_AVATAR_STATE_GEETA,
+
     PLAYER_AVATAR_STATE_MACH_BIKE,
     PLAYER_AVATAR_STATE_ACRO_BIKE,
     PLAYER_AVATAR_STATE_SURFING,
@@ -282,13 +308,30 @@ enum {
 };
 
 #define PLAYER_AVATAR_FLAG_ON_FOOT      (1 << 0)
-#define PLAYER_AVATAR_FLAG_MACH_BIKE    (1 << 1)
-#define PLAYER_AVATAR_FLAG_ACRO_BIKE    (1 << 2)
-#define PLAYER_AVATAR_FLAG_SURFING      (1 << 3)
-#define PLAYER_AVATAR_FLAG_UNDERWATER   (1 << 4)
-#define PLAYER_AVATAR_FLAG_CONTROLLABLE (1 << 5)
-#define PLAYER_AVATAR_FLAG_FORCED_MOVE  (1 << 6)
-#define PLAYER_AVATAR_FLAG_DASH         (1 << 7)
+
+
+#define PLAYER_AVATAR_FLAG_GARY         (1 << 1)
+#define PLAYER_AVATAR_FLAG_LANCE        (1 << 2)
+#define PLAYER_AVATAR_FLAG_RED          (1 << 3)
+#define PLAYER_AVATAR_FLAG_STEVEN       (1 << 4)
+#define PLAYER_AVATAR_FLAG_WALLACE      (1 << 5)
+#define PLAYER_AVATAR_FLAG_CYNTHIA      (1 << 6)
+#define PLAYER_AVATAR_FLAG_ALDER        (1 << 7)
+#define PLAYER_AVATAR_FLAG_IRIS         (1 << 8)
+#define PLAYER_AVATAR_FLAG_ASH          (1 << 9)
+#define PLAYER_AVATAR_FLAG_DIANTHA      (1 << 10)
+#define PLAYER_AVATAR_FLAG_LEON         (1 << 11)
+#define PLAYER_AVATAR_FLAG_GEETA        (1 << 12)
+#define AVATAR_COUNT                    13
+
+
+#define PLAYER_AVATAR_FLAG_MACH_BIKE    (1 >> 1)
+#define PLAYER_AVATAR_FLAG_ACRO_BIKE    (1 >> 1)
+#define PLAYER_AVATAR_FLAG_SURFING      (1 >> 1)
+#define PLAYER_AVATAR_FLAG_UNDERWATER   (1 >> 1)
+#define PLAYER_AVATAR_FLAG_CONTROLLABLE (1 >> 1)
+#define PLAYER_AVATAR_FLAG_FORCED_MOVE  (1 >> 1)
+#define PLAYER_AVATAR_FLAG_DASH         (1 >> 1)
 
 #define PLAYER_AVATAR_FLAG_BIKE        (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE)
 // Player avatar flags for which follower Pokémon are hidden
@@ -345,8 +388,8 @@ enum
 
 struct PlayerAvatar
 {
-    /*0x00*/ u8 flags;
-    /*0x01*/ u8 transitionFlags; // used to be named bike, but its definitely not that. seems to be some transition flags
+    /*0x00*/ u16 flags;
+    /*0x01*/ u16 transitionFlags; // used to be named bike, but its definitely not that. seems to be some transition flags
     /*0x02*/ u8 runningState:7; // this is a static running state. 00 is not moving, 01 is turn direction, 02 is moving.
              u8 creeping:1;
     /*0x03*/ u8 tileTransitionState; // this is a transition running state: 00 is not moving, 01 is transition between tiles, 02 means you are on the frame in which you have centered on a tile but are about to keep moving, even if changing directions. 2 is also used for a ledge hop, since you are transitioning.
@@ -379,4 +422,4 @@ extern struct MapHeader gMapHeader;
 extern struct PlayerAvatar gPlayerAvatar;
 extern struct Camera gCamera;
 
-#endif // GUARD_GLOBAL_FIELDMAP_H
+#endif // GUARD_GLOBAL_FIELDMAP_

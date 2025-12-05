@@ -299,23 +299,55 @@ static const u8 sTrainerPicOffset[2][GENDER_COUNT][2] =
     },
 };
 
-static const u8 sTrainerPicFacilityClass[][GENDER_COUNT] =
+// Where the Front Sprite is Being Used
+// static const u8 sTrainerPicFacilityClass[][GENDER_COUNT] =
+// {
+//     [CARD_TYPE_FRLG] =
+//     {
+//         [MALE]   = FACILITY_CLASS_RED,
+//         [FEMALE] = FACILITY_CLASS_LEAF
+//     },
+//     [CARD_TYPE_RS] =
+//     {
+//         [MALE]   = FACILITY_CLASS_RS_BRENDAN,
+//         [FEMALE] = FACILITY_CLASS_RS_MAY
+//     },
+//     [CARD_TYPE_EMERALD] =
+//     {
+//         [MALE]   = FACILITY_CLASS_BRENDAN,
+//         [FEMALE] = FACILITY_CLASS_MAY
+//     }
+// };
+
+// Editing
+static u8 sTrainerPicFacilityClass(u16 currentState)
 {
-    [CARD_TYPE_FRLG] =
-    {
-        [MALE]   = FACILITY_CLASS_RED,
-        [FEMALE] = FACILITY_CLASS_LEAF
-    },
-    [CARD_TYPE_RS] =
-    {
-        [MALE]   = FACILITY_CLASS_RS_BRENDAN,
-        [FEMALE] = FACILITY_CLASS_RS_MAY
-    },
-    [CARD_TYPE_EMERALD] =
-    {
-        [MALE]   = FACILITY_CLASS_BRENDAN,
-        [FEMALE] = FACILITY_CLASS_MAY
-    }
+    if (currentState == PLAYER_AVATAR_FLAG_GARY)
+        return FACILITY_CLASS_GARY;
+    else if (currentState == PLAYER_AVATAR_FLAG_LANCE)
+        return FACILITY_CLASS_LANCE;
+    else if (currentState == PLAYER_AVATAR_FLAG_RED)
+        return FACILITY_CLASS_RED;
+    else if (currentState == PLAYER_AVATAR_FLAG_STEVEN)
+        return FACILITY_CLASS_STEVEN;
+    else if (currentState == PLAYER_AVATAR_FLAG_WALLACE)
+        return FACILITY_CLASS_CHAMPION_WALLACE;
+    else if (currentState == PLAYER_AVATAR_FLAG_CYNTHIA)
+        return FACILITY_CLASS_CYNTHIA;
+    else if (currentState == PLAYER_AVATAR_FLAG_ALDER)
+        return FACILITY_CLASS_ALDER;
+    else if (currentState == PLAYER_AVATAR_FLAG_IRIS)
+        return FACILITY_CLASS_IRIS;
+    else if (currentState == PLAYER_AVATAR_FLAG_ASH)
+        return FACILITY_CLASS_ASH;
+    else if (currentState == PLAYER_AVATAR_FLAG_DIANTHA)
+        return FACILITY_CLASS_DIANTHA;
+    else if (currentState == PLAYER_AVATAR_FLAG_LEON)
+        return FACILITY_CLASS_LEON;
+    else if (currentState == PLAYER_AVATAR_FLAG_GEETA)
+        return FACILITY_CLASS_GEETA;
+    else
+        return FACILITY_CLASS_ROTOM;
 };
 
 static bool8 (*const sTrainerCardFlipTasks[])(struct Task *) =
@@ -1893,7 +1925,9 @@ static void CreateTrainerCardTrainerPic(void)
     }
     else
     {
-        CreateTrainerCardTrainerPicSprite(FacilityClassToPicIndex(sTrainerPicFacilityClass[sData->cardType][sData->trainerCard.gender]),
+        // Editing
+        // CreateTrainerCardTrainerPicSprite(FacilityClassToPicIndex(sTrainerPicFacilityClass[sData->cardType][sData->trainerCard.gender]),
+        CreateTrainerCardTrainerPicSprite(FacilityClassToPicIndex(sTrainerPicFacilityClass(gPlayerAvatar.flags)),
                     TRUE,
                     sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][0],
                     sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][1],

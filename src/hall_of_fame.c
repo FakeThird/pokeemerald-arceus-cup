@@ -34,6 +34,9 @@
 #include "data.h"
 #include "confetti_util.h"
 #include "constants/rgb.h"
+#include "new_game.h"
+#include "item.h"
+#include "constants/abilities.h"
 
 #define HALL_OF_FAME_MAX_TEAMS 30
 #define TAG_CONFETTI 1001
@@ -47,6 +50,9 @@ struct HofGfx
     u8 tilemap1[0x1000];
     u8 tilemap2[0x1000];
 };
+
+// Edit
+extern const struct Ability gAbilitiesInfo[ABILITIES_COUNT];
 
 static EWRAM_DATA u32 sHofFadePalettes = 0;
 static EWRAM_DATA struct HallofFameTeam *sHofMonPtr = NULL;
@@ -412,15 +418,11 @@ static bool8 InitHallOfFameScreen(void)
 #define tPlayerSpriteID     data[4]
 #define tMonSpriteId(i)     data[i + 5]
 
-
-
 static void AllocateHoFTeams(void)
 {
     sHofMonPtr = AllocZeroed(sizeof(*sHofMonPtr));
     gHoFSaveBuffer = Alloc(SECTOR_SIZE * NUM_HOF_SECTORS);
 }
-
-
 
 void CB2_DoHallOfFameScreen(void)
 {
@@ -644,7 +646,6 @@ static void Task_Hof_TryDisplayAnotherMon(u8 taskId)
             gSprites[gTasks[taskId].tMonSpriteId(currPokeID)].oam.priority = 1;
             gTasks[taskId].func = Task_Hof_DisplayMon;
         }
-
         else
         {
             gTasks[taskId].func = Task_Hof_PaletteFadeAndPrintWelcomeText;
@@ -1123,6 +1124,8 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
     CopyWindowToVram(0, COPYWIN_FULL);
 }
 
+
+// Edit
 static void HallOfFame_PrintMonInfo(struct HallofFameMon *currMon, u8 unused1, u8 unused2)
 {
     u8 text[max(32, POKEMON_NAME_LENGTH + 1)];
@@ -1140,12 +1143,12 @@ static void HallOfFame_PrintMonInfo(struct HallofFameMon *currMon, u8 unused1, u
         dexNumber = SpeciesToPokedexNum(currMon->species);
         if (dexNumber != 0xFFFF)
         {
-            if (IsNationalPokedexEnabled())
-            {
+            // if (IsNationalPokedexEnabled())
+            // {
                 stringPtr[0] = (dexNumber / 1000) + CHAR_0;
                 stringPtr++;
                 dexNumber %= 1000;
-            }
+            // }
             stringPtr[0] = (dexNumber / 100) + CHAR_0;
             stringPtr++;
             dexNumber %= 100;
@@ -1206,6 +1209,15 @@ static void HallOfFame_PrintMonInfo(struct HallofFameMon *currMon, u8 unused1, u
         stringPtr = StringCopy(text, gText_Level);
         ConvertIntToDecimalStringN(stringPtr, currMon->lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
         AddTextPrinterParameterized3(0, FONT_NORMAL, 0x58, 0x9, sMonInfoTextColors, TEXT_SKIP_DRAW, text);
+
+        // const u8* itemName = GetItemName(currMon->item_held); 
+        // stringPtr = StringCopy(text, itemName);
+        // AddTextPrinterParameterized3(0, FONT_NORMAL, 0x58, 0x19, sMonInfoTextColors, TEXT_SKIP_DRAW, text);
+
+        // stringPtr = StringCopy(text, gAbilitiesInfo[currMon->ability].name);
+        // AddTextPrinterParameterized3(0, FONT_NORMAL, 0x58, 0x9, sMonInfoTextColors, TEXT_SKIP_DRAW, text); 
+
+
 
         // stringPtr = StringCopy(text, gText_IDNumber);
         // ConvertIntToDecimalStringN(stringPtr, (u16)(currMon->tid), STR_CONV_MODE_LEADING_ZEROS, 5);
@@ -1554,6 +1566,8 @@ static void Task_DoDomeConfetti(u8 taskId)
     }
 }
 
+//Edit
+
 
 
 #define tDisplayedMonId     data[1]
@@ -1566,6 +1580,11 @@ static void AllocateChampionTeam(void)
 {
     sHofMonPtr = AllocZeroed(sizeof(*sHofMonPtr));
     gHoFSaveBuffer = Alloc(SECTOR_SIZE * NUM_HOF_SECTORS);
+}
+
+void AccessPokemonChampionRoster(void)
+{
+    SetMainCallback2(CB2_DoShowChampionPokemons);
 }
 
 void CB2_DoShowChampionPokemons(void)
@@ -1586,26 +1605,38 @@ static void Task_Champion_InitMonData(u8 taskId)
     for (i = 0; i < PARTY_SIZE; i++)
     {
         u8 nickname[POKEMON_NAME_LENGTH + 1];
-        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES))
+        if (GetMonData(&gShowParty[i], MON_DATA_SPECIES))
         {
-            sHofMonPtr->mon[i].species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
-            sHofMonPtr->mon[i].tid = GetMonData(&gPlayerParty[i], MON_DATA_OT_ID);
-            sHofMonPtr->mon[i].isShiny = GetMonData(&gPlayerParty[i], MON_DATA_IS_SHINY);
-            sHofMonPtr->mon[i].personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY);
-            sHofMonPtr->mon[i].lvl = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
-            GetMonData(&gPlayerParty[i], MON_DATA_NICKNAME, nickname);
+            // Editing
+            sHofMonPtr->mon[i].species = GetMonData(&gShowParty[i], MON_DATA_SPECIES_OR_EGG);
+            // sHofMonPtr->mon[i].tid = GetMonData(&gShowParty[i], MON_DATA_OT_ID);
+            // sHofMonPtr->mon[i].isShiny = GetMonData(&gShowParty[i], MON_DATA_IS_SHINY);
+            sHofMonPtr->mon[i].personality = GetMonData(&gShowParty[i], MON_DATA_PERSONALITY);
+            sHofMonPtr->mon[i].lvl = GetMonData(&gShowParty[i], MON_DATA_LEVEL);
+            GetMonData(&gShowParty[i], MON_DATA_NICKNAME, nickname);
             for (j = 0; j < POKEMON_NAME_LENGTH; j++)
                 sHofMonPtr->mon[i].nickname[j] = nickname[j];
+
+            sHofMonPtr->mon[i].item_held = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
+            sHofMonPtr->mon[i].ability = GetMonAbility(&gPlayerParty[i]); 
+            // sHofMonPtr->mon[i].first_move = GetMonData(&gPlayerParty[i], MON_DATA_MOVE1);
+            // sHofMonPtr->mon[i].second_move = GetMonData(&gPlayerParty[i], MON_DATA_MOVE2);
+            // sHofMonPtr->mon[i].third_move = GetMonData(&gPlayerParty[i], MON_DATA_MOVE3);
+            // sHofMonPtr->mon[i].fourth_move = GetMonData(&gPlayerParty[i], MON_DATA_MOVE4);
+
             gTasks[taskId].tMonNumber++;
         }
         else
         {
             sHofMonPtr->mon[i].species = SPECIES_NONE;
-            sHofMonPtr->mon[i].tid = 0;
-            sHofMonPtr->mon[i].isShiny = FALSE;
+            // sHofMonPtr->mon[i].tid = 0;
+            // sHofMonPtr->mon[i].isShiny = FALSE;
             sHofMonPtr->mon[i].personality = 0;
             sHofMonPtr->mon[i].lvl = 0;
             sHofMonPtr->mon[i].nickname[0] = EOS;
+
+            sHofMonPtr->mon[i].item_held = 0;
+            sHofMonPtr->mon[i].ability = 0;
         }
     }
 
@@ -1712,6 +1743,10 @@ static void Task_Champion_TryDisplayAnotherMon(u8 taskId)
 static void Task_Champion_PaletteFadeAndPrintWelcomeText(u8 taskId)
 {
     u16 i;
+
+    FillWindowPixelBuffer(0, PIXEL_FILL(0)); 
+    PutWindowTilemap(0);
+
     BeginNormalPaletteFade(PALETTES_OBJECTS, 0, 0, 0, RGB_BLACK);
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -1723,13 +1758,11 @@ static void Task_Champion_PaletteFadeAndPrintWelcomeText(u8 taskId)
 }
 static void Task_Champion_ExitOnKeyPressed(u8 taskId)
 {   
-    DrawDialogueFrame(0, FALSE);
-    AddTextPrinterParameterized2(0, FONT_NORMAL, gText_SavingDontTurnOffPower, 0, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+    AddTextPrinterParameterized3(0, FONT_NORMAL, GetStringCenterAlignXOffset(FONT_NORMAL, gText_PressAnythingtoLeave, 0xD0), 2, sMonInfoTextColors, TEXT_SKIP_DRAW, gText_PressAnythingtoLeave);
+    CopyWindowToVram(0, COPYWIN_FULL);
 
     if (JOY_NEW(A_BUTTON))
     {
-        gPlayerPartyCount = 0;
-        ZeroPlayerPartyMons();
         SetMainCallback2(CB2_ReturnToField);
         DestroyTask(taskId);
     }

@@ -4,9 +4,9 @@
 void PlayerStep(u8 direction, u16 newKeys, u16 heldKeys);
 bool8 TryDoMetatileBehaviorForcedMovement();
 void ClearPlayerAvatarInfo(void);
-void SetPlayerAvatarExtraStateTransition(u16 graphicsId, u8 transitionFlag);
+void SetPlayerAvatarExtraStateTransition(u16 graphicsId, u16 transitionFlag);
 u8 GetPlayerAvatarGenderByGraphicsId(u16 gfxId);
-u8 TestPlayerAvatarFlags(u8 flag);
+u16 TestPlayerAvatarFlags(u16 flag);
 u8 GetPlayerAvatarSpriteId(void);
 void PlayerGetDestCoords(s16 *x, s16 *y);
 u8 GetPlayerFacingDirection(void);
@@ -42,14 +42,14 @@ void GetXYCoordsOneStepInFrontOfPlayer(s16 *xPtr, s16 *yPtr);
 u16 GetRivalAvatarGraphicsIdByStateIdAndGender(u8 state, u8 gender);
 void SetPlayerAvatarFieldMove(void);
 u16 GetPlayerAvatarGraphicsIdByCurrentState(void);
-void SetPlayerAvatarStateMask(u8 flags);
+void SetPlayerAvatarStateMask(u16 flags);
 u16 GetPlayerAvatarGraphicsIdByStateId(u8 state);
 u8 GetJumpSpecialMovementAction(u32);
 bool8 PartyHasMonWithSurf(void);
 bool8 IsPlayerFacingSurfableFishableWater(void);
 bool8 IsPlayerSurfingNorth(void);
 void SetPlayerAvatarWatering(u8 direction);
-u8 GetPlayerAvatarFlags(void);
+u16 GetPlayerAvatarFlags(void);
 void UpdatePlayerAvatarTransitionState(void);
 u16 GetFRLGAvatarGraphicsIdByGender(u8 gender);
 u16 GetRSAvatarGraphicsIdByGender(u8 gender);
@@ -73,4 +73,8 @@ void UpdateSpinData(void);
 void ResetSpinTimer(void);
 bool32 CanTriggerSpinEvolution();
 
-#endif // GUARD_FIELD_PLAYER_AVATAR_H
+// Edit
+void SavePlayerStateBeforeWarp(void);
+void RestorePlayerStateAfterWarp(void);
+
+#endif // GUARD_FIELD_PLAYER_AVATAR_

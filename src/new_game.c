@@ -151,6 +151,38 @@ void ResetMenuAndMonGlobals(void)
     ResetPokeblockScrollPositions();
 }
 
+// Edit
+void ChooseNewChampion(void)
+{
+    SavePokemonTeam();
+    gPlayerPartyCount = 0;
+    ZeroPlayerPartyMons();
+    SetMoney(&gSaveBlock1Ptr->money, 100000);
+    ClearBag();
+    ResetPokemonStorageSystem();
+}
+
+struct Pokemon gTempParty[PARTY_SIZE];
+struct Pokemon gShowParty[PARTY_SIZE];
+
+void SavePokemonTeam(void)
+{
+    s32 i;
+    for (i = 0; i < PARTY_SIZE; i++)
+    gTempParty[i] = gPlayerParty[i];
+}
+
+void RetrievePokemonTeam(void)
+{
+    s32 i;
+    gPlayerPartyCount = 6;
+    for (i = 0; i < PARTY_SIZE; i++)
+        gShowParty[i] = gPlayerParty[i];
+    for (i = 0; i < PARTY_SIZE; i++)
+        gPlayerParty[i] = gTempParty[i];
+}
+
+
 void NewGameInitData(void)
 {
     if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)

@@ -24,6 +24,46 @@
 
 #include "data/script_menu.h"
 
+#include "trainer_pokemon_sprites.h"
+
+enum {
+    WIN_MSG,
+    WIN_CARD_TEXT,
+    WIN_TRAINER_PIC,
+};
+
+static const struct WindowTemplate sTrainerCardWindowTemplates[] =
+{
+    [WIN_MSG] = {
+        .bg = 1,
+        .tilemapLeft = 2,
+        .tilemapTop = 15,
+        .width = 27,
+        .height = 4,
+        .paletteNum = 15,
+        .baseBlock = 0x253,
+    },
+    [WIN_CARD_TEXT] = {
+        .bg = 1,
+        .tilemapLeft = 1,
+        .tilemapTop = 1,
+        .width = 28,
+        .height = 18,
+        .paletteNum = 15,
+        .baseBlock = 0x1,
+    },
+    [WIN_TRAINER_PIC] = {
+        .bg = 3,
+        .tilemapLeft = 19,
+        .tilemapTop = 5,
+        .width = 9,
+        .height = 10,
+        .paletteNum = 8,
+        .baseBlock = 0x150,
+    },
+    DUMMY_WIN_TEMPLATE
+};
+
 struct DynamicListMenuEventArgs
 {
     struct ListMenuTemplate *list;
@@ -978,6 +1018,31 @@ bool8 ScriptMenu_ShowPokemonPic(u16 species, u8 x, u8 y)
         gSprites[spriteId].callback = SpriteCallbackDummy;
         gSprites[spriteId].oam.priority = 0;
         SetStandardWindowBorderStyle(gTasks[taskId].tWindowId, TRUE);
+        ScheduleBgCopyTilemapToVram(0);
+        return TRUE;
+    }
+}
+
+// Edit
+bool8 ScriptMenu_ShowTrainerSprite(u16 trainer, u8 x, u8 y)
+{
+    u8 taskId;
+    u8 spriteId;
+
+    if (FindTaskIdByFunc(Task_PokemonPicWindow) != TASK_NONE)
+    {
+        return FALSE;
+    }
+    else
+    {
+        spriteId = CreateTrainerSprite_PicBox(FacilityClassToPicIndex(trainer), x * 8 + 40, y * 8 + 40, 0);
+        taskId = CreateTask(Task_PokemonPicWindow, 0x50);
+        gTasks[taskId].tWindowId = CreateWindowFromRect(x, y, 8, 8);
+        gTasks[taskId].tState = 0;
+        gTasks[taskId].tMonSpecies = trainer;
+        gTasks[taskId].tMonSpriteId = spriteId;
+        gSprites[spriteId].callback = SpriteCallbackDummy;
+        gSprites[spriteId].oam.priority = 1;
         ScheduleBgCopyTilemapToVram(0);
         return TRUE;
     }

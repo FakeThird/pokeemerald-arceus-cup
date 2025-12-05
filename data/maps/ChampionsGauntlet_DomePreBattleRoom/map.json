@@ -29,22 +29,7 @@
       "flag": "0"
     }
   ],
-  "warp_events": [
-    {
-      "x": 6,
-      "y": 8,
-      "elevation": 3,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_WEST",
-      "dest_warp_id": "1"
-    },
-    {
-      "x": 7,
-      "y": 8,
-      "elevation": 3,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_WEST",
-      "dest_warp_id": "1"
-    }
-  ],
+  "warp_events": [],
   "coord_events": [],
   "bg_events": [
     {

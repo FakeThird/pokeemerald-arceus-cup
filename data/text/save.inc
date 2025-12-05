@@ -33,4 +33,4 @@ gText_SavingDontTurnOffPower::
 	.string "DON'T TURN OFF THE POWER.$"
 
 gText_PressAnythingtoLeave::
-.string "Press X to Exit.\n"
+.string "Press X to Exit.$"
